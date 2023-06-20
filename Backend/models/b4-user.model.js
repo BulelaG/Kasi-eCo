@@ -1,8 +1,46 @@
+//const mongoose = require("mongoose");
+
+// module.exports = mongoose => {
+
+//  const schemaUser = mongoose.Schema({
+
+//      fname: {
+//         type: String,
+//         require: true
+//      },
+//      email:{
+//         type: String,
+//         require: true
+//      },
+//      password:{
+//         type: String,
+//         require: true
+//      },
+//      role: {
+//         type: String,
+//         enum: ['Trader', 'Customer'],
+//         required: true
+//      }
+
+//        })
+
+//     schemaUser.method("toJSON", function() {
+//                 const{__v, _id, ...object } = this.toObject();
+//                 object.id = _id;
+//                 return object;
+
+//     });
+
+// let User = mongoose.model('User', schemaUser);
+// return User
+
+
+// }
 
 
 const mongoose = require('mongoose');
 
-//  User schema
+//  user schema
 const userSchema = new mongoose.Schema({
   email: {
     type: String,
@@ -20,21 +58,11 @@ const userSchema = new mongoose.Schema({
   role: {
     type: String,
     enum: ['Trader', 'Customer',],
-    default: 'customer',
     required: true
   }
 });
 
-// Custom toJSON method to exclude unnecessary fields when converting to JSON
-userSchema.method('toJSON', function() {
-   const { __v, _id, password, ...object } = this.toObject();
-   object.id = _id;
-   return object;
- });
-
-
-// Trader schema
-
+// trader schema
 const traderSchema = new mongoose.Schema({
 
       // Additional fields specific to traders
@@ -45,16 +73,18 @@ const traderSchema = new mongoose.Schema({
       address: {
         type: String,
         required: true
-      },     
+      },
+      
+  
 });
 
-// Customer schema
+// Define the customer schema
 
 const customerSchema = new mongoose.Schema({
 
-   // fields specific to customers
+   // Additional fields specific to customers
 
-   deliveryAddress: {
+   shippingAddress: {
      type: String,
      required: true
    },
@@ -62,12 +92,12 @@ const customerSchema = new mongoose.Schema({
      type: String,
      required: true
    },
-  });
+ 
+ });
  
 
- // Product schema
-
- const productSchema = new mongoose.Schema({
+// Define the product schema
+const productSchema = new mongoose.Schema({
   fname: {
     type: String,
     required: true
@@ -87,8 +117,8 @@ const customerSchema = new mongoose.Schema({
   }
 });
 
- // Order schema
-  const orderSchema = new mongoose.Schema({
+// Define the order schema
+const orderSchema = new mongoose.Schema({
   customer: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
@@ -106,14 +136,14 @@ const customerSchema = new mongoose.Schema({
   }
 });
 
-//  Models based on the schemas
+// Create the models based on the schemas
 const User = mongoose.model('User', userSchema);
 const Trader = User.discriminator('Trader', traderSchema);
 const Customer = User.discriminator('Customer', customerSchema);
 const Product = mongoose.model('Product', productSchema);
 const Order = mongoose.model('Order', orderSchema);
 
-// Exports of the models
+// Export the models
 module.exports = {
   User,
   Trader,

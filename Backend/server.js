@@ -16,7 +16,6 @@ const db = require('./models')
 
 app.use(express.json());
 
-
 app.use(express.urlencoded({extended: true, limit: '50mb'}));
 
 db.mongoose.connect(DB.db_url,{

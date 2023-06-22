@@ -16,7 +16,7 @@ const customerSchema = new mongoose.Schema({
      },
 
     // Additional fields specific to customers
-    deliveryAdress: {
+    deliveryAddress: {
       type: String,
       required: true
     },

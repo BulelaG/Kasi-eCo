@@ -7,8 +7,8 @@ const Customer = db.customer
 // Create a new customer
 exports.createCustomer = async (req, res) => {
     try {
-      const { email, password, fname, deliveryAddress, contactNumber } = req.body;
-      const customer = new Customer({ email, password, fname, deliveryAddress, contactNumber });
+      const { email, password, fname, deliveryAddress, contact } = req.body;
+      const customer = new Customer({ email, password, fname, deliveryAddress, contact });
       await customer.save();
       res.status(201).json({ message: 'Customer created successfully' });
     } catch (error) {

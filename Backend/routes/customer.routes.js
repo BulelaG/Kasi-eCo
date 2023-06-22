@@ -15,8 +15,6 @@ module.exports = rs => {
    router.delete('/delete-all-customers', controller.deleteAllCustomers); // DELETE ALL CUSTOMERS
 
    router.delete('/:id', controller.deleteCustomer); // DELETE 1 CUSTOMERS
-
-
   
   rs.use('/v1/customers',router)  
 }

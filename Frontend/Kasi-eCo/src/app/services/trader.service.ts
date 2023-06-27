@@ -22,8 +22,8 @@ export class TraderService {
     private messageService: MessageService) { }
 
   /** GET traders from the server */
-  getTraders(): Observable<Trader[]> {
-    return this.http.get<Trader[]>(this.tradersUrl)
+  getTraders(): Observable<any> {
+    return this.http.get<any>(this.tradersUrl)
       .pipe(
         tap(_ => this.log('fetched heroes')),
         catchError(this.handleError<Trader[]>('getTraders', []))

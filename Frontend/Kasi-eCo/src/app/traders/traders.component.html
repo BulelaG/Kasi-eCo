@@ -7,10 +7,10 @@
       <ul class="traders">
         <li *ngFor="let trader of traders">
           <a routerLink="/trader-detail/{{trader.id}}">
-            <span class="badge"></span> {{trader.trader_name}}        <!--{{hero.id}}  -->
+            <span class="badge"></span> {{trader.fname}}        <!--{{hero.id}}  -->
           </a>
-          <button type="button" class="delete" title="delete trader"
-            (click)="delete(trader)">x</button>
+          <!-- <button type="button" class="delete" title="delete trader"
+            (click)="delete(trader)">x</button> -->
         </li>
       </ul>
     </div>

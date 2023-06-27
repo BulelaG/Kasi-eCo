@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 
 import { Trader } from '../trader';
-import { TraderService } from '../trader.service';
+import { TraderService } from '../services/trader.service';
 import { ActivatedRoute } from '@angular/router';
 
 

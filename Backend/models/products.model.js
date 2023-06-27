@@ -19,11 +19,17 @@ const productsSchema = new mongoose.Schema({
      type: String,
      required: true
    },
-   createdBy: {
-     type: mongoose.Schema.Types.ObjectId,
-     ref: 'User',
-     required: true
+   category: {
+    type: String,
+   },
+   image: {
+    type: String
    }
+  //  createdBy: {
+  //    type: mongoose.Schema.Types.ObjectId,
+  //    ref: 'User',
+  //    required: true
+  //  }
 
 });
 

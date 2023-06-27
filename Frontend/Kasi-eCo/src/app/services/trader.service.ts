@@ -4,14 +4,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
-import { Trader } from './trader';
-import { MessageService } from './message.service';
+import { Trader } from '../trader';
+import { MessageService } from '../message.service';
 
 
 @Injectable({ providedIn: 'root' })
 export class TraderService {
 
-  private tradersUrl = 'http://localhost:3333/v1/traders/get-all-traders';  // URL to web api
+  private tradersUrl = 'http://localhost:5555/v1/traders/';  // URL to web api
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })

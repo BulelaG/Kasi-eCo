@@ -4,14 +4,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
-import { Trader } from './trader';
-import { MessageService } from './message.service';
+import { Trader } from '../trader';
+import { MessageService } from '../message.service';
 
 
 @Injectable({ providedIn: 'root' })
 export class TraderService {
 
-  private tradersUrl = 'http://localhost:3333/v1/traders/get-all-traders';  // URL to web api
+  private tradersUrl = 'http://localhost:5555/v1/traders/';  // URL to web api
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -22,8 +22,8 @@ export class TraderService {
     private messageService: MessageService) { }
 
   /** GET traders from the server */
-  getTraders(): Observable<Trader[]> {
-    return this.http.get<Trader[]>(this.tradersUrl)
+  getTraders(): Observable<any> {
+    return this.http.get<any>(this.tradersUrl)
       .pipe(
         tap(_ => this.log('fetched heroes')),
         catchError(this.handleError<Trader[]>('getTraders', []))

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 
 import { Trader } from '../trader';
-import { TraderService } from '../trader.service';
+import { TraderService } from '../services/trader.service';
 import { ActivatedRoute } from '@angular/router';
 
 
@@ -14,7 +14,7 @@ import { ActivatedRoute } from '@angular/router';
 
 
 export class TradersComponent implements OnInit {
-  traders: Trader[] = [];
+  traders:any;
   
   constructor(private traderService: TraderService,  private route: ActivatedRoute) { }
 
@@ -24,7 +24,10 @@ export class TradersComponent implements OnInit {
 
   getTraders(): void {
     this.traderService.getTraders()
-    .subscribe(traders => this.traders = traders);
+    .subscribe(traders => {
+      this.traders = traders
+      console.log(this.traders)
+    });
   }
 
   add(trader_name: string, businessName: string, department: string ): void {
@@ -48,7 +51,7 @@ export class TradersComponent implements OnInit {
 
   delete(trader: Trader): void {
     this.traderService.deleteTrader(trader.id).subscribe(() => {
-      this.traders = this.traders.filter(h => h !== trader);
+      this.traders = this.traders.filter((h: any) => h !== trader);
       console.log(`Deleted trader with ID: ${trader.id}`);
     });
   }

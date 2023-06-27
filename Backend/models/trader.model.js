@@ -14,19 +14,20 @@ const traderSchema = new mongoose.Schema({
         type: String,
         require: true
      },
+     cell: String,
 
     // Additional fields specific to traders
-    display: {
-      type: String,
-      default: 'https://www.pngitem.com/pimgs/m/82-824451_transparent-supplier-icon-png-team-work-icon-transparent.png'
-    },
+    // display: {
+    //   type: String,
+    //   default: 'https://www.pngitem.com/pimgs/m/82-824451_transparent-supplier-icon-png-team-work-icon-transparent.png'
+    // },
     businessName: {
       type: String,
       required: true
     },
     address: {
       type: String,
-      required: true
+      // required: true
     }
    
 });

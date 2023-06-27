@@ -9,6 +9,8 @@ const traderRoutes = require("./routes/trader.routes")
 const customerRoutes = require("./routes/customer.routes")
 const productsRoutes = require("./routes/products.routes")
 const ordersRoutes = require("./routes/orders.routes")
+const itemRoutes = require("./routes/items.routes")
+
 
 
 // const tradeerRoutes = require("./routes/trader.routes")
@@ -38,6 +40,7 @@ db.mongoose.connect(DB.db_url,{
    .catch(err=>{console.log("Error message : " + err)})
 
    
+itemRoutes(app)
 userRoutes(app)
 traderRoutes(app)
 customerRoutes(app)

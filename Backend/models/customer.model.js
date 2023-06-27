@@ -2,25 +2,20 @@ module.exports = mongoose => {
 const customerSchema = new mongoose.Schema({
 
 
-    fname: {
+    item_name: {
         type: String,
         require: true
      },
-     email:{
+     desc:{
         type: String,
         require: true
      },
-     password:{
-        type: String,
-        require: true
-     },
-
-    // Additional fields specific to customers
-    deliveryAddress: {
+     img: {
       type: String,
-      required: true
+      required: false,
     },
-    contact: {
+    // Additional fields specific to customers
+    seller: {
       type: String,
       required: true
     }

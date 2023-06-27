@@ -1,1 +1,10 @@
 <h1 class="text-center text-success">Welcome to the Kasie-Eco Market Place </h1>
+<hr><h2 class="text-white">Kasie-Eco Top Traders</h2><hr>
+<div class="traders-menu">
+  <a *ngFor="let trader of traders"
+      routerLink="/trader-detail/{{trader.id}}">
+      {{trader.trader_name}}
+  </a>
+</div>
+
+<app-trader-search></app-trader-search>

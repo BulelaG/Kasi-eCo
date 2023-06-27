@@ -1,9 +1,8 @@
 const db = require("../models")
-const Product = db.product
+const Product = db.products
 
 
 // Products
-
 // Create a new product
 exports.createProduct = async (req, res) => {
     try {

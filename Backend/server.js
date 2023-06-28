@@ -9,7 +9,7 @@ const traderRoutes = require("./routes/trader.routes")
 const customerRoutes = require("./routes/customer.routes")
 const productsRoutes = require("./routes/products.routes")
 const ordersRoutes = require("./routes/orders.routes")
-const itemRoutes = require("./routes/items.routes")
+// const itemRoutes = require("./routes/items.routes")
 
 
 
@@ -19,6 +19,7 @@ const PORT = process.env.PORT;
 
 const DB = require("./config/db.config")
 const db = require('./models')
+// const Role = db.role
 
 // var corsOptions = {
 // origin: "http://localhost:8081"
@@ -40,7 +41,7 @@ db.mongoose.connect(DB.db_url,{
    .catch(err=>{console.log("Error message : " + err)})
 
    
-itemRoutes(app)
+// itemRoutes(app)
 userRoutes(app)
 traderRoutes(app)
 customerRoutes(app)
@@ -52,3 +53,4 @@ ordersRoutes(app)
 app.listen(PORT, () => {
     console.log(`Server is running @ ${PORT}.`)
 });
+

@@ -4,7 +4,10 @@ module.exports = traderBridge => {
 
    // Trader endpoints
 
-   router.post('/', controller.createTrader); // ADD TRADER
+   router.post('/signup', controller.createTrader); // ADD TRADER
+
+   router.post('/signin', controller.signin); // ADD TRADER
+
 
    router.get('/', controller.getAllTraders); // GET ALL TRADERS
 

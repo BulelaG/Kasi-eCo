@@ -1,16 +1,21 @@
-const db = require("../models")
-const Trader = db.trader
+const config = require("../config/auth.config");
+const db = require("../models");
+const Trader = db.trader;
+
 const bcrypt = require('bcrypt');
+const jwt = require("jsonwebtoken");
 
-
-
-// Traders
+// Function to generate and sign a JWT token
+function generateToken(userId) {
+  return jwt.sign({ id: userId }, config.secret, {
+    expiresIn: 86400 // 24 hours
+  });
+}
 
 // Create a new trader
 exports.createTrader = async (req, res) => {
   try {
     const { email, password, fname, businessName, address } = req.body;
-    // salt and hashed the password using bcrypt
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
@@ -21,14 +26,13 @@ exports.createTrader = async (req, res) => {
       businessName,
       address
     });
-    
+
     await trader.save();
     res.status(201).json({ message: 'Trader created successfully' });
   } catch (error) {
     res.status(500).json({ error: 'Internal server error' });
   }
 };
-
 
 // Trader signin
 exports.signin = async (req, res) => {
@@ -42,88 +46,91 @@ exports.signin = async (req, res) => {
       return res.status(401).json({ error: 'Invalid email or password' });
     }
 
-    // Compare the provided password with the stored hashed password using bcrypt
     const passwordMatch = await bcrypt.compare(password, trader.password);
 
     if (!passwordMatch) {
       return res.status(401).json({ error: 'Invalid email or password' });
     }
 
-    // Add your authentication logic here (e.g., generating a token)
+    // Generate a token for the authenticated trader
+    const token = generateToken(trader._id);
 
-    res.json({ message: 'Signin successful', trader });
+    res.status(200).json({
+      id: trader._id,
+      email: trader.email,
+      fname: trader.fname,
+      businessName: trader.businessName,
+      address: trader.address,
+      accessToken: token
+    });
   } catch (error) {
     res.status(500).json({ error: 'Internal server error' });
   }
 };
 
-  
-  // Get all traders
-  exports.getAllTraders = async (req, res) => {     //The was const , I replaced with ""exports.""
-    try {
-      const traders = await Trader.find();
-      res.json(traders);
-    } catch (error) {
-      res.status(500).json({ error: 'Internal server error' });
+// Get all traders
+exports.getAllTraders = async (req, res) => {
+  try {
+    const traders = await Trader.find();
+    res.json(traders);
+  } catch (error) {
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
+// Get a trader by ID
+exports.getTraderById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const trader = await Trader.findById(id);
+    if (!trader) {
+      return res.status(404).json({ error: 'Trader not found' });
     }
-  };
-  
-  // Get a trader by ID
-  exports.getTraderById = async (req, res) => {         //The was const , I replaced with ""exports.""
-    try {
-      const { id } = req.params;
-      const trader = await Trader.findById(id);
-      if (!trader) {
-        return res.status(404).json({ error: 'Trader not found' });
-      }
-      res.json(trader);
-    } catch (error) {
-      res.status(500).json({ error: 'Internal server error' });
+    res.json(trader);
+  } catch (error) {
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
+// Update a trader by ID
+exports.updateTrader = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { email, password, fname, businessName, address } = req.body;
+    const trader = await Trader.findByIdAndUpdate(
+      id,
+      { email, password, fname, businessName, address },
+      { new: true }
+    );
+    if (!trader) {
+      return res.status(404).json({ error: 'Trader not found' });
     }
-  };
-  
-  
-  
-  // Update a trader by ID
-  exports.updateTrader = async (req, res) => {       //The was const , I replaced with ""exports.""
-    try {
-      const { id } = req.params;
-      const { email, password, fname, businessName, address } = req.body;
-      const trader = await Trader.findByIdAndUpdate(
-        id,
-        { email, password, fname, businessName, address },
-        { new: true }
-      );
-      if (!trader) {
-        return res.status(404).json({ error: 'Trader not found' });
-      }
-      res.json(trader);
-    } catch (error) {
-      res.status(500).json({ error: 'Internal server error' });
+    res.json(trader);
+  } catch (error) {
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
+// Delete a trader by ID
+exports.deleteTrader = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const trader = await Trader.findByIdAndDelete(id);
+    if (!trader) {
+      return res.status(404).json({ error: 'Trader not found' });
     }
-  };
-  
-  // Delete a trader by ID
-  exports.deleteTrader = async (req, res) => {     //The was const , I replaced with ""exports.""
-    try {
-      const { id } = req.params;
-      const trader = await Trader.findByIdAndDelete(id);
-      if (!trader) {
-        return res.status(404).json({ error: 'Trader not found' });
-      }
-      res.json({ message: 'Trader deleted successfully' });
-    } catch (error) {
-      res.status(500).json({ error: 'Internal server error' });
-    }
-  };
-  
-  // Delete all traders
-  exports.deleteAllTraders = async (req, res) => {
-    try {
-      await Trader.deleteMany();
-      res.json({ message: 'All traders deleted successfully' });
-    } catch (error) {
-      res.status(500).json({ error: 'Internal server error' });
-    }
-  };
-  
+    res.json({ message: 'Trader deleted successfully' });
+  } catch (error) {
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
+// Delete all traders
+exports.deleteAllTraders = async (req, res) => {
+  try {
+    await Trader.deleteMany();
+    res.json({ message: 'All traders deleted successfully' });
+  } catch (error) {
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};

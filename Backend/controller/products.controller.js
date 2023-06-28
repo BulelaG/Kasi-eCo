@@ -1,5 +1,6 @@
 const db = require("../models")
-const Product = db.products
+const Product = db.products;
+const Trader = db.trader;
 
 
 // Products
@@ -11,7 +12,19 @@ exports.createProduct = async (req, res) => {
         // { p_name, price, description }
         req.body
         );
+        
       await product.save();
+
+       // Find the trader and update their products array
+        const trader = await Trader.findByIdAndUpdate(traderId, {
+        $push: { products: product._id }
+       });
+
+       
+    if (!trader) {
+      return res.status(404).json({ error: 'Trader not found' });
+    }
+
       res.status(201).json({ message: 'Product created successfully' });
     } catch (error) {
       res.status(500).json({ error: 'Internal server error' });

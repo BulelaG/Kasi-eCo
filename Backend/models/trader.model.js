@@ -17,10 +17,10 @@ const traderSchema = new mongoose.Schema({
      cell: String,
 
     // Additional fields specific to traders
-    // display: {
-    //   type: String,
-    //   default: 'https://www.pngitem.com/pimgs/m/82-824451_transparent-supplier-icon-png-team-work-icon-transparent.png'
-    // },
+    image: {
+      type: String,
+      default: 'https://www.pngitem.com/pimgs/m/82-824451_transparent-supplier-icon-png-team-work-icon-transparent.png'
+    },
     businessName: {
       type: String,
       required: true
@@ -28,7 +28,13 @@ const traderSchema = new mongoose.Schema({
     address: {
       type: String,
       // required: true
-    }
+    },
+    products: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Product'
+      }
+    ]
    
 });
 

@@ -1,8 +1,8 @@
 const jwt = require("jsonwebtoken");
 const config = require("../config/auth.config.js");
 const db = require("../models");
-const Trader = db.trader;
-// const Role = db.role;
+// const Trader = db.trader;
+// const Product = db.product;
 
 verifyToken = (req, res, next) => {
   let token = req.headers["x-access-token"];
@@ -15,7 +15,7 @@ verifyToken = (req, res, next) => {
     if (err) {
       return res.status(401).send({ message: "Unauthorized!" });
     }
-    req.userId = decoded.id;
+    req.productId = decoded.id;
     next();
   });
 };

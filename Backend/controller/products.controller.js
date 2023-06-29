@@ -1,36 +1,70 @@
-const db = require("../models")
+const db = require("../models");
 const Product = db.products;
 const Trader = db.trader;
 
-
-// Products
 // Create a new product
 exports.createProduct = async (req, res) => {
-    try {
-      // const { p_name, price, description } = req.body;
-      const product = new Product(
-        // { p_name, price, description }
-        req.body
-        );
-        
-      await product.save();
+  try {
+    // const { p_name, price, description, createdBy } = req.body;
 
-       // Find the trader and update their products array
-        const trader = await Trader.findByIdAndUpdate(traderId, {
-        $push: { products: product._id }
-       });
+    const product = new Product(
+      // p_name,
+      // price,
+      // description
+      req.body
+    );
 
-       
+    if (req.body.createdBy) {
+      Trader.findOne({ fname: req.body.createdBy }).then(trader => {
+        console.log(trader)
+        if (!trader) {
+          // return res.status(500).send({ message: err });
+        }
+
+        if (!trader) {
+          return res.status(404).send({ message: "Trader not found." });
+        }
+
+        product.createdBy = trader._id;
+        product.save().then(data => {
+          if (!data) {
+            return res.status(500).send({ message: "The product is not created. Maybe the trader was not found" });
+          }
+
+          res.send({ message: "Product created successfully!" });
+        });
+      });
+    } else {
+      product.save((err) => {
+        if (err) {
+          return res.status(500).send({ message: err });
+        }
+        res.send({ message: "Product created successfully!" });
+      });
+    }
+  } catch (err) {
+    res.status(500).send({ message: err.message });
+  }
+};
+
+  // Get products by createdBy
+exports.getProductsByCreatedBy = async (req, res) => {
+  try {
+    const { createdBy } = req.params;
+
+    const trader = await Trader.findOne({ fname: createdBy });
     if (!trader) {
       return res.status(404).json({ error: 'Trader not found' });
     }
 
-      res.status(201).json({ message: 'Product created successfully' });
-    } catch (error) {
-      res.status(500).json({ error: 'Internal server error' });
-    }
-  };
-  
+    const products = await Product.find({ createdBy: trader._id });
+    res.json(products);
+  } catch (error) {
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
+    
+   
   // Get all products
   exports.getAllProducts = async (req, res) => {
     try {

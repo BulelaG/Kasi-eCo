@@ -15,7 +15,7 @@ const ordersRoutes = require("./routes/orders.routes")
 
 // const tradeerRoutes = require("./routes/trader.routes")
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT | 5555;
 
 const DB = require("./config/db.config")
 const db = require('./models')

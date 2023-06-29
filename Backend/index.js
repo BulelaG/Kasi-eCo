@@ -29,7 +29,9 @@ app.use(cors());
 
 app.use(express.json());
 
-
+app.get("/", (req, res) => {
+    res.json({ message: "The Kasi Eco API is working!" })
+})
 
 app.use(express.urlencoded({extended: true, limit: '50mb'}));
 

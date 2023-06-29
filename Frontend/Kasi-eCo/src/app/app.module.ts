@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TradersComponent } from './traders/traders.component';
@@ -11,6 +12,9 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 import { TraderDetailComponent } from './trader-detail/trader-detail.component';
 import { MessagesComponent } from './messages/messages.component';
 import { ProductsComponent } from './products/products.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
+import { SignInComponent } from './sign-in/sign-in.component';
+import { ProductInventoryComponent } from './product-inventory/product-inventory.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +24,10 @@ import { ProductsComponent } from './products/products.component';
     ProductDetailComponent,
     TraderDetailComponent,
     MessagesComponent,
-    ProductsComponent
+    ProductsComponent,
+    SignUpComponent,
+    SignInComponent,
+    ProductInventoryComponent
   ],
   imports: [
     BrowserModule,

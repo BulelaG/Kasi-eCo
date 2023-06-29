@@ -6,6 +6,11 @@ import { TradersComponent } from './traders/traders.component';
 import { TraderDetailComponent } from './trader-detail/trader-detail.component';
 import { ProductsComponent } from './products/products.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
+import { SignInComponent } from './sign-in/sign-in.component';
+
+
+
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -13,10 +18,16 @@ const routes: Routes = [
   { path: 'products', component: ProductsComponent },
   { path: 'product-detail/:id', component: ProductDetailComponent },
   { path: 'trader-detail/:id', component: TraderDetailComponent },
-  { path: 'traders', component: TradersComponent }
+  { path: 'traders', component: TradersComponent },
+  { path: 'sign-in', component: SignInComponent },
+  { path: 'sign-up', component: SignUpComponent }
+
+
 ];
+
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
+
 export class AppRoutingModule { }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Trader } from '../trader';
-import { TraderService } from '../trader.service';
+// import { TraderService } from '../trader.service';
+import { TraderService } from '../services/trader.service';
 
 
 @Component({
@@ -21,6 +22,6 @@ export class HomeComponent implements OnInit {
 
   getTraders(): void {
     this.traderService.getTraders()
-      .subscribe(traders => this.traders = traders.slice(1, 5));
+      .subscribe((traders: Trader[]) => this.traders = traders.slice(1, 5));
   }
 }

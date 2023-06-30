@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { UserService } from './user.service';
+// import { UserService } from './user.service';
+// import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-register',
@@ -8,33 +8,47 @@ import { UserService } from './user.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  username: string = '';
+  fname: string = '';
   email: string = '';
   password: string = '';
+  businessName: string = '';
+  cell: string = '';
+  image: string = '';
+  address: string = '';
 
-  constructor(private router: Router, private userService: UserService) {}
+
+  constructor(
+    //  private userService: UserService
+    ) {}
 
   ngOnInit() {
     // Example initialization task
-    this.username = '';
+    this.fname = '';
     this.email = '';
     this.password = '';
+    this.businessName = '';
+    this.cell = '';
+    this.address = '';
+    this.image = '';
   }
 
   register() {
     // Perform registration logic
     // Assuming userService.registerUser() returns a Promise or Observable
-    this.userService.registerUser(this.username, this.email, this.password)
-      .subscribe(
-        () => {
-          // Registration success, navigate to login page
-          this.router.navigate(['/login']);
-        },
-        (error: any) => {
-          // Registration failed, handle error
-          console.error('Registration error:', error);
-        }
-      );
+  //   this.userService.registerUser( this.email, this.password, this.fname, this.businessName, this.cell, this.address, this.image, )
+  //     .pipe(
+  //       tap(
+  //       () => {
+  //         // Registration success, navigate to login page
+  //         this.router.navigate(['/login']);
+  //       },
+  //       (error: any) => {
+  //         // Registration failed, handle error
+  //         console.error('Registration error:', error);
+  //       }
+  //     )
+  //     )
+  //     .subscribe
   }
 }
 

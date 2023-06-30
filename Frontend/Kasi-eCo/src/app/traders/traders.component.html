@@ -6,9 +6,13 @@
     
       <ul class="traders">
         <li *ngFor="let trader of traders">
-          <a routerLink="/trader-detail/{{trader.id}}">
+          <div> 
+            <img src="{{trader.image}}" height="50px" width="50px" alt="" srcset="">
+            <a routerLink="/trader-detail/{{trader.id}}">
             <span class="badge"></span> {{trader.fname}}        <!--{{hero.id}}  -->
           </a>
+        </div>
+         
           <!-- <button type="button" class="delete" title="delete trader"
             (click)="delete(trader)">x</button> -->
         </li>

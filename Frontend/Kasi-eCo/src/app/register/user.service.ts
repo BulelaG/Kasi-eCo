@@ -3,12 +3,13 @@ import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class UserService {
-  private apiUrl = 'http://api.example.com'; // Replace with your API URL
+
+  private apiUrl = 'https://kasi-e-co.vercel.app//v1/traders/signup';    // Replace with your API URL
 
   constructor(private http: HttpClient) {}
 
-  registerUser(username: string, email: string, password: string) {
-    const registrationData = { username, email, password };
+  registerUser(fname: string, password: string, email: string, address: string, cell: string, businessName: string, image: string) {
+    const registrationData = { fname, cell, address, image, businessName, email, password };
     return this.http.post(`${this.apiUrl}/register`, registrationData);
   }
 }

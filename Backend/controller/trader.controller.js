@@ -24,7 +24,9 @@ exports.createTrader = async (req, res) => {
       password: hashedPassword,
       fname,
       businessName,
-      address
+      address,
+      cell,
+      image
     });
 
     await trader.save();

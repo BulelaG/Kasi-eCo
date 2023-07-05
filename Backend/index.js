@@ -23,9 +23,15 @@ const db = require('./models')
 
 // var corsOptions = {
 // origin: "http://localhost:8081"
-//};
+// };
 
 app.use(cors());
+
+// app.use(cors({
+//   origin: 'http://localhost:4200', // or '*' for allowing all origins
+//   methods: ['GET', 'POST', 'PUT', 'DELETE'],
+//   allowedHeaders: ['Content-Type', 'Authorization'],
+// }));
 
 app.use(express.json());
 

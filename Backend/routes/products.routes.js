@@ -6,7 +6,7 @@ module.exports = rs => {
 
    router.post('/', controller.createProduct); // ADD PRODUCT
 
-   router.get('/createdBy/:createdBy', controller.getProductsByCreatedBy); //GET  PRODUCT BY CREATOR
+   router.get('/:createdBy', controller.getProductsByCreatedBy); //GET  PRODUCT BY CREATOR
 
    router.get('/', controller.getAllProducts); // GET ALL PRODUCT
 

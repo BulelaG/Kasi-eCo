@@ -57,7 +57,7 @@ exports.getProductsByCreatedBy = async (req, res) => {
       return res.status(404).json({ error: 'Trader not found' });
     }
 
-    const products = await Product.find({ createdBy: trader._id });
+    const products = await Product.find({ createdBy: trader.fname });
     res.json(products);
   } catch (error) {
     res.status(500).json({ error: 'Internal server error' });

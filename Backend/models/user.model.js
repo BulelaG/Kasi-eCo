@@ -1,7 +1,8 @@
-//const mongoose = require("mongoose");
+// const mongoose = require("mongoose");
 
 module.exports = mongoose => {
- var schemaUser = mongoose.Schema({
+
+ const schemaUser = mongoose.Schema({
 
      fname: {
         type: String,
@@ -14,9 +15,14 @@ module.exports = mongoose => {
      password:{
         type: String,
         require: true
-     }
+     },
+   //   role: {
+   //      type: String,
+   //      enum: ['Trader', 'Customer'],
+   //      required: true
+   //   }
 
-       })
+       });
 
     schemaUser.method("toJSON", function() {
                 const{__v, _id, ...object } = this.toObject();
@@ -27,4 +33,7 @@ module.exports = mongoose => {
 
 let User = mongoose.model('User', schemaUser);
 return User
+
+
 }
+

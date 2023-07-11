@@ -1,21 +1,6 @@
 const db = require("../models")
 const User = db.user
 
-// GET ALL USERS 
-exports.getAll = (req, res)=>{
-
-
-       User.find()
-           .then(data=>{
-               res.send(data)
-               console.log(data)
-           })
-           .catch(error=>{
-            res.status(500).send("Could not find user", error)
-            console.log("Could not find user", error)
-           })
-}
-
 
 // CREATE 1 USER
 exports.create = async (req, res)=>{
@@ -50,40 +35,37 @@ exports.create = async (req, res)=>{
     }
 }     
 
-
-
-// CLEAR ALL
-exports.deleteAll = (req, res)=>{
-
-    User.deleteMany()
-        .then(data=>{
-            res.send(data)
-            console.log(data)
-        })
-        .catch(error=>{
-            res.status(500).send("Could not delete all users ", error)
-            console.log("Could not delete all", error)
-        })
-}
-
-
-// DELETE A USER
-exports.deleteOne = (req, res)=>{
+// GET A USER
+exports.getOne = (req, res)=>{
     
     const id = req.params.id
+  
+    User.findById(id, { useFindAndModify: false})
+           .then(data=>{
+            res.send(data)
+            console.log(data) })
+            .catch((error) => {
+             res.status(500).send("Could not find user", error);
+             console.log("Could not find user", error);
+          });
+  }
+  
 
-    User.findByIdAndRemove(id, { useFindAndModify: false})
-        .then(data =>{
-            if(!data) {
-               res.status(404).send({
-                msg: `Cannot delete User with id=${id}. Maybe it was not exit/existing`
-               })
-            } else res.status(201).send({ msg: "User was deleted successfully"})
-        })
-        .catch(err => {
-            res.status(500).send({ msg: `Error deleting User with id=${id}, Error:  ${err}`})
-        })
+// GET ALL USERS 
+exports.getAll = (req, res)=>{
+
+
+       User.find()
+           .then(data=>{
+               res.send(data)
+               console.log(data)
+           })
+           .catch(error=>{
+            res.status(500).send("Could not find user", error)
+            console.log("Could not find user", error)
+           })
 }
+
 
 // UPDATE A USER
 exports.update = (req, res)=>{
@@ -105,3 +87,38 @@ exports.update = (req, res)=>{
         res.status(500).send({ msg: `Error updating User with id=${id} ${err}`})
     })
 }
+
+
+// DELETE A USER
+exports.deleteOne = (req, res)=>{
+    
+    const id = req.params.id
+
+    User.findByIdAndRemove(id, { useFindAndModify: false})
+        .then(data =>{
+            if(!data) {
+               res.status(404).send({
+                msg: `Cannot delete User with id=${id}. Maybe it was not exit/existing`
+               })
+            } else res.status(201).send({ msg: "User was deleted successfully"})
+        })
+        .catch(err => {
+            res.status(500).send({ msg: `Error deleting User with id=${id}, Error:  ${err}`})
+        })
+}
+
+
+// CLEAR ALL
+exports.deleteAll = (req, res)=>{
+
+    User.deleteMany()
+        .then(data=>{
+            res.send(data)
+            console.log(data)
+        })
+        .catch(error=>{
+            res.status(500).send("Could not delete all users ", error)
+            console.log("Could not delete all", error)
+        })
+}
+

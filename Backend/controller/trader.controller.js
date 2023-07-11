@@ -1,9 +1,26 @@
 const config = require("../config/auth.config");
 const db = require("../models");
 const Trader = db.trader;
-
 const bcrypt = require('bcrypt');
 const jwt = require("jsonwebtoken");
+
+require("dotenv").config();
+
+// ------------------
+
+
+// const router = require("express").Router();
+// const User = require("../models/User");
+
+// const {
+//   verifyTokenAndAuthorization,
+//   verifyToken,
+// } = require("../middlewear/verifyToken");
+// const product = require("../models/Product");
+
+// -----------------
+
+
 
 // Function to generate and sign a JWT token
 function generateToken(userId) {
@@ -15,22 +32,23 @@ function generateToken(userId) {
 // Create a new trader
 exports.createTrader = async (req, res) => {
   try {
-    const { email, password, fname, businessName, address } = req.body;
+    const { fname, cell, businessName, address, image, email, password } = req.body;
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
     const trader = new Trader({
-      email,
-      password: hashedPassword,
       fname,
+      cell,
       businessName,
       address,
-      cell,
-      image
+      image,
+      email,
+      password: hashedPassword
     });
 
     await trader.save();
-    res.status(201).json({ message: 'Trader created successfully' });
+    console.log(trader)
+    res.status(201).json(trader);
   } catch (error) {
     res.status(500).json({ error: 'Internal server error' });
   }
@@ -136,3 +154,44 @@ exports.deleteAllTraders = async (req, res) => {
     res.status(500).json({ error: 'Internal server error' });
   }
 };
+
+// TRADER INVENTORY
+
+// Create a Product
+exports.createInventoryProduct = async (req, res) => {
+  
+    const trader = await Trader.findById(req.traders._id);
+    // product info
+    var productId = req.product._id;
+    var productTitle = req.products.productTitle;
+    var productCategory = req.products.productCategory;
+    var productDescription = req.products.productDescription;
+    var productImage = req.products.productImage;
+    var productPrice = req.products.productPrice;
+    var productColor = req.products.productColor;
+    var productSize = req.products.productSize;
+    var productQuantity = req.body;
+    var createdBy = req.user._id;
+
+    try {
+   const traderinventory = new Trader.Inventory.push({
+        productId,
+        productTitle,
+        productCategory,
+        productDescription,
+        productImage,
+        productPrice,
+        productColor,
+        productSize,
+        productQuantity,
+        createdBy,
+      });
+
+      const inventory = await Trader.Inventory.save();
+
+      console.log(inventory);
+      res.status(200).json(inventory);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  }

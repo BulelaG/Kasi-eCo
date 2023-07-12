@@ -8,8 +8,7 @@ import { ProductsComponent } from './products/products.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
-
-
+import { ProfileComponent } from './profile/profile.component';
 
 
 const routes: Routes = [
@@ -19,8 +18,10 @@ const routes: Routes = [
   { path: 'product-detail/:id', component: ProductDetailComponent },
   { path: 'trader-detail/:id', component: TraderDetailComponent },
   { path: 'traders', component: TradersComponent },
-  { path: 'sign-up', component: RegisterComponent },
-  { path: 'sign-in', component: LoginComponent }
+  { path: 'register', component: RegisterComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'profile', component: ProfileComponent }
+
 
 
 ];

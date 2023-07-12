@@ -1,5 +1,5 @@
-logo.{
-    height: 20px;
-    width: 30px;
+.logo{
+    height: 160px;
+    width: 200px;
     object-fit: cover;
 }

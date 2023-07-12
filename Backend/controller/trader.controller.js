@@ -6,22 +6,6 @@ const jwt = require("jsonwebtoken");
 
 require("dotenv").config();
 
-// ------------------
-
-
-// const router = require("express").Router();
-// const User = require("../models/User");
-
-// const {
-//   verifyTokenAndAuthorization,
-//   verifyToken,
-// } = require("../middlewear/verifyToken");
-// const product = require("../models/Product");
-
-// -----------------
-
-
-
 // Function to generate and sign a JWT token
 function generateToken(userId) {
   return jwt.sign({ id: userId }, config.secret, {
@@ -30,6 +14,7 @@ function generateToken(userId) {
 }
 
 // Create a new trader
+
 exports.createTrader = async (req, res) => {
   try {
     const { fname, cell, businessName, address, image, email, password } = req.body;
@@ -60,6 +45,7 @@ exports.signin = async (req, res) => {
     const { email, password } = req.body;
 
     // Find the trader by email
+
     const trader = await Trader.findOne({ email });
 
     if (!trader) {
@@ -119,7 +105,7 @@ exports.updateTrader = async (req, res) => {
     const { email, password, fname, businessName, address } = req.body;
     const trader = await Trader.findByIdAndUpdate(
       id,
-      { email, password, fname, businessName, address },
+      { email, password, fname, businessName, address},
       { new: true }
     );
     if (!trader) {
@@ -158,40 +144,3 @@ exports.deleteAllTraders = async (req, res) => {
 // TRADER INVENTORY
 
 // Create a Product
-exports.createInventoryProduct = async (req, res) => {
-  
-    const trader = await Trader.findById(req.traders._id);
-    // product info
-    var productId = req.product._id;
-    var productTitle = req.products.productTitle;
-    var productCategory = req.products.productCategory;
-    var productDescription = req.products.productDescription;
-    var productImage = req.products.productImage;
-    var productPrice = req.products.productPrice;
-    var productColor = req.products.productColor;
-    var productSize = req.products.productSize;
-    var productQuantity = req.body;
-    var createdBy = req.user._id;
-
-    try {
-   const traderinventory = new Trader.Inventory.push({
-        productId,
-        productTitle,
-        productCategory,
-        productDescription,
-        productImage,
-        productPrice,
-        productColor,
-        productSize,
-        productQuantity,
-        createdBy,
-      });
-
-      const inventory = await Trader.Inventory.save();
-
-      console.log(inventory);
-      res.status(200).json(inventory);
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  }

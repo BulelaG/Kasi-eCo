@@ -1,6 +1,55 @@
+// import { Component, OnInit } from '@angular/core';
+// import { AuthService } from '../_services/auth.service';
+
+// @Component({
+//   selector: 'app-register',
+//   templateUrl: './register.component.html',
+//   styleUrls: ['./register.component.css']
+// })
+// export class RegisterComponent implements OnInit {
+//   form: any = {
+//     fname: null,
+//     cell: null,
+//     businessName: null,
+//     address: null,
+//     image: null,
+//     email: null,
+//     password: null
+//   };
+//   isSuccessful = false;
+//   isSignUpFailed = false;
+//   errorMessage = '';
+
+//   constructor(private authService: AuthService) { }
+
+//   ngOnInit(): void {
+//   }
+
+//   onSubmit(): void {
+//     const {fname, cell, businessName, address, image, email,  password } = this.form;
+
+//     this.authService.register(fname, cell, businessName, address, image, email,  password).subscribe({
+//       next: data => {
+//         console.log(data);
+//         this.isSuccessful = true;
+//         this.isSignUpFailed = false;
+//         this.reloadPage();
+//       },
+//       error: err => {
+//         this.errorMessage = err.error.message;
+//         this.isSignUpFailed = true;
+//       }
+//     });
+//   }
+
+//   reloadPage(): void {
+//     window.location.replace('/home');
+//   }
+// }
+
+
 import { Component, OnInit } from '@angular/core';
-// import { UserService } from './user.service';
-// import { tap } from 'rxjs';
+import { AuthService } from '../_services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -8,47 +57,55 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  fname: string = '';
-  email: string = '';
-  password: string = '';
-  businessName: string = '';
-  cell: string = '';
-  image: string = '';
-  address: string = '';
+  form: any = {
+    fname: null,
+    cell: null,
+    businessName: null,
+    address: null,
+    image: null,
+    email: null,
+    password: null
+  };
+  isSuccessful = false;
+  isSignUpFailed = false;
+  errorMessage = '';
 
+  constructor(private authService: AuthService) { }
 
-  constructor(
-    //  private userService: UserService
-    ) {}
-
-  ngOnInit() {
-    // Example initialization task
-    this.fname = '';
-    this.email = '';
-    this.password = '';
-    this.businessName = '';
-    this.cell = '';
-    this.address = '';
-    this.image = '';
+  ngOnInit(): void {
   }
 
-  register() {
-    // Perform registration logic
-    // Assuming userService.registerUser() returns a Promise or Observable
-  //   this.userService.registerUser( this.email, this.password, this.fname, this.businessName, this.cell, this.address, this.image, )
-  //     .pipe(
-  //       tap(
-  //       () => {
-  //         // Registration success, navigate to login page
-  //         this.router.navigate(['/login']);
-  //       },
-  //       (error: any) => {
-  //         // Registration failed, handle error
-  //         console.error('Registration error:', error);
-  //       }
-  //     )
-  //     )
-  //     .subscribe
+  onSubmit(): void {
+    const { fname, cell, businessName, address, image, email, password } = this.form;
+
+    this.authService.register(fname, cell, businessName, address, image, email, password).subscribe({
+      next: data => {
+        console.log(data);
+        this.isSuccessful = true;
+        this.isSignUpFailed = false;
+        this.reloadPage();
+      },
+      error: err => {
+        this.errorMessage = err.error.message;
+        this.isSignUpFailed = true;
+      }
+    });
+  }
+
+  reloadPage(): void {
+    window.location.replace('/home');
+  }
+
+  handleImageInput(event: any): void {
+    const file: File = event.target.files[0];
+    this.convertToBase64(file);
+  }
+
+  convertToBase64(file: File): void {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      this.form.image = reader.result;
+    };
+    reader.readAsDataURL(file);
   }
 }
-

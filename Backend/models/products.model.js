@@ -26,8 +26,7 @@ const productsSchema = new mongoose.Schema({
     type: String
    },
    createdBy: {
-     type: mongoose.Schema.Types.ObjectId,
-     ref: 'Trader'
+     type: String
    }
 
 });

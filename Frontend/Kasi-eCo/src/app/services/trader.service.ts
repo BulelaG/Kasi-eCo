@@ -7,10 +7,10 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { Trader } from '../trader';
 import { MessageService } from '../message.service';
 
-
-@Injectable({ providedIn: 'root' })
+@Injectable({
+  providedIn: 'root' 
+})
 export class TraderService {
-
   private tradersUrl = 'http://localhost:5555/v1/traders/';  // URL to web api
 
   httpOptions = {
@@ -19,19 +19,20 @@ export class TraderService {
 
   constructor(
     private http: HttpClient,
-    private messageService: MessageService) { }
+    private messageService: MessageService
+  ) { }
 
   /** GET traders from the server */
   getTraders(): Observable<any> {
     return this.http.get<any>(this.tradersUrl)
       .pipe(
-        tap(_ => this.log('fetched heroes')),
-        catchError(this.handleError<Trader[]>('getTraders', []))
+        tap(_ => this.log('fetched traders')),
+        catchError(this.handleError<any>('getTraders'))
       );
   }
 
   /** GET trader by id. Return `undefined` when id not found */
-  getTraderNo404<Data>(id: number): Observable<Trader> {
+  getTraderNo404(id: number): Observable<Trader> {
     const url = `${this.tradersUrl}/?id=${id}`;
     return this.http.get<Trader[]>(url)
       .pipe(
@@ -51,6 +52,31 @@ export class TraderService {
       tap(_ => this.log(`fetched trader id=${id}`)),
       catchError(this.handleError<Trader>(`getTrader id=${id}`))
     );
+  }
+
+  getTraderDetails(id: number): Observable<any> {
+    const url = `${this.tradersUrl}/${id}`;
+    return this.http.get<any>(url).pipe(
+      map(response => response.data)
+    );
+  }
+
+  getAll(id: string | null): Observable<any> {
+    const url = `${this.tradersUrl}/${id}`;
+    return this.http.get<any>(url)
+      .pipe(
+        tap(_ => this.log(`fetched traders for id=${id}`)),
+        catchError(this.handleError<any>('getAll'))
+      );
+  }
+
+  getTraderDetail(traderId: any): Observable<any> {
+    const url = `${this.tradersUrl}/${traderId}`;
+    return this.http.get<any>(url)
+      .pipe(
+        tap(_ => this.log(`fetched trader detail for id=${traderId}`)),
+        catchError(this.handleError<any>('getTraderDetail'))
+      );
   }
 
   /* GET traders whose name contains search term */
@@ -89,7 +115,6 @@ export class TraderService {
 
   /** PUT: update the trader on the server */
   updateTrader(trader: any): Observable<any> {
-
     const url = `${this.tradersUrl}/${trader.id}`; // Update the URL with the trader's ID
 
     return this.http.put(url, trader, this.httpOptions).pipe(
@@ -107,14 +132,8 @@ export class TraderService {
    */
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-
-      // TODO: send the error to remote logging infrastructure
       console.error(error); // log to console instead
-
-      // TODO: better job of transforming error for user consumption
       this.log(`${operation} failed: ${error.message}`);
-
-      // Let the app keep running by returning an empty result.
       return of(result as T);
     };
   }
@@ -122,5 +141,11 @@ export class TraderService {
   /** Log a TraderService message with the MessageService */
   private log(message: string) {
     this.messageService.add(`TraderService: ${message}`);
+  }
+
+  // Method for navigation
+  navigateToTraderDetails(traderId: any): void {
+    // Your navigation logic here
+    console.log(`Navigating to trader details for id=${traderId}`);
   }
 }

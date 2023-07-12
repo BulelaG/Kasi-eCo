@@ -2,6 +2,7 @@ const express = require('express');
 require('dotenv').config()
 const cors = require("cors");
 const app = express();
+const bodyParser = require("body-parser");
 
 // MY ROUTES
 const userRoutes = require("./routes/user.routes")
@@ -26,6 +27,8 @@ const db = require('./models')
 // };
 
 app.use(cors());
+app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.json({limit:'50mb'}));
 
 // app.use(cors({
 //   origin: 'http://localhost:4200', // or '*' for allowing all origins

@@ -1,10 +1,11 @@
 module.exports = rs => {
     const router = require("express").Router();
     const controller = require("../controller/products.controller")
+    const { authJwt } = require("../middlewares")
 
  // Products endpoints
 
-   router.post('/', controller.createProduct); // ADD PRODUCT
+   router.post('/', [ authJwt.verifyToken ], controller.createProduct); // ADD PRODUCT
 
    router.get('/:createdBy', controller.getProductsByCreatedBy); //GET  PRODUCT BY CREATOR
 

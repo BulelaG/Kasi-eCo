@@ -4,6 +4,7 @@ const Trader = db.trader;
 
 // Create a new product
 exports.createProduct = async (req, res) => {
+
   
   try {
     const product = new Product(req.body);

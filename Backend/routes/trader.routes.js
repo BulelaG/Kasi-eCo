@@ -18,8 +18,6 @@ module.exports = traderBridge => {
    router.delete('/delete-all', controller.deleteAllTraders); // DELETE ALL TRADERS  
 
    router.delete('/:id', controller.deleteTrader); // DELETE 1 TRADER
-
-   router.post("/inventory/:id", controller.createInventoryProduct) // Create Inventory Product
   
   traderBridge.use('/v1/traders',router)  
 }

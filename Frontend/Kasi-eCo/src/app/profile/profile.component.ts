@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { TraderService } from '../services/trader.service';
-import { ActivatedRoute } from '@angular/router';
 import { TokenStorageService } from '../_services/token-storage.service';
 
 @Component({

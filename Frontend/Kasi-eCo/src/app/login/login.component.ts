@@ -1,33 +1,53 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../_services/auth.service';
+import { TokenStorageService } from '../_services/token-storage.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
-  loginForm: FormGroup;
+export class LoginComponent implements OnInit {
+  form: any = {
+    email: null,
+    password: null
+  };
+  isLoggedIn = false;
+  isLoginFailed = false;
+  errorMessage = '';
+  roles: string[] = [];
 
-  constructor(private formBuilder: FormBuilder) {
-    this.loginForm = this.formBuilder.group({
-      email: ['', Validators.required],
-      password: ['', Validators.required]
+  constructor(private authService: AuthService, private tokenStorage: TokenStorageService) { }
+
+  ngOnInit(): void {
+    if (this.tokenStorage.getToken()) {
+      this.isLoggedIn = true;
+      this.roles = this.tokenStorage.getUser().roles;
+    }
+  }
+
+  onSubmit(): void {
+    const { email, password } = this.form;
+
+    this.authService.login(email, password).subscribe({
+      next: data => {
+        this.tokenStorage.saveToken(data.accessToken);
+        this.tokenStorage.saveUser(data);
+           console.log(data);
+           
+        this.isLoginFailed = false;
+        this.isLoggedIn = true;
+        this.roles = this.tokenStorage.getUser().roles;
+        this.reloadPage();
+      },
+      error: err => {
+        this.errorMessage = err.error.message;
+        this.isLoginFailed = true;
+      }
     });
   }
 
-  login() {
-    if (this.loginForm.invalid) {
-      return;
-    }
-
-    const email = this.loginForm.value.email;
-    const password = this.loginForm.value.password;
-
-    // Implement your login logic here
-    // You can use services or make HTTP requests to authenticate the trader
-    console.log('Username:', email);
-    console.log('Password:', password);
+  reloadPage(): void {
+    window.location.replace('/home');
   }
 }
-

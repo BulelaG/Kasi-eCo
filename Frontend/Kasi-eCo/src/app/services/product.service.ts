@@ -13,7 +13,7 @@ export class ProductService {
   ) { }
 
   getAllProducts(){
-    return this.http.get(base_api)
+    return this.http.get<any[]>(base_api);
   }
 
   getOneProduct(id: any){

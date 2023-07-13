@@ -95,10 +95,10 @@ res.send({ message: "Product created successfully!" });
   exports.updateProduct = async (req, res) => {
     try {
       const { id } = req.params;
-      const { p_name, price, description } = req.body;
+      const { p_name, price, description, category, image } = req.body;
       const product = await Product.findByIdAndUpdate(
         id,
-        { p_name, price, description },
+        { p_name, price, description, category, image },
         { new: true }
       );
       if (!product) {

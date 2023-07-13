@@ -34,16 +34,16 @@ const traderSchema = new mongoose.Schema({
      
     // Additional fields specific to traders
    
-    inventory: [
-      {
-        product: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: 'Product',
-          required: true
-        },
+    // inventory: [
+    //   {
+    //     product: {
+    //       type: mongoose.Schema.Types.ObjectId,
+    //       ref: 'Product',
+    //       required: true
+    //     },
         // Additional inventory fields...
-      }
-    ],
+    //   }
+    // ],
    
 });
 

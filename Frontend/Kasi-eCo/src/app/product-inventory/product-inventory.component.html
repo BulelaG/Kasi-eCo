@@ -6,7 +6,7 @@
                 <img src="{{enquiries.product_name}}" class="card-img-top" alt="">
                 <div class="card-body">
                   <h5 class="card-title">{{enquiries.product_name}}</h5>
-                  <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+                   <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
                   <!-- <a href="#" class="btn btn-primary"></a> -->
                 <!-- </div>
               </a>
@@ -31,17 +31,16 @@
     </div>
 </div> -->
 
-
-
-<!-- <ul>
+<!-- 
+ <ul>
   <li *ngFor="let product of products">
     {{ product.p_name }} - {{ product.price }} - {{product.image}}
   </li>
-</ul> -->
+</ul> 
 
 
-<div class="container">
-  <h2 class="text-success text-center">{} Products</h2>
+<div *ngIf ="products" class="container">
+  <h2 class="text-success text-center"> Products</h2>
   <div class="section">
     <div class="card-wrap">
       <div class="card" *ngFor="let product of products">
@@ -51,11 +50,17 @@
             <h5 class="card-title">{{ product.p_name }}</h5>
             <p class="card-text">{{ product.description }}</p>
             <div class="card-price">R{{ product.price }}</div>
-            <div><button></button></div>
+            <div>  <button type="button" class="delete" title="delete product"
+              (click)="delete(product)">x</button></div>
           </div>
         </a>
       </div>
     </div>
   </div>
-</div>
+</div> -->
+
+<h2>Product Details</h2>
+
+
+
 

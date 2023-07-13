@@ -6,7 +6,7 @@ export interface Trader {
     cell: string;
     image: string;
     email: string;
-    // password: string;
+    password: string;
    
 
   }

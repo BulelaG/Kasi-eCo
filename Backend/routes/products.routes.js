@@ -7,7 +7,7 @@ module.exports = rs => {
 
    router.post('/', [ authJwt.verifyToken ], controller.createProduct); // ADD PRODUCT
 
-   router.get('/:createdBy', [ authJwt.verifyToken ], controller.getProductsByCreatedBy); //GET  PRODUCT BY CREATOR
+   router.get('/inventory/:createdBy', [ authJwt.verifyToken ], controller.getProductsByCreatedBy); //GET  PRODUCT BY CREATOR
 
    router.get('/', controller.getAllProducts); // GET ALL PRODUCT
 

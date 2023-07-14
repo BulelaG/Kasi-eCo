@@ -43,4 +43,9 @@
     font-weight: bold;
     margin-top: 10px;
   }
+
+  .btns1{
+    display: flex;
+    justify-content: center;
+  }
   

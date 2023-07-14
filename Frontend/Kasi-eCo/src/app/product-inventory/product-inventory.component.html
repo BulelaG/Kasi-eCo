@@ -34,8 +34,18 @@
 <div class="container">
   <h2 class="text-success text-center">All Products</h2>
   <div class="section">
+    <hr>
+    <div class="btns1">
+    <button type="button" class="btn btn-danger btn-sm">Clear all </button>
+    <button  type="button" class="btn text-center btn-success btn-sm">Add </button>
+    </div>
+    
+<hr>
     <div class="card-wrap">
       <div class="card" *ngFor="let product of products">
+
+
+
         <a [routerLink]="'/product-detail/' + product.id">
           <img [src]="product.image" class="card-img-top" alt="">
           <div class="card-body">
@@ -47,8 +57,7 @@
           <div class="crud">
             <button type="button" class="btn btn-primary btn-sm">Edit</button>
             <button type="button"  class="btn px-2 btn-warning btn-sm">Remove</button>
-            <button type="button" class="btn btn-danger btn-sm">Clear all </button>
-            <button type="button" class="btn btn-success btn-sm">Add </button>
+            
           </div>
         </a>
       </div>

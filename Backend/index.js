@@ -28,7 +28,7 @@ const db = require('./models')
 
 app.use(cors());
 app.use(bodyParser.urlencoded({extended:true}));
-app.use(bodyParser.json({limit:'50mb'}));
+app.use(bodyParser.json({limit:'20mb'}));
 
 // app.use(cors({
 //   origin: 'http://localhost:4200', // or '*' for allowing all origins

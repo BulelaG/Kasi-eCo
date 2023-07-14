@@ -80,15 +80,19 @@ res.send({ message: "Product created successfully!" });
     try {
       const { id } = req.params;
       const product = await Product.findById(id);
+  
       if (!product) {
         return res.status(404).json({ error: 'Product not found' });
       }
+      
       res.json(product);
+      console.log(product)
     } catch (error) {
+      console.error('Error retrieving product by ID:', error);
       res.status(500).json({ error: 'Internal server error' });
     }
   };
-  
+
   
   
   // Update a product by ID

@@ -1,3 +1,12 @@
+.main-headings{
+  font-family: fantasy;
+}
+.lead{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
+}
+hr{
+  font-weight: bolder;
+}
 .container-fluid {
     background-color: #f8f9fa;
     height: 100vh;

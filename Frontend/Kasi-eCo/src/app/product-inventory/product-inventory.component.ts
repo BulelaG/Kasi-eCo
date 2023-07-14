@@ -12,6 +12,13 @@ import { Product } from '../products';
 
 export class ProductInventoryComponent implements OnInit {
   products: any;
+  form: any = {
+    p_name:null,
+    description:null,
+    price:null,
+    category:null,
+    image:null
+  };
 
   constructor(private productInventoryService: ProductInventoryService) { }
 
@@ -49,15 +56,13 @@ export class ProductInventoryComponent implements OnInit {
 
 
 
-  add(p_name: string, description: string, category: any, price: string, image:string ): void {
+  add(p_name: string, description: string, category: any, price: string, image: any ): void {
     const ProductData = {
       p_name,
       description,
       price,
       category,
       image
-     
-
     }   
     
     p_name = `{{ p_name.trim() }}`;
@@ -71,9 +76,6 @@ export class ProductInventoryComponent implements OnInit {
         this.products.push(product);
         console.log(product)
       });
-
-
-     
   }
 
   delete(product: Product): void {
@@ -81,5 +83,18 @@ export class ProductInventoryComponent implements OnInit {
       this.products = this.products.filter((p: Product) => p !== product);
       console.log(`Deleted product with ID: ${product.id}`);
     });
+  }
+
+  handleImageInput(event: any): void {
+    const file: File = event.target.files[0];
+    this.convertToBase64(file);
+  }
+
+  convertToBase64(file: File): void {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      this.form.image = reader.result;
+    };
+    reader.readAsDataURL(file);
   }
 }

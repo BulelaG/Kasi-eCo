@@ -2,6 +2,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductInventoryService } from '../services/product-inventory.service';
 import { Product } from '../products';
+import { AuthService } from '../_services/auth.service';
+
 
 @Component({
   selector: 'app-product-inventory',
@@ -19,8 +21,16 @@ export class ProductInventoryComponent implements OnInit {
     category:null,
     image:null
   };
+  authService: any;
+  isSuccessful = false;
+  isSignUpFailed = false;
+  errorMessage = '';
 
-  constructor(private productInventoryService: ProductInventoryService) { }
+
+  constructor(private productInventoryService: ProductInventoryService, authService: AuthService) {
+    this.productInventoryService = productInventoryService;
+    this.authService = authService;
+  }
 
   ngOnInit() {
     this.getAllProducts();
@@ -44,7 +54,7 @@ export class ProductInventoryComponent implements OnInit {
   }
 
 
-//   /** GET hero by id. Will 404 if id not found */
+//   /** GET product by id. Will 404 if id not found */
 // getProduct(id: number): Observable<Product> {
 //   const url = `${this.heroesUrl}/${id}`;
 //   return this.http.get<Hero>(url).pipe(
@@ -53,6 +63,22 @@ export class ProductInventoryComponent implements OnInit {
 //   );
 // }
 
+onSubmit(): void {
+  const { p_name, category, description, price, image } = this.form;
+
+  this.authService.addProduct(p_name, category, description, price, image ).subscribe({
+    next: (data: any) => {
+      console.log(data);
+      this.isSuccessful = true;
+      this.isSignUpFailed = false;
+      // this.reloadPage();
+    },
+    error: (err: { error: { message: string; }; }) => {
+      this.errorMessage = err.error.message;
+      this.isSignUpFailed = true;
+    }
+  });
+}
 
 
 

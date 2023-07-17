@@ -30,21 +30,21 @@
         <li>
           <a href="#" class="nav-link text-dark">
             <!-- <svg class="bi d-block mx-auto mb-1" width="24" height="24" routerLink="/"><use xlink:href="#grid"/></svg> -->
-            Enquiries
+            <!-- Enquiries -->
           </a>
         </li>
         <li>
           <a href="#" class="nav-link text-dark" routerLink="/product-inventory">
             <!-- <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#grid"/></svg> -->
-            Inventory
+            <!-- Inventory -->
           </a>
         </li>
-        <li class="pr-5">
+        <li class="pr-5" *ngIf="token">
           <a href="#" class="nav-link text-dark" routerLink="/profile">
             MyAccount
           </a>
         </li>
-        <div class=" d-flex">
+        <div class=" d-flex" *ngIf="!token">
         <li>
             <!-- <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#people-circle"/></svg> -->
             <button type="button" class="btn btn-primary text-dark me-2"  routerLink="/register" >Sign up</button>
@@ -54,6 +54,10 @@
             <button type="button" class="btn btn-warning text-dark me-2"  routerLink="/login" >Sign in</button>
         </li>
       </div>
+      <li *ngIf="token">
+        <!-- <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#people-circle"/></svg> -->
+        <button type="button" class="btn btn-warning text-dark me-2" (click)="signout()" >Signout</button>
+    </li>
 
      <!-- <form class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto" role="search">
     <input type="search" class="form-control" placeholder="Search..." aria-label="Search">

@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
+  token = window.sessionStorage.getItem("auth-token")
   title(title: any) {
     throw new Error('Method not implemented.');
   }
@@ -24,6 +26,11 @@ export class AppComponent {
         console.error('Error fetching traders', error);
       }
     );
+  }
+
+  signout(){
+    window.sessionStorage.clear();
+    window.location.replace("login");
   }
 
   navigateToTraderDetails(traderId: number): void {

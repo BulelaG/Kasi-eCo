@@ -4,6 +4,11 @@ const cors = require("cors");
 const app = express();
 const bodyParser = require("body-parser");
 
+// app.use(express.json());
+app.use(cors());
+app.use(bodyParser.urlencoded({extended:true, limit: "10mb"}));
+app.use(bodyParser.json({limit:'10mb'}));
+
 // MY ROUTES
 const userRoutes = require("./routes/user.routes")
 const traderRoutes = require("./routes/trader.routes")
@@ -26,9 +31,6 @@ const db = require('./models')
 // origin: "http://localhost:8081"
 // };
 
-app.use(cors());
-app.use(bodyParser.urlencoded({extended:true}));
-app.use(bodyParser.json({limit:'20mb'}));
 
 // app.use(cors({
 //   origin: 'http://localhost:4200', // or '*' for allowing all origins
@@ -36,7 +38,7 @@ app.use(bodyParser.json({limit:'20mb'}));
 //   allowedHeaders: ['Content-Type', 'Authorization'],
 // }));
 
-app.use(express.json());
+
 
 app.get("/", (req, res) => {
     res.json({ message: "The Kasi Eco API is working!" })

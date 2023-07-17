@@ -1,9 +1,16 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 const base_api = 'https://kasi-e-co.vercel.app/v1/products/';
+const token = window.sessionStorage.getItem("auth-token") ? window.sessionStorage.getItem("auth-token") : null
+const httpOptions = {
+  headers: new HttpHeaders({ 
+    // 'x-access-token': `${token}`,
+    'Content-Type': 'application/json'
+  })
+};
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +35,18 @@ export class ProductService {
         // Handle the error here (e.g., logging, showing a friendly error message)
         throw error;
       })
+    );
+  }
+
+  addProduct(p_name: any, price: any, category: any, description: any, image: any): Observable<any> {
+    return this.http.post(base_api + 'addProduct', {
+      p_name,
+      category,
+      description,
+      price,
+      image
+    }, 
+    httpOptions
     );
   }
 }

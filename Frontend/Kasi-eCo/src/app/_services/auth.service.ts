@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 const AUTH_API = 'https://kasi-e-co.vercel.app/v1/traders/';
-const AUTH_PRODUCTS_API = 'https://kasi-e-co.vercel.app/v1/products/';
+// const AUTH_PRODUCTS_API = 'https://kasi-e-co.vercel.app/v1/products/';
 
 
 const httpOptions = {
@@ -31,16 +31,6 @@ export class AuthService {
       businessName,
       address,
       password,
-      image
-    }, httpOptions);
-  }
-
-  addProduct(p_name: any, price: any, category: any, description: any, image: any): Observable<any> {
-    return this.http.post(AUTH_PRODUCTS_API + 'addProduct', {
-      p_name,
-      category,
-      description,
-      price,
       image
     }, httpOptions);
   }

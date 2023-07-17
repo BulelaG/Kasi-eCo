@@ -1,6 +1,14 @@
-module.exports = userBridge => {
+module.exports = app => {
     const router = require("express").Router();
     const controller = require("../controller/user.controller")
+
+    app.use((req, res, next) => {
+      res.header(
+        "Access-Control-Allow-Headers",
+        "x-access-token, Origin, Content-Type, Accept"
+      );
+      next();
+    })
 
   // User endpoints
 
@@ -16,5 +24,5 @@ module.exports = userBridge => {
 
     router.delete('/:id', controller.deleteOne); // DELETE 1 USERS
   
-  userBridge.use('/v1/users',router)  
+  app.use('/v1/users',router)  
 }

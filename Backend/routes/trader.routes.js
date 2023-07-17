@@ -1,6 +1,14 @@
-module.exports = traderBridge => {
+module.exports = app => {
     const router = require("express").Router();
     const controller = require("../controller/trader.controller")
+
+    app.use((req, res, next) => {
+      res.header(
+        "Access-Control-Allow-Headers",
+        "x-access-token, Origin, Content-Type, Accept"
+      );
+      next();
+    })
 
    // Trader endpoints
 
@@ -19,5 +27,5 @@ module.exports = traderBridge => {
 
    router.delete('/:id', controller.deleteTrader); // DELETE 1 TRADER
   
-  traderBridge.use('/v1/traders',router)  
+  app.use('/v1/traders',router)  
 }

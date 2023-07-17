@@ -4,6 +4,7 @@ import { ProductInventoryService } from '../services/product-inventory.service';
 import { Product } from '../products';
 import { AuthService } from '../_services/auth.service';
 import { TokenStorageService } from '../_services/token-storage.service';
+import { ProductService } from '../services/product.service';
 
 
 
@@ -29,10 +30,13 @@ export class ProductInventoryComponent implements OnInit {
   errorMessage = '';
   roles: string[] = [];
 
-  constructor(private productInventoryService: ProductInventoryService, authService: AuthService,  private tokenStorage: TokenStorageService) {
+  constructor(
+    private productInventoryService: ProductInventoryService, 
+    authService: AuthService,  
+    private productService: ProductService
+    ) {
     this.productInventoryService = productInventoryService;
     this.authService = authService;
-    this.tokenStorage = tokenStorage;
 
   }
 
@@ -42,25 +46,11 @@ export class ProductInventoryComponent implements OnInit {
   // }
 
   ngOnInit(): void {
-    if (this.tokenStorage.getToken()) {
-      this.getAllProducts();
-      this.roles = this.tokenStorage.getUser().roles;
-    }
+    
   }
 
 
-  getAllProducts(){
-    this.productInventoryService.getProducts().subscribe(
-      (data: any) => {
-        this.tokenStorage.saveToken(data.accessToken);
-        this.tokenStorage.saveUser(data);
-        this.products = data;
-      },
-      (error: any) => {
-        console.error('Error occurred while retrieving products:', error);
-      }
-    );
-  }
+
 
 
   getProducts(): void {
@@ -80,8 +70,8 @@ export class ProductInventoryComponent implements OnInit {
 
 onSubmit(): void {
   const { p_name, category, description, price, image } = this.form;
-
-  this.authService.addProduct(p_name, category, description, price, image ).subscribe({
+  console.log(this.form)
+  this.productService.addProduct(p_name, category, description, price, image ).subscribe({
     next: (data: any) => {
       console.log(data);
       this.isSuccessful = true;
@@ -95,29 +85,6 @@ onSubmit(): void {
   });
 }
 
-
-
-  add(p_name: string, description: string, category: any, price: string, image: any ): void {
-    const ProductData = {
-      p_name,
-      description,
-      price,
-      category,
-      image
-    }   
-    
-    p_name = `{{ p_name.trim() }}`;
-    if (!p_name) { return; }
-    if (p_name.length < 3) {
-      alert('Product name must be at least 3 characters long.');
-      return;
-    }
-    this.productInventoryService.addProduct(ProductData)
-      .subscribe( (product: any) => {
-        this.products.push(product);
-        console.log(product)
-      });
-  }
 
   delete(product: Product): void {
     this.productInventoryService.deleteProduct(product.id).subscribe(() => {

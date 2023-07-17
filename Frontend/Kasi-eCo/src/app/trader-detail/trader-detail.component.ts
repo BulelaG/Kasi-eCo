@@ -15,18 +15,36 @@ export class TraderDetailComponent implements OnInit {
     private traderService: TraderService
   ) { }
 
-  ngOnInit(): void {
-    this.getAll()
+  
+  ngOnInit(){
+    this.getOne()
   }
 
-  getAll(){
-    let id = this.route.snapshot.paramMap.get("id")
-    console.log(id)
-    this.traderService.getAll(id).subscribe({
-      next: (data: any) => {
+  getOne(){
+    let id = this.route.snapshot.paramMap.get("id");
+    this.traderService.getTrader(id).subscribe({
+      next: data => {
         this.trader = data
         console.log(this.trader)
+      },
+      error: (err: { message: any; }) => {
+        console.log(err.message)
       }
     })
   }
+
+  // ngOnInit(): void {
+  //   this.getAll()
+  // }
+
+  // getAll(){
+  //   let id = this.route.snapshot.paramMap.get("id")
+  //   console.log(id)
+  //   this.traderService.getAll(id).subscribe({
+  //     next: (data: any) => {
+  //       this.trader = data
+  //       console.log(this.trader)
+  //     }
+  //   })
+  // }
 }

@@ -20,11 +20,6 @@ export class ProfileComponent implements OnInit{
 
   }
 
-  logout(): void {
-    this.token.signOut();
-    window.location.replace('/home')
-    
-  }
 
 
   // trader: any

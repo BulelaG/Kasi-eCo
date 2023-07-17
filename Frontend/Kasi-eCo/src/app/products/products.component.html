@@ -23,8 +23,16 @@
 </ul> -->
 
 
+
 <div class="container">
+  
   <h2 class="text-success text-center">All Products</h2>
+  
+  <div class="search-container">
+    <input type="text" [(ngModel)]="searchTerm" placeholder="Search for products">
+   <button class="btn btn-primary" (click)="search()">Search</button> 
+  </div>
+  
   <div class="section">
     <div class="card-wrap">
       <div class="card" *ngFor="let product of products">
@@ -36,10 +44,16 @@
             <div class="card-price">R{{ product.price }}</div>
           </div>
         </a>
+        <a
+          [routerLink]="'/trader-detail/' + product.traderId"
+          class="btn-indigo"
+          [ngStyle]="{'background-color': 'indigo', 'color': 'white', 'padding': '8px 16px', 'text-decoration': 'none', 'display': 'inline-block', 'border-radius': '4px'}"
+        >
+          View Trader
+        </a>
       </div>
     </div>
   </div>
 </div>
-
 
 

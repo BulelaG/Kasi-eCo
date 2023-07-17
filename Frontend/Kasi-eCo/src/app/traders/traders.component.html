@@ -1,24 +1,29 @@
-<hr>
-<!-- <div class="divs"> -->
-  <div class="container">
-    <div class="list-div">
-      <h2 class="text-center">Our Traders</h2>
-      <ul class="traders">
-        <li *ngFor="let trader of traders">
-          <div class="trader-card">
-            <img class="trader-image" src="{{ trader.image }}" alt="Trader Image">
-            <div class="trader-details">
-              <div class="trader-business">{{ trader.businessName }}</div>
-              <div class="trader-name">{{ trader.fname }}</div>
-            </div>
-            <a class="trader-link" routerLink="/trader-detail/{{ trader.id }}">
-              View Details
-            </a>
-          </div>
-        </li>
-      </ul>
+<div class="container">
+  <div class="list-div">
+    <h2 class="text-center">Our Traders</h2>
+    
+    <!-- Search input and button -->
+    <div class="search-container">
+      <input type="text" [(ngModel)]="searchTerm" placeholder="Search for traders">
+      <button class="btn btn-primary" (click)="search()">Search</button>
     </div>
+    
+    <ul class="traders">
+      <li *ngFor="let trader of filteredTraders">
+        <div class="trader-card">
+          <img class="trader-image" [src]="trader.image" alt="Trader Image">
+          <div class="trader-details">
+            <div class="trader-business">{{ trader.businessName }}</div>
+            <div class="trader-name">{{ trader.trader_name }}</div>
+          </div>
+          <a class="trader-link" [routerLink]="'/trader-detail/' + trader.id">
+            View Details
+          </a>
+        </div>
+      </li>
+    </ul>
   </div>
+</div>
   
      
     

@@ -28,6 +28,7 @@ export class ProductInventoryComponent implements OnInit {
   isSignUpFailed = false;
   errorMessage = '';
   roles: string[] = [];
+  selectedImage: any;
 
   constructor(private productInventoryService: ProductInventoryService, authService: AuthService,  private tokenStorage: TokenStorageService) {
     this.productInventoryService = productInventoryService;
@@ -129,6 +130,18 @@ onSubmit(): void {
   handleImageInput(event: any): void {
     const file: File = event.target.files[0];
     this.convertToBase64(file);
+  }
+
+  getSelectedImageURL(): string | undefined {
+    if (this.selectedImage) {
+      const reader = new FileReader();
+      reader.readAsDataURL(this.selectedImage);
+      reader.onload = () => {
+        // The 'result' property contains the base64 data URL
+        return reader.result as string;
+      };
+    }
+    return undefined;
   }
 
   convertToBase64(file: File): void {

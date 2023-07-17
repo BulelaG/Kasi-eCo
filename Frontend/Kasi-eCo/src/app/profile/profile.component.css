@@ -155,3 +155,28 @@ footer{
     height: 100px;
     width: 100px;
 }
+
+
+.btn-primary {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+  }
+  
+  .btn-danger {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+  }
+  
+  .btn-secondary {
+    background-color: #6c757d;
+    color: #fff;
+    border: none;
+    cursor: not-allowed;
+  }
+  
+  .btn {
+    margin-right: 5px;
+  }
+  

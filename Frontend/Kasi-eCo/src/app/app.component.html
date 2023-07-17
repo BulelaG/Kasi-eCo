@@ -34,16 +34,20 @@
           </a>
         </li>
         <li>
+          <li class="pr-5" *ngIf="token">
           <a href="#" class="nav-link text-dark" routerLink="/product-inventory">
             <!-- <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#grid"/></svg> -->
-            <!-- Inventory -->
+            Inventory
           </a>
         </li>
+  
+
         <li class="pr-5" *ngIf="token">
           <a href="#" class="nav-link text-dark" routerLink="/profile">
             MyAccount
           </a>
         </li>
+        
         <div class=" d-flex" *ngIf="!token">
         <li>
             <!-- <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#people-circle"/></svg> -->

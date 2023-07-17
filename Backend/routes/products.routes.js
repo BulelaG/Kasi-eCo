@@ -4,8 +4,8 @@ module.exports = rs => {
     const { authJwt } = require("../middlewares")
 
  // Products endpoints
-
-   router.post('/addProduct', [ authJwt.verifyToken ], controller.createProduct); // ADD PRODUCT
+//  [ authJwt.verifyToken ],
+   router.post('/addProduct',  controller.createProduct); // ADD PRODUCT
 
    router.get('/inventory/:createdBy', [ authJwt.verifyToken ], controller.getProductsByCreatedBy); //GET  PRODUCT BY CREATOR
 

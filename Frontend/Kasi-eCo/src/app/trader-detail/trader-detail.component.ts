@@ -22,7 +22,7 @@ export class TraderDetailComponent implements OnInit {
 
   getOne(){
     let id = this.route.snapshot.paramMap.get("id");
-    this.traderService.getTraderDetail(id).subscribe({
+    this.traderService.getTrader(id).subscribe({
       next: data => {
         this.trader = data
         console.log(this.trader)

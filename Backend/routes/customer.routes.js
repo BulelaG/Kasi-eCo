@@ -1,4 +1,4 @@
-module.exports = rs => {
+module.exports = app => {
     const router = require("express").Router();
     const controller = require("../controller/customer.controller")
 
@@ -23,5 +23,5 @@ module.exports = rs => {
 
    router.delete('/:id', controller.deleteCustomer); // DELETE 1 CUSTOMERS
   
-  rs.use('/v1/customers',router)  
+  app.use('/v1/customers',router)  
 }

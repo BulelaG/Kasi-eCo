@@ -33,5 +33,6 @@ export class ProductService {
 }
 
 export interface Product {
+  accessToken(accessToken: any): unknown;
   // Define the properties of a product here
 }

@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { ProductInventoryService } from '../services/product-inventory.service';
 import { Product } from '../products';
 import { AuthService } from '../_services/auth.service';
+import { TokenStorageService } from '../_services/token-storage.service';
+
 
 
 @Component({
@@ -25,20 +27,33 @@ export class ProductInventoryComponent implements OnInit {
   isSuccessful = false;
   isSignUpFailed = false;
   errorMessage = '';
+  roles: string[] = [];
 
-
-  constructor(private productInventoryService: ProductInventoryService, authService: AuthService) {
+  constructor(private productInventoryService: ProductInventoryService, authService: AuthService,  private tokenStorage: TokenStorageService) {
     this.productInventoryService = productInventoryService;
     this.authService = authService;
+    this.tokenStorage = tokenStorage;
+
   }
 
-  ngOnInit() {
-    this.getAllProducts();
+  // ngOnInit() {
+
+  //   this.getAllProducts();
+  // }
+
+  ngOnInit(): void {
+    if (this.tokenStorage.getToken()) {
+      this.getAllProducts();
+      this.roles = this.tokenStorage.getUser().roles;
+    }
   }
+
 
   getAllProducts(){
     this.productInventoryService.getProducts().subscribe(
-      (data: any[]) => {
+      (data: any) => {
+        this.tokenStorage.saveToken(data.accessToken);
+        this.tokenStorage.saveUser(data);
         this.products = data;
       },
       (error: any) => {

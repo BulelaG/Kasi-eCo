@@ -3,6 +3,13 @@ module.exports = rs => {
     const controller = require("../controller/customer.controller")
 
     // Customer endpoints
+    app.use((req, res, next) => {
+      res.header(
+        "Access-Control-Allow-Headers",
+        "x-access-token, Origin, Content-Type, Accept"
+      );
+      next();
+    })
 
    router.post('/customer-signup', controller.createCustomer); // ADD CUSTOMER
 

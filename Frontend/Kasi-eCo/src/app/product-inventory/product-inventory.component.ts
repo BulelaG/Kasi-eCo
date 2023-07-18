@@ -37,16 +37,13 @@ export class ProductInventoryComponent implements OnInit {
     ) {
     this.productInventoryService = productInventoryService;
     this.authService = authService;
+    this.productService = productService;
 
   }
 
-  // ngOnInit() {
+  ngOnInit() {
 
-  //   this.getAllProducts();
-  // }
-
-  ngOnInit(): void {
-    
+    this.getProducts();
   }
 
 
@@ -105,4 +102,17 @@ onSubmit(): void {
     };
     reader.readAsDataURL(file);
   }
+
+    getAll(){
+    this.productService.getAllProducts().subscribe({
+      next: data => {
+        this.products = data;
+        console.log(data)
+      },
+      error: err => {
+        console.error(err.message)
+      }
+    })
+  }
 }
+

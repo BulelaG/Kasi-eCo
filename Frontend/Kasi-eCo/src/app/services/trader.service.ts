@@ -53,6 +53,16 @@ export class TraderService {
       catchError(this.handleError<Trader>(`getTrader id=${id}`))
     );
   }
+  // getOneProduct(id: any): Observable<Product> {
+  //   const url = `${base_api}${id}`;
+  //   return this.http.get<Product>(url).pipe(
+  //     catchError((error: any) => {
+  //       // Handle the error here (e.g., logging, showing a friendly error message)
+  //       throw error;
+  //     })
+  //   );
+  // }
+
 
   getTraderDetails(id: number): Observable<any> {
     const url = `${this.tradersUrl}/${id}`;

@@ -26,9 +26,9 @@ export class ProfileComponent implements OnInit{
 
   }
   delete(trader: Trader): void {
-    this.traderService.deleteTrader(trader.id).subscribe(() => {
-      this.traders = this.traders.filter((t: Trader) => t !== trader);
-      console.log(`Deleted trader with ID: ${trader.id}`);
+    this.traderService.deleteTrader(this.currentUser.id).subscribe(() => {
+      this.currentUser = this.currentUser.filter((t: Trader) => t !== trader);
+      console.log(`Deleted trader with ID: ${this.currentUser.id}`);
     });
   }
 

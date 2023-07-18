@@ -38,6 +38,17 @@ export class ProductService {
     );
   }
 
+
+  getProductsByTraderId(id: any): Observable<Product> {
+    const url = `${base_api}${id}`;
+    return this.http.get<Product>(url).pipe(
+      catchError((error: any) => {
+        // Handle the error here (e.g., logging, showing a friendly error message)
+        throw error;
+      })
+    );
+  }
+
   addProduct(p_name: any, price: any, category: any, description: any, image: any): Observable<any> {
     return this.http.post(base_api + 'addProduct', {
       p_name,

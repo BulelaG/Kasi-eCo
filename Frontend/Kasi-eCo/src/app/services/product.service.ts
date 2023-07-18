@@ -7,7 +7,7 @@ const base_api = 'https://kasi-e-co.vercel.app/v1/products/';
 const token = window.sessionStorage.getItem("auth-token") ? window.sessionStorage.getItem("auth-token") : null
 const httpOptions = {
   headers: new HttpHeaders({ 
-    // 'x-access-token': `${token}`,
+    'x-access-token': `${token}`,
     'Content-Type': 'application/json'
   })
 };
@@ -31,6 +31,17 @@ export class ProductService {
   getOneProduct(id: any): Observable<Product> {
     const url = `${base_api}${id}`;
     return this.http.get<Product>(url).pipe(
+      catchError((error: any) => {
+        // Handle the error here (e.g., logging, showing a friendly error message)
+        throw error;
+      })
+    );
+  }
+
+
+  getProductsByTraderId(id: any): Observable<Product> {
+    const url = `${base_api}inventory/${id}`;
+    return this.http.get<Product>(url, httpOptions).pipe(
       catchError((error: any) => {
         // Handle the error here (e.g., logging, showing a friendly error message)
         throw error;

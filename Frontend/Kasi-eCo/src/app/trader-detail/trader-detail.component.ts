@@ -17,22 +17,23 @@ export class TraderDetailComponent implements OnInit {
 
   
   ngOnInit(){
-    this.getAll()
     this.getOne()
   }
 
   getOne(){
     let id = this.route.snapshot.paramMap.get("id");
-    this.traderService.getTrader(id).subscribe({
-      next: data => {
-        this.trader = data
-        console.log(this.trader)
+    this.traderService.getTrader(id).subscribe(
+      (data: any) => {
+        this.trader = data; // Assign the data directly to the trader property
+        console.log("Trader Data:", this.trader); // Log the trader data to the console
       },
-      error: (err: { message: any; }) => {
-        console.log(err.message)
+      (error: any) => {
+        console.log(error);
       }
-    })
+    );
   }
+  
+  
 
   // ngOnInit(): void {
   //   this.getAll()

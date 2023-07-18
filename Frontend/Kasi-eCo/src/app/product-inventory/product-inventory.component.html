@@ -76,13 +76,17 @@
     <label for="image">Image</label><br>
     <input
      id="image"
-     type="file"
+     type="text"
      class="form-control"
      name="image"
-     accept="image/*"
-     (change)="handleImageInput($event)"
+     [(ngModel)]="form.image"
+     #image="ngModel" 
      />
     </div> 
+
+ <!-- accept="image/*" 
+ (change)="handleImageInput($event)"  -->
+
 
     <div class="form-group">
       <button class="btn btn-primary btn-block">Add product</button>
@@ -125,7 +129,6 @@
 
 
 
-
 <!-- 
  <ul>
   <li *ngFor="let product of products">
@@ -133,13 +136,15 @@
   </li>
 </ul> 
 
+ -->
 
+<h2>Product Details</h2>
 <div *ngIf ="products" class="container">
   <h2 class="text-success text-center"> Products</h2>
   <div class="section">
     <div class="card-wrap">
       <div class="card" *ngFor="let product of products">
-        <a [routerLink]="'/product-detail/' + product.id">
+        <a>
           <img [src]="product.image" class="card-img-top" alt="">
           <div class="card-body">
             <h5 class="card-title">{{ product.p_name }}</h5>
@@ -152,9 +157,7 @@
       </div>
     </div>
   </div>
-</div> -->
-
-<h2>Product Details</h2>
+</div> 
 
 
 

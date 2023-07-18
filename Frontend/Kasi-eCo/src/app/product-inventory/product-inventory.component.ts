@@ -5,6 +5,8 @@ import { Product } from '../products';
 import { AuthService } from '../_services/auth.service';
 import { TokenStorageService } from '../_services/token-storage.service';
 import { ProductService } from '../services/product.service';
+import { ActivatedRoute } from '@angular/router';
+
 
 
 
@@ -31,33 +33,41 @@ export class ProductInventoryComponent implements OnInit {
   roles: string[] = [];
   selectedImage: any;
 
+  currentUser: any;
+  item: any
+
   constructor(
     private productInventoryService: ProductInventoryService, 
-    authService: AuthService,  
-    private productService: ProductService
+    // private authService: AuthService,
+    private token: TokenStorageService,  
+    private productService: ProductService,
+    private route: ActivatedRoute
     ) {
     this.productInventoryService = productInventoryService;
-    this.authService = authService;
+    // this.authService = authService;
+    this.productService = productService;
 
   }
 
-  // ngOnInit() {
+  ngOnInit() {
 
-  //   this.getAllProducts();
-  // }
-
-  ngOnInit(): void {
+    // this.getProducts();
     
+    // this.getProductsTraderId()
+    if(!window.sessionStorage.getItem('auth-token')) {
+      // alert("Please sign in or Login or Register")
+      return window.location.replace('/home');
+    }
+    this.currentUser = this.token.getUser();
+    this.getProductsTraderId();
   }
 
+  
 
-
-
-
-  getProducts(): void {
-    this.productInventoryService.getProducts()
-    .subscribe((products: any[]) => this.products = products);
-  }
+  // getProducts(): void {
+  //   this.productInventoryService.getProducts()
+  //   .subscribe((products: any[]) => this.products = products);
+  // }
 
 
 //   /** GET product by id. Will 404 if id not found */
@@ -118,4 +128,30 @@ onSubmit(): void {
     };
     reader.readAsDataURL(file);
   }
+
+    getAll(){
+    this.productService.getAllProducts().subscribe({
+      next: data => {
+        this.products = data;
+        console.log(data)
+      },
+      error: err => {
+        console.error(err.message)
+      }
+    })
+  }
+
+  getProductsTraderId(){
+    // let id = this.route.snapshot.paramMap.get("id");
+    this.productService.getProductsByTraderId(this.currentUser.id).subscribe({
+      next: data => {
+        this.products = data
+        console.log(this.products)
+      },
+      error: err => {
+        console.log(err.message)
+      }
+    })
+  }
 }
+

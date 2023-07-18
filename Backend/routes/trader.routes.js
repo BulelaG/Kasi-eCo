@@ -1,6 +1,7 @@
 module.exports = app => {
     const router = require("express").Router();
     const controller = require("../controller/trader.controller")
+    const { authJwt } = require("../middlewares")
 
     app.use((req, res, next) => {
       res.header(
@@ -21,11 +22,11 @@ module.exports = app => {
 
    router.get('/:id', controller.getTraderById); // GET 1 TRADER
 
-   router.put('/:id', controller.updateTrader)// UPDATE 1 TRADER
+   router.put('/:id',  [authJwt.verifyToken], controller.updateTrader)// UPDATE 1 TRADER
 
    router.delete('/delete-all', controller.deleteAllTraders); // DELETE ALL TRADERS  
 
-   router.delete('/:id', controller.deleteTrader); // DELETE 1 TRADER
+   router.delete('/:id', [authJwt.verifyToken], controller.deleteTrader); // DELETE 1 TRADER
   
   app.use('/v1/traders',router)  
 }

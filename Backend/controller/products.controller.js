@@ -14,6 +14,8 @@ const product = new Product({
   createdBy: req.userId
 });
 
+console.log(product.createdBy)
+
 // If the request body includes a createdBy field, find the trader with the specified name and set the createdBy property of the product to the trader's _i
 
 // Save the product to the database
@@ -48,9 +50,9 @@ res.send({ message: "Product created successfully!" });
   exports.getProductsByCreatedBy = async (req, res) => {
     try {
       const createdBy = req.params.createdBy;
-      const trader = await Product.find({ createdBy });
+      const product = await Product.find({ createdBy });
 
-      res.send(trader)
+      res.send(product)
       // if (!trader) {
       //   return res.status(404).json({ error: 'Trader not found' });
       // }

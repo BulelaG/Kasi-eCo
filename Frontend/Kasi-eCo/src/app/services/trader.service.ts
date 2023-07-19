@@ -7,6 +7,11 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { Trader } from '../trader';
 import { MessageService } from '../message.service';
 
+
+const token = window.sessionStorage.getItem("auth-token") ? window.sessionStorage.getItem("auth-token") : null
+
+
+
 @Injectable({
   providedIn: 'root' 
 })
@@ -16,7 +21,7 @@ export class TraderService {
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
-
+  
   constructor(
     private http: HttpClient,
     private messageService: MessageService

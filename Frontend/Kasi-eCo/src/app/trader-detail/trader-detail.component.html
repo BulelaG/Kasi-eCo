@@ -1,8 +1,8 @@
-<!-- <div class="container">
+<div class="container">
     <section>
         <div class="main-image">
             <img src="{{trader.image}}" alt="" class="product">
-        </div> 
+        </div>
         <div class="content">
 
 
@@ -11,10 +11,10 @@
                 {{trader.fname}}
             </h4>
             <p class="description">
-                {{trader.businessName}}
+                {{trader.cell}}
             </p>
             <p class="description">
-                {{trader.cell}}
+                {{trader.businessName}}
             </p>
             <h4>R
                 {{trader.email}}
@@ -22,16 +22,4 @@
        
         </div>
     </section>
-</div> -->
-
-
-<div *ngIf="trader">
-    <h2>Trader Details</h2>
-    <!-- <p>First Name: {{ trader.fname }}</p> -->
-    <p>Last Name: {{ trader.cell }}</p>
-    <!-- Other trader details -->
-  </div>
-  <div *ngIf="trader">
-    <p>Loading trader details...</p>
-  </div>
-
+</div>

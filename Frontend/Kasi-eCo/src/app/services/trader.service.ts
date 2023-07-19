@@ -7,20 +7,12 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { Trader } from '../trader';
 import { MessageService } from '../message.service';
 
-<<<<<<< HEAD
 let token = window.sessionStorage.getItem("auth-token")
-=======
-
-const token = window.sessionStorage.getItem("auth-token") ? window.sessionStorage.getItem("auth-token") : null
-
-
-
->>>>>>> d3ca63010549ac9372bc0264f976e3eba7a8c63b
 @Injectable({
   providedIn: 'root' 
 })
 export class TraderService {
-  private tradersUrl = 'https://kasi-e-co.vercel.app/v1/traders/';  // URL to web api
+  private tradersUrl = 'https://kasi-e-co.vercel.app/v1/traders';  // URL to web api
 
   httpOptions = {
     headers: new HttpHeaders({ 
@@ -129,7 +121,7 @@ export class TraderService {
   deleteTrader(id: any): Observable<Trader> {
     const url = `${this.tradersUrl}/${id}`;
 
-    return this.http.delete<Trader>(url).pipe(
+    return this.http.delete<Trader>(url, this.httpOptions).pipe(
       tap(_ => this.log(`deleted trader id=${id}`)),
       catchError(this.handleError<Trader>('deleteTrader'))
     );

@@ -32,29 +32,19 @@ export class ProfileComponent implements OnInit{
     
   }
 
+  delete() {
+    this.traderService.deleteTrader(this.currentUser.id).subscribe({
+      next: data => {
+        console.log(data)
+        this.logout()
+      },
+      error: e => {
+        console.error(e.error)
+      }
+    })
+  }
 
-  // trader: any
-  // constructor( 
-  //   private traderService: TraderService,
-  //   private route: ActivatedRoute
-  //   ){}
-
-  // ngOnInit(){
-  //   this.getOne()
-  // }
-
-  // getOne(){
-  //   let id = this.route.snapshot.paramMap.get("id");
-  //   this.traderService.getTrader(id).subscribe({
-  //     next: data => {
-  //       this.trader = data
-  //       console.log(this.trader)
-  //     },
-  //     error: err => {
-  //       console.log(err.message)
-  //     }
-  //   })
-  // }
+  
 }
 
 

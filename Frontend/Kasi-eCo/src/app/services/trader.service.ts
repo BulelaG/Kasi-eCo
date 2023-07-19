@@ -7,7 +7,15 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { Trader } from '../trader';
 import { MessageService } from '../message.service';
 
+<<<<<<< HEAD
 let token = window.sessionStorage.getItem("auth-token")
+=======
+
+const token = window.sessionStorage.getItem("auth-token") ? window.sessionStorage.getItem("auth-token") : null
+
+
+
+>>>>>>> d3ca63010549ac9372bc0264f976e3eba7a8c63b
 @Injectable({
   providedIn: 'root' 
 })
@@ -20,7 +28,7 @@ export class TraderService {
       "x-access-token": `${token}`
     })
   };
-
+  
   constructor(
     private http: HttpClient,
     private messageService: MessageService

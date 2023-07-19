@@ -22,15 +22,15 @@ export class TraderDetailComponent implements OnInit {
 
   getOne(){
     let id = this.route.snapshot.paramMap.get("id");
-    this.traderService.getTrader(id).subscribe(
-      (data: any) => {
-        this.trader = data; // Assign the data directly to the trader property
-        console.log("Trader Data:", this.trader); // Log the trader data to the console
+    this.traderService.getTrader(id).subscribe({
+      next: data => {
+        this.trader = data
+        console.log(this.trader)
       },
-      (error: any) => {
-        console.log(error);
+      error: err => {
+        console.log(err.message);
       }
-    );
+  });
   }
   
   
@@ -49,4 +49,4 @@ export class TraderDetailComponent implements OnInit {
       }
     })
   }
-}
+} 

@@ -9,11 +9,12 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./traders.component.css']
 })
 export class TradersComponent implements OnInit {
-  traders: Trader[] = [];
+  traders!: Trader[];
   filteredTraders: Trader[] = [];
   searchTerm = '';
 
-  constructor(private traderService: TraderService, private route: ActivatedRoute) {}
+  constructor(
+    private traderService: TraderService) {}
 
   ngOnInit(): void {
     this.getTraders();

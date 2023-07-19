@@ -74,7 +74,7 @@
         />
       </div>
 
-      <div class="form-group">
+      <!-- <div class="form-group">
         <label for="image">Image</label>
         <input
           type="file"
@@ -82,6 +82,19 @@
           name="image"
           accept="image/*"
           (change)="handleImageInput($event)"
+        />
+      </div> -->
+
+      
+      <div class="form-group">
+        <label for="image">Image</label>
+        <input
+          type="text"
+          class="form-control"
+          name="image"
+          [(ngModel)]="form.image"
+          required
+          #image="ngModel"
         />
       </div>
 

@@ -21,8 +21,8 @@ export class ProductInventoryComponent implements OnInit {
   products: any;
   form: any = {
     p_name:null,
-    description:null,
     price:null,
+    description:null,
     category:null,
     image:null
   };

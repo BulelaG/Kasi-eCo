@@ -32,6 +32,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../services/product.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-products',
@@ -39,11 +40,13 @@ import { ProductService } from '../services/product.service';
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
-  products!: any[];
-  filteredProducts!: any[];
+  products: any[] = [];
+  filteredProducts: any[] = [];
   searchTerm = '';
 
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService, 
+    private router: Router
+    ) { }
 
   ngOnInit() {
     this.getAllProducts();
@@ -64,13 +67,17 @@ export class ProductsComponent implements OnInit {
   search() {
     if (this.searchTerm.trim() !== '') {
       this.filteredProducts = this.products.filter(product => {
-        const searchTerm = this.searchTerm.toLowerCase();
-        const productName = product.p_name.toLowerCase();
+        const searchTerm = this.searchTerm.toLowerCase().trim();
+        const productName = (product.p_name || '').toLowerCase();
         return productName.includes(searchTerm);
       });
     } else {
       this.filteredProducts = [...this.products]; // Reset filteredProducts to all products
     }
+  }
+
+  viewProductDetails(product: any) {
+    this.productService.navigate(['/product-detail', product.id]);
   }
 }
 

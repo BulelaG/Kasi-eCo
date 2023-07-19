@@ -21,7 +21,20 @@ export class TraderDetailComponent implements OnInit {
   }
 
   getOne(){
-    
+    console.log(!this.traderId)
+    if(!this.traderId){
+      let id = this.route.snapshot.paramMap.get("id");
+    this.traderService.getTrader(id).subscribe({
+      next: data => {
+        this.trader = data
+        console.log(this.trader)
+      },
+      error: err => {
+        console.log(err.message);
+      }
+  });
+    } else {
+      
     this.traderService.getTrader(this.traderId).subscribe({
       next: data => {
         this.trader = data
@@ -31,6 +44,7 @@ export class TraderDetailComponent implements OnInit {
         console.log(err.message);
       }
   });
+    }
   }
   
   

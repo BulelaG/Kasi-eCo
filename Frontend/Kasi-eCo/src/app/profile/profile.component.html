@@ -1,109 +1,82 @@
-<!-- <div class="collapse" id="navbarToggleExternalContent" data-bs-theme="dark">
-    <div class="bg-dark p-4">
-      
-      <h5 class="text-body-emphasis h4">Profile</h5>
-      <span class="text-body-secondary">Back</span>
-    </div>
 
-
-
-<h1>Profile</h1>
-<img src="/assets/dp2.jpg" height="300px"  width="300px"  class="pimg">
-<section id="welcome">
-
-    <h2>Welder <img src="/assets/iconmonstr-construction-3.svg" height="30px" width="30px" class="cimg"></h2>
-    <div>
-    <a href="https://web.whatsapp.com/" target="_blank"><button class="button button1"><i class="fa fa-github"></i> WhatsApp</button></a>
-    </div>
-    <div>
-
-        <h4>Welcome to my portfolio. This is where I showcase my welding work.</h4>
-    </div> -->
-          
-    <!-- <div class="container" *ngIf="currentUser; else loggedOut">
-      <h1 style="text-align: center;">Profile</h1>
-      <div class="imgwrapper d-flex justify-content-center">
-        <img src="{{currentUser.image}}" alt="profile" class="profile">
-      </div>
-    
-      <header class="jumbotron">
-        <h3 style="text-align:center">
-          <strong>Hello {{ currentUser.fname }}</strong>
-        </h3>
-      </header>
-      <br>
-    
-      <p>
-        <strong>Email:</strong>
-        {{ currentUser.email }}
-      </p>
-    
-      <div>
-        <button class="btn btn-primary">Update profile</button>
-        <button class="btn btn-danger">Delete profile</button>
-       Disable the Inventory button -->
-        <!-- <button class="btn btn-secondary" disabled>
-          <a href="#" class="nav-link text-dark" routerLink="/product-inventory">Inventory</a>
-        </button>
-      </div>
-      <button (click)="logout()" class="btn btn-primary mt-3">Logout</button>
-    </div>
-    <ng-template #loggedOut>
-      Please login or register.
-    </ng-template> -->
-    
-    <!-- <a routerLink="/register" class="btn btn-primary mt-3">Register</a>
-    <a routerLink="/login" class="btn btn-success mt-3">Login</a> -->
-    
-<div>
-  <section class="">
-    <h1 style="text-align: center;">My Profile</h1>
-
-    <div class="container py-2 px-2 h-5">
+<div class="container-fluid vh-100" style="background-color: #e3e7e8;">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col col-md-9 col-lg-7 col-xl-5">
-          <div class="card" style="border-radius: 15px;">
+          <h2 class="text-center">My profile</h2>
+
+          <div class="card rounded-3">
+
             <div class="card-body p-4">
-              <div class="d-flex text-black">
+
+              <div class="d-flex text-black" *ngIf="!showUpdateForm">
                 <div class="flex-shrink-0">
-                  <!-- <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"
-                    alt="Generic placeholder image" class="img-fluid"
-                    style="width: 180px; border-radius: 10px;"> -->
-                    <img src="{{currentUser.image}}" alt="profile" class="img-fluid" >
-                  </div>
+                  <img src="{{ trader.image }}" alt="profile" class="img-fluid profile-image">
+                </div>
                 <div class="flex-grow-1 ms-3">
-                  <strong>Hello {{ currentUser.fname }}</strong>
-                  <p class="mb-2 pb-1" style="color: #2b2a2a;"><strong> {{ currentUser.businessName }}</strong></p>
-                  <div class="d-flex justify-content-start rounded-3 p-2 mb-2"
-                    style="background-color: #efefef;">
-                    <p>
+                  <h4> {{ trader.fname }}</h4>
+                  <p class="mb-2 pb-1 business-name"><strong>{{ trader.businessName }}</strong></p>
+                  <div class="d-flex justify-content-start rounded-3 p-2 mb-2" style="background-color: #efefef;">
+                    <p class="mb-0">
                       <strong>Email:</strong>
-                      {{ currentUser.email }}
+                      {{ trader.email }}
                     </p>
-                    <!-- <div>
-                      <p class="small text-muted mb-1">Articles</p>
-                      <p class="mb-0">41</p>
-                    </div>
-                    <div class="px-3">
-                      <p class="small text-muted mb-1">Followers</p>
-                      <p class="mb-0">976</p>
-                    </div>
-                    <div>
-                      <p class="small text-muted mb-1">Rating</p>
-                      <p class="mb-0">8.5</p>
-                    </div> -->
                   </div>
-                  <div class="d-flex pt-1">
-                    <button class="btn btn-primary">Update profile</button>
-                    <button class="btn btn-danger" (click)="delete()">Delete profile</button>
-                    <button (click)="logout()" class="btn btn-primary">Logout</button>
+                  <div class="d-flex justify-content-start rounded-3 p-2 mb-2" style="background-color: #efefef;">
+                    <p class="mb-0">
+                      <strong>Contact:</strong>
+                      {{ trader.cell }}
+                    </p>
                   </div>
+                  
                 </div>
               </div>
+              <div class="d-flex pt-1" *ngIf="showUpdateForm">
+                <!-- Button to toggle the update profile form -->
+                <!-- <button class="btn btn-primary update-btn" (click)="toggleUpdateForm()" [disabled]="showUpdateForm">Update profile</button> -->
+
+                <!-- Update profile form -->
+                <form  (submit)="updateProfile()" class="update-form">
+                  <div class="mb-3">
+                    <label for="profileImage" class="form-label">Profile Image URL</label>
+                    <input type="text" class="form-control" id="profileImage" name="profileImage" [(ngModel)]="trader.image">
+                    <!-- Display the image preview if a valid URL is provided -->
+                    <img *ngIf="trader.image" [src]="trader.image" alt="Preview" class="img-fluid mt-2">
+                  </div>
+                  <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" [(ngModel)]="trader.email">
+                  </div>
+                  <div class="mb-3">
+                    <label for="fname" class="form-label">Full Name</label>
+                    <input type="text" class="form-control" id="fname" name="fname" [(ngModel)]="trader.fname">
+                  </div>
+                  <div class="mb-3">
+                    <label for="phoneNumber" class="form-label">Phone Number</label>
+                    <input type="tel" class="form-control" id="phoneNumber" name="phoneNumber" [(ngModel)]="trader.cell">
+                  </div>
+                  <!-- Add other form fields for additional details as needed -->
+
+                  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                    
+                  </div>
+                </form>
+                <!-- End of update profile form -->
+
+                <!-- Buttons for delete and logout -->
+                <!-- <li *ngIf="token"> -->
+                <!-- </li> -->
+                <!-- Add other buttons if needed -->
+
+                <!-- Logout button (Optional) -->
+                <!-- <button class="btn btn-primary logout-btn" (click)="logout()">Logout</button> -->
+              </div>
+              <button type="button" class="btn btn-secondary ms-md-2" (click)="update()" *ngIf="!this.showUpdateForm">Update</button>
+              <button type="button" class="btn btn-warning text-dark me-2" (click)="deleteProfile()">Delete profile</button>
+                
             </div>
           </div>
         </div>
       </div>
     </div>
-  </section>
-</div>
+    

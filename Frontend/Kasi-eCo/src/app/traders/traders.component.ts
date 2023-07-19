@@ -23,6 +23,7 @@ export class TradersComponent implements OnInit {
   getTraders(): void {
     this.traderService.getTraders().subscribe((traders: Trader[]) => {
       this.traders = traders;
+      console.log(this.traders)
       this.filteredTraders = traders; // Initialize filteredTraders with all traders
     });
   }

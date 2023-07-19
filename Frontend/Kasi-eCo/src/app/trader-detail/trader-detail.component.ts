@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TraderService } from '../services/trader.service';
 
@@ -9,7 +9,7 @@ import { TraderService } from '../services/trader.service';
 })
 export class TraderDetailComponent implements OnInit {
   trader: any;
-
+  @Input() traderId? : any
   constructor(
     private route: ActivatedRoute,
     private traderService: TraderService
@@ -21,8 +21,8 @@ export class TraderDetailComponent implements OnInit {
   }
 
   getOne(){
-    let id = this.route.snapshot.paramMap.get("id");
-    this.traderService.getTrader(id).subscribe({
+    
+    this.traderService.getTrader(this.traderId).subscribe({
       next: data => {
         this.trader = data
         console.log(this.trader)

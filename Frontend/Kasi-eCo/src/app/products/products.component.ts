@@ -56,6 +56,7 @@ export class ProductsComponent implements OnInit {
     this.productService.getAllProducts().subscribe(
       (data: any[]) => {
         this.products = data;
+        console.log(this.products)
         this.filteredProducts = [...this.products]; // Initialize filteredProducts with all products
       },
       (error) => {

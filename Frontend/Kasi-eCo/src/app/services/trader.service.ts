@@ -7,6 +7,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { Trader } from '../trader';
 import { MessageService } from '../message.service';
 
+let token = window.sessionStorage.getItem("auth-token")
 @Injectable({
   providedIn: 'root' 
 })
@@ -14,7 +15,10 @@ export class TraderService {
   private tradersUrl = 'https://kasi-e-co.vercel.app/v1/traders/';  // URL to web api
 
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    headers: new HttpHeaders({ 
+      'Content-Type': 'application/json',
+      "x-access-token": `${token}`
+    })
   };
 
   constructor(

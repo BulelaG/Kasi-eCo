@@ -1,33 +1,39 @@
 <div class="container">
+    <em> <h3 class=" text-center text-success border-bottom">Product Detail</h3></em>
+
     <section >
-        <div class="container" *ngIf="product.createdBy; else elseBlock">
-            <app-trader-detail [traderId]="product.createdBy"></app-trader-detail>
-        </div>
+      
+
         <ng-template #elseBlock>
             ...Loading
         </ng-template>
-        
 
-        <div class="main-image">
-            <img src="{{product.image}}" alt="" class="product">
-        </div>
-        <div class="content">
-
-
-
-            <h4>
-                {{product.p_name}}
-            </h4>
-            <p class="description">
-                {{product.price}}
-            </p>
-            <p class="description">
+                <br>
+         <div class="card  content">
+            <div class="card-image">
+             <img  src="{{product.image}}" alt="" class="product">
+            </div>
+             <br>
+            <h5>
+                <b> Product name: </b>  {{product.p_name}}
+            </h5>
+            <h5 class="description">
+             <b> Category:</b> {{product.price}}
+            </h5>
+            <!-- <p class="description">
                 {{product.createdBy}}
-            </p>
-            <h4>R
-                {{product.description}}
-            </h4>
+            </p> -->
+            <h5>
+              <b>Price:</b> {{product.description}}
+            </h5>
+
+            <button type="button" class="btn btn-primary btn-sm"><a href="#trader" target="_blank" rel="noopener noreferrer"></a>View Trader</button>
+
        
+        </div>
+          
+        <div id="trader" class="container" *ngIf="product.createdBy; else elseBlock">
+            <app-trader-detail [traderId]="product.createdBy"></app-trader-detail>
         </div>
     </section>
 </div>

@@ -3,3 +3,12 @@
     width: 100px;
     object-fit: cover;
 }
+
+
+#navbarNav{
+    padding-left: 48%;
+}
+
+.scrollbar{
+    overflow-x: hidden; /* Hide horizontal scrollbar */
+  }

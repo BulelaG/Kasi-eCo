@@ -71,3 +71,18 @@ hr{
     }
   }
   
+
+  /* new landing */
+
+  .logo{
+    height: 80px;
+    width: 80px;
+    object-fit: cover;
+}
+.lead{
+    font-family: 'Tilt Neon', sans-serif;;
+}
+
+.app-name{
+    color: #154161;
+}

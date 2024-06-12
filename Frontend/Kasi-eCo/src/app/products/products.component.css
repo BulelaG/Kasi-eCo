@@ -1,10 +1,11 @@
 .card-wrap {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 211px));
     gap: 20px;
   }
   
   .card {
+    background-color: #17e70461 !important;
     text-decoration: none;
     color: #333;
     border: 1px solid #ddd;
@@ -39,7 +40,7 @@
   }
   
   .card-price {
-    font-size: 19px;
+    font-size: 16px;
     font-weight: bold;
     margin-top: 10px;
   }

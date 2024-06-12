@@ -1,5 +1,5 @@
 <div class="container">
-    <h2 class="text-center">Our Traders</h2>
+    <h2 class="text-center font1">Traders</h2>
     
     <!-- Search input and button -->
     <div class="search-container">
@@ -14,7 +14,7 @@
         <div class="trader-card">
           <img class="trader-image" [src]="trader.image" alt="Trader Image">
           <div class="trader-details">
-            <div class="trader-business">{{ trader.businessName }}</div>
+            <div class="trader-business font1 ">{{ trader.businessName }}</div>
             <div class="trader-name">{{ trader.trader_name }}</div>
           </div>
           <a class="trader-link" [routerLink]="'/trader-detail/' + trader.id">

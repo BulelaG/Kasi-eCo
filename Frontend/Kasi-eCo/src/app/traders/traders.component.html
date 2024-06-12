@@ -12,7 +12,9 @@
     <ul class="traders">
       <li *ngFor="let trader of filteredTraders">
         <div class="trader-card">
-          <img class="trader-image" [src]="trader.image" alt="Trader Image">
+          <div class="text-center">
+            <img class="trader-image " [src]="trader.image" alt="Trader Image">
+          </div>
           <div class="trader-details">
             <div class="trader-business font1 ">{{ trader.businessName }}</div>
             <div class="trader-name">{{ trader.trader_name }}</div>

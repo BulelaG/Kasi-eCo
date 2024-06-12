@@ -1,9 +1,8 @@
 img{
+align-self: center;
+align-items: center;
+
 height:200px ;
-width: 200px;
+width: 250px;
 object-fit: cover;
-}
-.flex-shrink-0{
-    display:flex;
-    justify-content: center;
 }

@@ -1,15 +1,14 @@
 <div class="container">
-    <em> <h3 class=" text-center text-success border-bottom">Product Detail</h3></em>
+ <h3 class="font1 text-center text-success border-bottom">Product Detail</h3>
 
-    <section >
+    <section  class="d-flex justify-content-center">
       
-
         <ng-template #elseBlock>
             ...Loading
         </ng-template>
 
-                <br>
-         <div class="card  content">
+                
+         <div class="card  font1 content">
             <div class="card-image">
              <img  src="{{product.image}}" alt="" class="product">
             </div>
@@ -29,7 +28,6 @@
 
             <button type="button" class="btn btn-primary btn-sm"><a href="#trader" target="_blank" rel="noopener noreferrer"></a>View Trader</button>
 
-       
         </div>
           
         <div id="trader" class="container" *ngIf="product.createdBy; else elseBlock">

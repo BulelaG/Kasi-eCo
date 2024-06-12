@@ -1,5 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Comfortaa:wght@700&family=Montserrat:wght@700&family=Poppins:wght@300&display=swap');
+
 /* You can add global styles to this file, and also import other style files */
 a {
     text-decoration: none;
     color: inherit;
 }
+.font{
+    font-family: 'Comfortaa', sans-serif !important;
+    font-weight: 1000;
+    }

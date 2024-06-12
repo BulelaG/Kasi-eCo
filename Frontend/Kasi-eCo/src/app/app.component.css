@@ -4,6 +4,15 @@
     object-fit: cover;
 }
 
+.font{
+    font-family: 'Comfortaa', sans-serif !important;
+    font-weight: 1000;
+    }
+
+.navbar{
+    background-color: #1da4118f;
+    
+}
 
 #navbarNav{
     padding-left: 48%;

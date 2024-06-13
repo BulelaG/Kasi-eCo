@@ -1,37 +1,54 @@
 <div class="container">
- <h3 class="font1 text-center text-success border-bottom">Product Detail</h3>
-
-    <section  class="d-flex justify-content-center">
-      
+    <h3 class="font1 text-center text-success border-bottom">Product Detail</h3>
+    <section class="d-flex justify-content-center">
         <ng-template #elseBlock>
             ...Loading
         </ng-template>
 
-                
-         <div class="card  font1 content">
+        <div class="card font1 text-center content">
             <div class="card-image">
-             <img  src="{{product.image}}" alt="" class="product">
+                <img src="{{product.image}}" alt="" class="product">
             </div>
-             <br>
+            <br>
             <h5>
-                <b> Product name: </b>  {{product.p_name}}
+                <b>Product name:</b> {{product.p_name}}
             </h5>
             <h5 class="description">
-             <b> Category:</b> {{product.price}}
+                <b>Category:</b> {{product.price}}
             </h5>
-            <!-- <p class="description">
-                {{product.createdBy}}
-            </p> -->
             <h5>
-              <b>Price:</b> {{product.description}}
+                <b>Price:</b> {{product.description}}
             </h5>
 
-            <button type="button" class="btn btn-primary btn-sm"><a href="#trader" target="_blank" rel="noopener noreferrer"></a>View Trader</button>
-
+            <!-- Button to open the modal -->
+            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#traderModal">View Trader</button>
         </div>
-          
-        <div id="trader" class="container" *ngIf="product.createdBy; else elseBlock">
-            <app-trader-detail [traderId]="product.createdBy"></app-trader-detail>
+
+        <!-- Modal -->
+        <div class="modal fade" id="traderModal" tabindex="-1" role="dialog" aria-labelledby="traderModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="traderModalLabel">Trader Details</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="trader" *ngIf="product.createdBy; else elseBlock">
+                            <app-trader-detail [traderId]="product.createdBy"></app-trader-detail>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 </div>
+
+<!-- Include Bootstrap JS and jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>

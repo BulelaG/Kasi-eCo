@@ -1,11 +1,8 @@
-<div>
     <section class=" font1">
       <h2 style="text-align: center;">{{ trader.businessName }}</h2>
-      <div class="container py-2 px-2 h-5">
-        <div class="row d-flex justify-content-center align-items-center h-100">
           <div class="col col-md-9 col-lg-7 col-xl-5">
             <div class="card" style="border-radius: 15px;">
-              <div class="card-body p-4">
+              <div class="card-body text-center p-4">
                 <div class="flex-shrink-0">
                     <img  src="{{trader.image}}"
                       alt="Generic placeholder image" class="img-fluid"
@@ -13,9 +10,9 @@
                       <!-- <img  alt="profile" class="img-fluid" > -->
                     </div>
                     <br>
-                <div class="d-flex text-black">
+                <div class="d-flex text-black ">
                  
-                  <div class="flex-grow-1 ms-3">
+                  <div class="flex-grow-1 ms-3 ">
                     <!-- <strong> {{ trader.fname }}</strong> -->
                     <div class="d-flex justify-content-start rounded-3 p-2 mb-2"
                     style="background-color: #efefef;">
@@ -52,13 +49,14 @@
                       
                       
                     </div>
+<!-- 
+                    <div id="product" class="container" *ngIf="trader.createdBy; else elseBlock">
+                      <app-trader-detail [traderId]="product.createdBy"></app-trader-detail>
+                  </div> -->
                     
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
     </section>
-  </div>

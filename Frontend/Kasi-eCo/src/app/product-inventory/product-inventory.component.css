@@ -16,6 +16,11 @@
   .card:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
+
+  .yehla{
+    padding-top: 10px!important;
+    background-color: #095f01d6 !important;
+  }
   
   .card-img-top {
     height: 400px;

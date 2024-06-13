@@ -1,21 +1,21 @@
  <h2 class="text-success text-center"></h2>
 
-<div class="container">
-  <h2 class="text-success text-center">All Products</h2>
+<div class="container font1">
+  <h2 class="text-success text-center">Inventory</h2>
   <div class="section">
     <hr>
-    <div class="btns1">
+    <!-- <div class="btns1">
     <button type="button" class="btn btn-danger btn-sm">Clear all </button>
     <button  type="button" class="btn text-center btn-success btn-sm">Add </button>
-    </div>
+    </div> -->
     
 <hr>
 
 
-<div class="adding-details">
+<div class="adding-details font1">
   <div class="div1">
-
     <form 
+    class="d-flex "
     *ngIf="!isSuccessful"
     name="form"
     (ngSubmit)="f.form.valid && onSubmit()"
@@ -89,7 +89,7 @@
 
 
     <div class="form-group">
-      <button class="btn btn-primary btn-block">Add product</button>
+      <button  class="btn-sm btn-outline-success yehla btn-block">Add product</button>
     </div>
 
     <div class="alert alert-warning" *ngIf="isSignUpFailed">

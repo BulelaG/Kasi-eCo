@@ -1,8 +1,8 @@
 
-<div class="container-fluid vh-100" style="background-color: #e3e7e8;">
+<div class="container-fluid font1 MyAccount vh-100" style="background-color: #e3e7e8;">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col col-md-9 col-lg-7 col-xl-5">
-          <h2 class="text-center">My profile</h2>
+          <h2 class="text-center ">My profile</h2>
 
           <div class="card rounded-3">
 
@@ -71,9 +71,9 @@
 
                 <!-- Logout button (Optional) -->
                 <!-- <button class="btn btn-primary logout-btn" (click)="logout()">Logout</button> -->
-              </div>
-              <button type="button" class="btn btn-secondary ms-md-2" (click)="update()" *ngIf="!this.showUpdateForm">Update</button>
-              <button type="button" class="btn btn-warning text-dark me-2" (click)="deleteProfile()">Delete profile</button>
+              </div >
+              <button type="button" class="btn btn-primary mx-1 ms-md-2" (click)="update()" *ngIf="!this.showUpdateForm">Update</button>
+              <button type="button" class="btn btn-danger text-white me-2" (click)="deleteProfile()">Delete profile</button>
                 
             </div>
           </div>

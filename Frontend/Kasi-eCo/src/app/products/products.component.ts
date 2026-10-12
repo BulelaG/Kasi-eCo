@@ -1,35 +1,3 @@
-// import { Component, OnInit } from '@angular/core';
-// import { ProductService } from '../services/product.service';
-
-// @Component({
-//   selector: 'app-products',
-//   templateUrl: './products.component.html',
-//   styleUrls: ['./products.component.css']
-// })
-// export class ProductsComponent implements OnInit {
-
-//   products: any
-//   constructor( private productService: ProductService ){}
-
-
-//   ngOnInit() {
-//     this.getAll()
-//   }
-  
-//   getAll(){
-//     this.productService.getAllProducts().subscribe({
-//       next: data => {
-//         this.products = data;
-//         console.log(data)
-//       },
-//       error: err => {
-//         console.error(err.message)
-//       }
-//     })
-//   }
-// }
-
-
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../services/product.service';
 import { Router } from '@angular/router';
@@ -43,42 +11,82 @@ export class ProductsComponent implements OnInit {
   products: any[] = [];
   filteredProducts: any[] = [];
   searchTerm = '';
+  selectedCategory = 'all';
+  categories: string[] = [];
+  isLoading = true;
 
-  constructor(private productService: ProductService, 
+  constructor(
+    private productService: ProductService, 
     private router: Router
-    ) { }
+  ) { }
 
   ngOnInit() {
     this.getAllProducts();
   }
 
   getAllProducts() {
-    this.productService.getAllProducts().subscribe(
-      (data: any[]) => {
-        this.products = data;
-        console.log(this.products)
-        this.filteredProducts = [...this.products]; // Initialize filteredProducts with all products
+    this.isLoading = true;
+    this.productService.getAllProducts().subscribe({
+      next: (data: any[]) => {
+        this.products = data || [];
+        this.filteredProducts = [...this.products];
+        this.extractCategories();
+        this.isLoading = false;
       },
-      (error) => {
+      error: (error) => {
         console.error('Error occurred while retrieving products:', error);
+        this.isLoading = false;
       }
-    );
+    });
+  }
+
+  extractCategories() {
+    const cats = new Set<string>();
+    this.products.forEach(p => {
+      if (p.category && p.category.trim() !== '') {
+        cats.add(p.category.trim());
+      }
+    });
+    this.categories = Array.from(cats);
+  }
+
+  filterByCategory(category: string) {
+    this.selectedCategory = category;
+    this.applyFilters();
   }
 
   search() {
-    if (this.searchTerm.trim() !== '') {
-      this.filteredProducts = this.products.filter(product => {
-        const searchTerm = this.searchTerm.toLowerCase().trim();
-        const productName = (product.p_name || '').toLowerCase();
-        return productName.includes(searchTerm);
-      });
-    } else {
-      this.filteredProducts = [...this.products]; // Reset filteredProducts to all products
+    this.applyFilters();
+  }
+
+  clearSearch() {
+    this.searchTerm = '';
+    this.selectedCategory = 'all';
+    this.filteredProducts = [...this.products];
+  }
+
+  applyFilters() {
+    let result = [...this.products];
+
+    if (this.selectedCategory !== 'all') {
+      result = result.filter(p => (p.category || '').toLowerCase() === this.selectedCategory.toLowerCase());
     }
+
+    if (this.searchTerm.trim() !== '') {
+      const term = this.searchTerm.toLowerCase().trim();
+      result = result.filter(p => 
+        (p.p_name || '').toLowerCase().includes(term) ||
+        (p.description || '').toLowerCase().includes(term) ||
+        (p.category || '').toLowerCase().includes(term)
+      );
+    }
+
+    this.filteredProducts = result;
   }
 
   viewProductDetails(product: any) {
-    this.productService.navigate(['/product-detail', product.id]);
+    if (product && product.id) {
+      this.router.navigate(['/product-detail', product.id]);
+    }
   }
 }
-

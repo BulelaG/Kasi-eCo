@@ -1,20 +1,20 @@
-/* section {
-    padding-top: 5%;
-}
-.main-image {
-    width: 60%;
+.product-image-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 320px;
+  max-height: 420px;
+  overflow: hidden;
+  background-color: #f8fafc;
 }
 
-.card{
-   width: 40%;
+.product-main-img {
+  max-height: 380px;
+  width: auto;
+  object-fit: contain;
+  transition: transform 0.3s ease;
 }
 
-#trader{
-    padding-right: 500px;
-    height: 100px;
-} */
-img {
-    width: 300px;
-    height: 300px;
-    object-fit: contain;
+.product-main-img:hover {
+  transform: scale(1.02);
 }

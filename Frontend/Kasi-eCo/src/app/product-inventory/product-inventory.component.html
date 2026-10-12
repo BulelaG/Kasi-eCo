@@ -1,164 +1,198 @@
- <h2 class="text-success text-center"></h2>
-
-<div class="container font1">
-  <h2 class="text-success text-center">Inventory</h2>
-  <div class="section">
-    <hr>
-    <!-- <div class="btns1">
-    <button type="button" class="btn btn-danger btn-sm">Clear all </button>
-    <button  type="button" class="btn text-center btn-success btn-sm">Add </button>
-    </div> -->
-    
-<hr>
-
-
-<div class="adding-details font1">
-  <div class="div1">
-    <form 
-    class="d-flex "
-    *ngIf="!isSuccessful"
-    name="form"
-    (ngSubmit)="f.form.valid && onSubmit()"
-    #f="ngForm"
-    novalidate
-  >
-    
-    <hr>
-    <div class="form-group"> 
-    <label for="new-product">Product/Service name: </label><br>
-    <input 
-    id="new-product"
-    name="product_name"
-    [(ngModel)]="form.p_name"
-    minlength="1"
-    maxlength="200"
-    #p_name="ngModel"
-      />
+<div class="container my-4 font1">
+  <div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-3">
+    <div>
+      <h2 class="fw-bold text-success font mb-0">Merchant Inventory</h2>
+      <p class="text-muted small mb-0">Manage and publish your products to the Kasi-eCo marketplace</p>
     </div>
-
-  <hr>
-  <div class="form-group"> 
-    <label for="description">Description: </label><br>
-    <input 
-    id="description"
-    name="description"
-    [(ngModel)]="form.description"
-    #description="ngModel"
-    />
-    </div>
-
-  <hr>
-  <div class="form-group"> 
-    <label for="category">Category: </label><br>
-    <input
-    type="text" 
-    id="category"
-    name="category"
-    [(ngModel)]="form.category"
-    #category="ngModel" 
-     />
-    </div>
-
-  <hr>
-  <div class="form-group"> 
-    <label for="price">Price: </label><br>
-    <input 
-    type="number"
-    id="price"
-    name="price"
-    [(ngModel)]="form.price"
-    #price="ngModel" 
-    />
-    </div>
-
-  <hr>
-  <div class="form-group"> 
-    <label for="image">Image</label><br>
-    <input
-     id="image"
-     type="text"
-     class="form-control"
-     name="image"
-     [(ngModel)]="form.image"
-     #image="ngModel" 
-     />
-    </div> 
-
- <!-- accept="image/*" 
- (change)="handleImageInput($event)"  -->
-
-
-    <div class="form-group">
-      <button  class="btn-sm btn-outline-success yehla btn-block">Add product</button>
-    </div>
-
-    <div class="alert alert-warning" *ngIf="isSignUpFailed">
-      Product addition failed!<br />{{ errorMessage }}
-    </div>
-    </form>
-
-    </div> 
-  
-  
-  <!-- <div class="text-center"> 
-    <button type="button" class="add-button" (click)="onSubmit( ); p_name.value='';category.value='';description.value='';price.value='';image.value=''">
-      Add product
-    </button>
-  </div>  -->
-<hr>
-<!-- <div class="card-wrap">
-  <div class="card" *ngFor="let product of products">
-    <a [routerLink]="'/product-detail/' + product.id">
-      <img [src]="product.image" class="card-img-top" alt="">
-      <div class="card-body">
-        <h5 class="card-title">{{ product.p_name }}</h5>
-        <p class="card-text">{{ product.description }}</p>
-        <div class="card-price">R{{ product.price }}</div>
-        
-      </div>
-      <div class="crud">
-        <button type="button" class="btn btn-primary btn-sm">Edit</button>
-        <button type="button"  class="btn px-2 btn-warning btn-sm">Remove</button>
-        
-      </div>
+    <a routerLink="/profile" class="btn btn-outline-secondary btn-sm">
+      <i class="bi bi-person"></i> My Profile
     </a>
   </div>
-</div>
+
+  <!-- Success Notification -->
+  <div class="alert alert-success alert-dismissible fade show shadow-sm" role="alert" *ngIf="isSuccessful">
+    <i class="bi bi-check-circle-fill me-2"></i>
+    <strong>Success!</strong> Product added to your inventory.
+    <button type="button" class="btn-close" (click)="isSuccessful = false" aria-label="Close"></button>
   </div>
-</div> -->
 
+  <!-- Failure Notification -->
+  <div class="alert alert-danger alert-dismissible fade show shadow-sm" role="alert" *ngIf="isFailed">
+    <i class="bi bi-exclamation-triangle-fill me-2"></i>
+    <strong>Error:</strong> {{ errorMessage }}
+    <button type="button" class="btn-close" (click)="isFailed = false" aria-label="Close"></button>
+  </div>
 
-
-<!-- 
- <ul>
-  <li *ngFor="let product of products">
-    {{ product.p_name }} - {{ product.price }} - {{product.image}}
-  </li>
-</ul> 
-
- -->
-
-<h2>Product Details</h2>
-<div *ngIf ="products" class="container">
-  <h2 class="text-success text-center"> Products</h2>
-  <div class="section">
-    <div class="card-wrap">
-      <div class="card" *ngFor="let product of products">
-        <a>
-          <img [src]="product.image" class="card-img-top" alt="">
-          <div class="card-body">
-            <h5 class="card-title">{{ product.p_name }}</h5>
-            <p class="card-text">R{{ product.description }}</p>
-            <div class="card-price">{{ product.price }}</div>
-            <div>  <button type="button" class="delete" title="delete product"
-              (click)="delete(product)">x</button></div>
+  <!-- Add Product Section -->
+  <div class="card kasi-card border-0 shadow-sm mb-5 p-4">
+    <h4 class="fw-bold text-dark mb-3"><i class="bi bi-plus-circle text-success"></i> Add New Product / Service</h4>
+    
+    <div class="row g-4">
+      <!-- Input Form -->
+      <div class="col-lg-7">
+        <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+          <div class="mb-3">
+            <label for="new-product" class="form-label fw-semibold small">Product or Service Name *</label>
+            <input type="text"
+                   class="form-control"
+                   id="new-product"
+                   name="p_name"
+                   [(ngModel)]="form.p_name"
+                   required
+                   placeholder="e.g. Handmade Leather Belt"
+                   #p_name="ngModel">
+            <div *ngIf="f.submitted && p_name.errors" class="text-danger small mt-1">
+              Product name is required.
+            </div>
           </div>
-        </a>
+
+          <div class="row g-3 mb-3">
+            <div class="col-md-6">
+              <label for="category" class="form-label fw-semibold small">Category</label>
+              <input type="text"
+                     class="form-control"
+                     id="category"
+                     name="category"
+                     [(ngModel)]="form.category"
+                     placeholder="e.g. Fashion, Crafts, Food">
+            </div>
+
+            <div class="col-md-6">
+              <label for="price" class="form-label fw-semibold small">Price (ZAR) *</label>
+              <div class="input-group">
+                <span class="input-group-text">R</span>
+                <input type="number"
+                       class="form-control"
+                       id="price"
+                       name="price"
+                       [(ngModel)]="form.price"
+                       required
+                       placeholder="150.00"
+                       #price="ngModel">
+              </div>
+              <div *ngIf="f.submitted && price.errors" class="text-danger small mt-1">
+                Price is required.
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="image" class="form-label fw-semibold small">Image URL</label>
+            <input type="text"
+                   class="form-control"
+                   id="image"
+                   name="image"
+                   [(ngModel)]="form.image"
+                   placeholder="https://example.com/photo.jpg">
+            <div class="form-text small">Paste an image link or upload a local photo below:</div>
+            <input type="file" 
+                   class="form-control form-control-sm mt-1" 
+                   accept="image/*" 
+                   (change)="handleImageInput($event)">
+          </div>
+
+          <div class="mb-3">
+            <label for="description" class="form-label fw-semibold small">Description</label>
+            <textarea class="form-control"
+                      id="description"
+                      name="description"
+                      rows="3"
+                      [(ngModel)]="form.description"
+                      placeholder="Briefly describe materials, size, turnaround time, etc."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-success px-4 fw-semibold" [disabled]="isSubmitting">
+            <span *ngIf="isSubmitting" class="spinner-border spinner-border-sm me-1"></span>
+            Add Product to Marketplace
+          </button>
+        </form>
+      </div>
+
+      <!-- Live Preview -->
+      <div class="col-lg-5">
+        <div class="p-3 bg-light rounded-3 border h-100">
+          <small class="text-muted text-uppercase fw-bold d-block mb-2">Live Customer Card Preview</small>
+          
+          <div class="card kasi-card border-0 shadow-sm mx-auto" style="max-width: 300px;">
+            <div style="height: 180px; background: #e2e8f0; overflow: hidden;" class="position-relative">
+              <img [src]="form.image || 'https://placehold.co/400x300/e2e8f0/64748b?text=Preview+Photo'" 
+                   alt="Preview" 
+                   style="width: 100%; height: 100%; object-fit: cover;">
+              <span *ngIf="form.category" class="badge bg-success position-absolute top-0 start-0 m-2 rounded-pill">
+                {{ form.category }}
+              </span>
+            </div>
+            <div class="card-body p-3">
+              <h6 class="fw-bold text-dark text-truncate mb-1">{{ form.p_name || 'Product Title' }}</h6>
+              <p class="text-muted small text-truncate mb-2">{{ form.description || 'Description will appear here...' }}</p>
+              <div class="d-flex justify-content-between align-items-center pt-2 border-top">
+                <span class="fw-bold text-success fs-5">R{{ form.price || '0.00' }}</span>
+                <span class="badge bg-secondary-subtle text-secondary">Preview</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div> 
 
+  <!-- Existing Inventory List -->
+  <div class="inventory-section">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h4 class="fw-bold text-dark mb-0">Your Active Listings</h4>
+      <span class="badge bg-success rounded-pill px-3 py-2" *ngIf="products">
+        {{ products.length }} Items
+      </span>
+    </div>
 
+    <div *ngIf="isLoading" class="text-center py-4">
+      <div class="spinner-border text-success" role="status">
+        <span class="visually-hidden">Loading inventory...</span>
+      </div>
+    </div>
 
+    <div *ngIf="!isLoading && products.length === 0" class="card p-5 text-center bg-light border-0">
+      <i class="bi bi-box-seam display-4 text-muted mb-2"></i>
+      <h5 class="text-secondary fw-bold">No products yet</h5>
+      <p class="text-muted mb-0">Use the form above to add your first product or service.</p>
+    </div>
 
+    <div *ngIf="!isLoading && products.length > 0" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+      <div class="col" *ngFor="let product of products">
+        <div class="card kasi-card h-100 border-0 shadow-sm position-relative">
+          <div style="height: 200px; overflow: hidden; background: #f8fafc;">
+            <img [src]="product.image || 'https://placehold.co/400x300/e2e8f0/64748b?text=No+Photo'" 
+                 class="card-img-top" 
+                 alt="{{ product.p_name }}"
+                 style="width: 100%; height: 100%; object-fit: cover;">
+          </div>
+          <div class="card-body d-flex flex-column justify-content-between p-3">
+            <div>
+              <div class="d-flex justify-content-between align-items-start mb-1">
+                <h5 class="card-title fw-bold text-truncate mb-0" title="{{ product.p_name }}">
+                  {{ product.p_name }}
+                </h5>
+                <span *ngIf="product.category" class="badge bg-success-subtle text-success border border-success-subtle rounded-pill small">
+                  {{ product.category }}
+                </span>
+              </div>
+              <p class="card-text text-muted small text-truncate mb-2">
+                {{ product.description || 'No description' }}
+              </p>
+            </div>
+
+            <div class="pt-2 border-top mt-2 d-flex justify-content-between align-items-center">
+              <span class="fw-bold text-success fs-5">R{{ product.price }}</span>
+              <button type="button" 
+                      class="btn btn-outline-danger btn-sm" 
+                      (click)="delete(product)" 
+                      title="Delete Product">
+                <i class="bi bi-trash"></i> Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

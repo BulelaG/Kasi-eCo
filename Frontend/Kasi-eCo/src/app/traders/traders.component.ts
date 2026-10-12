@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Trader } from '../trader';
 import { TraderService } from '../services/trader.service';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-traders',
@@ -9,71 +8,57 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./traders.component.css']
 })
 export class TradersComponent implements OnInit {
-  traders!: Trader[];
+  traders: Trader[] = [];
   filteredTraders: Trader[] = [];
   searchTerm = '';
+  isLoading = true;
 
-  constructor(
-    private traderService: TraderService) {}
+  constructor(private traderService: TraderService) {}
 
   ngOnInit(): void {
     this.getTraders();
   }
 
   getTraders(): void {
-    this.traderService.getTraders().subscribe((traders: Trader[]) => {
-      this.traders = traders;
-      console.log(this.traders)
-      this.filteredTraders = traders; // Initialize filteredTraders with all traders
+    this.isLoading = true;
+    this.traderService.getTraders().subscribe({
+      next: (traders: Trader[]) => {
+        this.traders = traders || [];
+        this.filteredTraders = [...this.traders];
+        this.isLoading = false;
+      },
+      error: (err) => {
+        console.error('Error fetching traders:', err);
+        this.isLoading = false;
+      }
     });
   }
 
   search(): void {
     if (this.searchTerm.trim() !== '') {
+      const term = this.searchTerm.toLowerCase().trim();
       this.filteredTraders = this.traders.filter((trader: Trader) => {
-        const searchTerm = this.searchTerm.toLowerCase();
-        const businessName = trader.businessName.toLowerCase();
-        return businessName.includes(searchTerm);
+        const businessName = (trader.businessName || '').toLowerCase();
+        const traderName = (trader.trader_name || '').toLowerCase();
+        return businessName.includes(term) || traderName.includes(term);
       });
     } else {
-      this.filteredTraders = this.traders; // Reset filteredTraders to all traders
+      this.filteredTraders = [...this.traders];
     }
   }
 
-  add(trader_name: string, businessName: string, email: string): void {
-    const traderData: Trader = {
-      trader_name: trader_name,
-      businessName: businessName,
-      email: email,
-      id: 0,
-      address: '',
-      cell: '',
-      image: '',
-      password: ''
-    };
-  
-    trader_name = trader_name.trim();
-    if (!trader_name) {
-      return;
-    }
-    this.traderService.addTrader(traderData).subscribe((trader: Trader) => {
-      this.traders.push(trader);
-      console.log(trader);
-    });
+  clearSearch(): void {
+    this.searchTerm = '';
+    this.filteredTraders = [...this.traders];
   }
-  
 
-  delete(trader: Trader): void {
-    this.traderService.deleteTrader(trader.id).subscribe(() => {
-      this.traders = this.traders.filter((h: Trader) => h !== trader);
-      console.log(`Deleted trader with ID: ${trader.id}`);
-    });
+  getWhatsAppUrl(trader: Trader): string {
+    if (!trader.cell) return '';
+    let clean = ('' + trader.cell).replace(/\D/g, '');
+    if (clean.startsWith('0')) {
+      clean = '27' + clean.substring(1);
+    }
+    const message = `Hi! I found your store "${trader.businessName}" on Kasi-eCo.`;
+    return `https://wa.me/${clean}?text=${encodeURIComponent(message)}`;
   }
 }
-
-//   delete(_id:number ): void {
-//     const id = this.route.snapshot.paramMap.get('id')
-//     this.traderService.deleteTrader(id).subscribe(trader => {
-//       console.log(trader);
-//   });
-//  }

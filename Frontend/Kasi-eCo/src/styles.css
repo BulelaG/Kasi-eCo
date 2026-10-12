@@ -14,9 +14,57 @@ a {
 }
 .font{
     font-family: 'Comfortaa', sans-serif !important;
-    font-weight: 1000;
-    }
+    font-weight: 700;
+}
 .font1{
     font-family: 'Poppins', sans-serif;
-
 }
+
+:root {
+  --kasi-primary: #15803d;
+  --kasi-primary-hover: #166534;
+  --kasi-accent: #f59e0b;
+  --kasi-dark: #1e293b;
+  --kasi-light: #f8fafc;
+  --kasi-card-bg: #ffffff;
+  --kasi-border: #e2e8f0;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #fbfdfc;
+  color: #1e293b;
+  min-height: 100vh;
+}
+
+/* WhatsApp Button */
+.btn-whatsapp {
+  background-color: #25D366;
+  color: #ffffff !important;
+  font-weight: 600;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s ease-in-out;
+}
+.btn-whatsapp:hover {
+  background-color: #1eb956;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.35);
+}
+
+/* Modern Card Hover */
+.kasi-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid #e9ecef;
+}
+.kasi-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+}
+

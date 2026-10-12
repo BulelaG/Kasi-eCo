@@ -1,54 +1,86 @@
-<div class="container">
-    <h3 class="font1 text-center text-success border-bottom">Product Detail</h3>
-    <section class="d-flex justify-content-center">
-        <ng-template #elseBlock>
-            ...Loading
-        </ng-template>
+<div class="container my-4 font1">
+  <div class="mb-3">
+    <a routerLink="/products" class="text-muted text-decoration-none">
+      <i class="bi bi-arrow-left"></i> Back to Products
+    </a>
+  </div>
 
-        <div class="card font1 text-center content">
-            <div class="card-image">
-                <img src="{{product.image}}" alt="" class="product">
+  <div *ngIf="isLoading" class="text-center py-5">
+    <div class="spinner-border text-success" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <p class="mt-2 text-muted">Loading product details...</p>
+  </div>
+
+  <div *ngIf="!isLoading && product" class="row justify-content-center">
+    <div class="col-lg-10">
+      <div class="card kasi-card p-4 shadow-sm border-0">
+        <div class="row g-4 align-items-center">
+          <div class="col-md-6 text-center">
+            <div class="product-image-container rounded-3 p-3 bg-light">
+              <img [src]="product.image || 'https://placehold.co/400x400/e2e8f0/64748b?text=No+Image'" 
+                   alt="{{ product.p_name }}" 
+                   class="img-fluid rounded-3 product-main-img">
             </div>
-            <br>
-            <h5>
-                <b>Product name:</b> {{product.p_name}}
-            </h5>
-            <h5 class="description">
-                <b>Category:</b> {{product.price}}
-            </h5>
-            <h5>
-                <b>Price:</b> {{product.description}}
-            </h5>
+          </div>
+          
+          <div class="col-md-6">
+            <span *ngIf="product.category" class="badge bg-success-subtle text-success border border-success-subtle mb-2 px-3 py-1 rounded-pill">
+              {{ product.category }}
+            </span>
+            
+            <h2 class="fw-bold mb-2">{{ product.p_name }}</h2>
+            <h3 class="text-success fw-bold mb-3">R{{ product.price }}</h3>
+            
+            <div class="mb-4">
+              <h6 class="text-muted text-uppercase fw-semibold small">Description</h6>
+              <p class="lead fs-6 text-secondary">{{ product.description || 'No description provided.' }}</p>
+            </div>
 
-            <!-- Button to open the modal -->
-            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#traderModal">View Trader</button>
-        </div>
-
-        <!-- Modal -->
-        <div class="modal fade" id="traderModal" tabindex="-1" role="dialog" aria-labelledby="traderModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="traderModalLabel">Trader Details</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div id="trader" *ngIf="product.createdBy; else elseBlock">
-                            <app-trader-detail [traderId]="product.createdBy"></app-trader-detail>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    </div>
+            <!-- Trader Quick Info & Actions -->
+            <div class="p-3 bg-light rounded-3 mb-4 border">
+              <div class="d-flex align-items-center justify-content-between">
+                <div>
+                  <small class="text-muted d-block">Sold by:</small>
+                  <strong class="text-dark">{{ trader?.businessName || trader?.fname || 'Township Merchant' }}</strong>
                 </div>
+                <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#traderModal">
+                  <i class="bi bi-shop"></i> View Trader
+                </button>
+              </div>
             </div>
-        </div>
-    </section>
-</div>
 
-<!-- Include Bootstrap JS and jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+            <div class="d-grid gap-2">
+              <a *ngIf="trader?.cell" [href]="getWhatsAppUrl()" target="_blank" class="btn btn-whatsapp btn-lg">
+                <i class="bi bi-whatsapp fs-5"></i> Chat with Trader on WhatsApp
+              </a>
+              <button *ngIf="!trader?.cell" type="button" class="btn btn-secondary btn-lg" disabled>
+                <i class="bi bi-telephone-x"></i> Seller contact unavailable
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Trader Modal (Bootstrap 5) -->
+  <div class="modal fade" id="traderModal" tabindex="-1" aria-labelledby="traderModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0 shadow">
+        <div class="modal-header bg-light">
+          <h5 class="modal-title fw-bold" id="traderModalLabel">Trader Store Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div id="trader" *ngIf="product?.createdBy">
+            <app-trader-detail [traderId]="product.createdBy"></app-trader-detail>
+          </div>
+        </div>
+        <div class="modal-footer bg-light">
+          <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

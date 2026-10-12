@@ -9,58 +9,38 @@ import { TraderService } from '../services/trader.service';
 })
 export class TraderDetailComponent implements OnInit {
   trader: any;
-  @Input() traderId? : any
+  @Input() traderId?: any;
+
   constructor(
     private route: ActivatedRoute,
     private traderService: TraderService
   ) { }
 
-  
   ngOnInit(){
-    this.getOne()
+    this.getOne();
   }
 
   getOne(){
-    console.log(!this.traderId)
-    if(!this.traderId){
-      let id = this.route.snapshot.paramMap.get("id");
-    this.traderService.getTrader(id).subscribe({
-      next: data => {
-        this.trader = data
-        console.log(this.trader)
-      },
-      error: err => {
-        console.log(err.message);
-      }
-  });
-    } else {
-      
-    this.traderService.getTrader(this.traderId).subscribe({
-      next: data => {
-        this.trader = data
-        console.log(this.trader)
-      },
-      error: err => {
-        console.log(err.message);
-      }
-  });
+    const id = this.traderId || this.route.snapshot.paramMap.get("id");
+    if (id) {
+      this.traderService.getTrader(id).subscribe({
+        next: data => {
+          this.trader = data;
+        },
+        error: err => {
+          console.log(err.message);
+        }
+      });
     }
   }
-  
-  
 
-  // ngOnInit(): void {
-  //   this.getAll()
-  // }
-
-  getAll(){
-    let id = this.route.snapshot.paramMap.get("id")
-    console.log(id)
-    this.traderService.getAll(id).subscribe({
-      next: (data: any) => {
-        this.trader = data
-        console.log(this.trader)
-      }
-    })
+  getWhatsAppUrl(): string {
+    if (!this.trader || !this.trader.cell) return '';
+    let cleanNumber = ('' + this.trader.cell).replace(/\D/g, '');
+    if (cleanNumber.startsWith('0')) {
+      cleanNumber = '27' + cleanNumber.substring(1);
+    }
+    const message = `Hi ${this.trader.fname || ''}! I found your store "${this.trader.businessName || ''}" on Kasi-eCo.`;
+    return `https://wa.me/${cleanNumber}?text=${encodeURIComponent(message)}`;
   }
-} 
+}

@@ -1,78 +1,33 @@
-/* traders.component.css */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-  }
- input{
+.traders-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
 
-  padding-left:  500px!;
+.avatar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+.trader-avatar-img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border: 4px solid #ffffff;
+  outline: 2px solid #15803d;
+  transition: transform 0.25s ease;
+}
 
-  }
-  
-  .list-div {
-    padding: 20px;
-  }
-  
-  .text-center {
-    text-align: center;
-  }
-  
-  .traders {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  
-  .trader-card {
-    width: 300px;
-    margin: 20px;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease;
-  }
-  
-  .trader-card:hover {
-    background-color: #17e70461 !important;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .trader-image {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    border-radius: 50%;
-    margin-bottom: 10px;
-  }
-  
-  .trader-details {
-    text-align: center;
-  }
-  
-  .trader-business {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-  
-  .trader-name {
-    font-size: 16px;
-  }
-  
-  .trader-link {
-    display: block;
-    text-align: center;
-    color: #007bff;
-    text-decoration: none;
-    margin-top: 10px;
-  }
-  
-  .trader-link:hover {
-    text-decoration:;
-  }
-  
+.kasi-card:hover .trader-avatar-img {
+  transform: scale(1.05);
+}
+
+.search-bar {
+  border-radius: 50px;
+  overflow: hidden;
+}
+
+.search-bar .form-control:focus {
+  box-shadow: none;
+}

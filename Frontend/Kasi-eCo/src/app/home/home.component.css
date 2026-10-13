@@ -19,6 +19,42 @@
   padding-bottom: 10px !important;
 }
 
+/* ── App Store & Google Play Buttons ── */
+.app-store-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #0f172a;
+  color: #ffffff;
+  padding: 6px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+}
+
+.app-store-btn:hover {
+  transform: translateY(-2px);
+  background: #1e293b;
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.25);
+}
+
+.app-btn-sub {
+  font-size: 0.58rem;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.65);
+  letter-spacing: 0.04em;
+}
+
+.app-btn-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
 /* ── Hero Stats ── */
 .hero-mini-stat {
   padding: 4px 0;

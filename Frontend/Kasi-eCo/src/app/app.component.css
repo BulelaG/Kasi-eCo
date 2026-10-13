@@ -1,23 +1,81 @@
-.logo{
-    height: 130px;
-    width: 130px;
-    object-fit: cover;
+/* ── Sticky Glassmorphic Navbar Styling ── */
+.glass-navbar-wrapper {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.7);
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.04);
+  transition: all 0.3s ease;
 }
 
-.font{
-    font-family: 'Comfortaa', sans-serif !important;
-    font-weight: 1000;
-    }
-
-.navbar{
-    background-color: #1da4118f;
-    
+.brand-logo {
+  height: 42px;
+  width: auto;
+  object-fit: contain;
+  transition: transform 0.2s ease;
 }
 
-#navbarNav{
-    padding-left: 40%;
+.brand-logo:hover {
+  transform: scale(1.03);
 }
 
-.scrollbar{
-    overflow-x: hidden; /* Hide horizontal scrollbar */
-  }
+.glass-nav-link {
+  color: #334155 !important;
+  font-weight: 500;
+  font-size: 0.92rem;
+  padding: 6px 16px !important;
+  border-radius: 9999px;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
+  align-items: center;
+}
+
+.glass-nav-link:hover {
+  color: #059669 !important;
+  background: rgba(5, 150, 105, 0.08);
+}
+
+.active-glass-link {
+  color: #059669 !important;
+  background: rgba(5, 150, 105, 0.12) !important;
+  font-weight: 600 !important;
+}
+
+.py-1-5 {
+  padding-top: 6px !important;
+  padding-bottom: 6px !important;
+}
+
+.text-emerald {
+  color: #059669 !important;
+}
+
+.hover-emerald:hover {
+  color: #059669 !important;
+}
+
+/* ── Content Wrapper ── */
+.main-content-wrapper {
+  min-height: calc(100vh - 380px);
+}
+
+/* ── Modern Glassmorphic Footer ── */
+.footer-glass-wrapper {
+  background: linear-gradient(180deg, rgba(248, 250, 252, 0.8) 0%, rgba(241, 245, 249, 0.95) 100%);
+  border-top: 1px solid rgba(226, 232, 240, 0.9);
+  position: relative;
+  overflow: hidden;
+}
+
+.footer-glass-wrapper::before {
+  content: '';
+  position: absolute;
+  top: -120px;
+  right: 10%;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.08) 0%, rgba(16, 185, 129, 0) 70%);
+  filter: blur(40px);
+  pointer-events: none;
+}

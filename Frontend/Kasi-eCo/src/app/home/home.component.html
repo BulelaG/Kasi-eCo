@@ -1,72 +1,290 @@
-     <!-- Landing -->
+<!-- ── Home Page Hero with Ambient Glow & Glassmorphism ── -->
+<div class="ambient-glow-wrapper pt-4 pb-5">
+  <!-- Refracting Glow Orbs behind the Glass -->
+  <div class="glow-orb-emerald" style="top: -60px; left: -80px;"></div>
+  <div class="glow-orb-amber" style="top: 100px; right: -60px;"></div>
 
-     <div class="container  font1 my-5">
-      <div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border bg-none herobox shadow-lg">
-        <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
-          <h1 class="display-4 fw-bold lh-1 font text-body-emphasis text-success"> Kasi-eCo</h1>
-          <br>
-          <h3 class="display-7 fw-bold lh-1 text-body-emphasis"> <i class="text-decoration-underline">A market place for all your locally traded goods!</i></h3>
-           <br>
-          <p class="">Discover <i class="text-success">Kasi-eCo</i>, we bring together a diverse range of informally traded goods, providing a convenient and comprehensive one-stop shop for all your needs. Whether you're searching for unique handmade crafts, rare collectibles, traditional artifacts, or specialty items from around the world, Kasi-eCo has it all.</p>
-          <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3">
-            <button type="button" class="btn btn-success btn-sm px-4 gap-3" routerLink="/traders">Traders</button>
-            <button type="button" class="btn btn-warning btn-sm px-4" routerLink="/products">Products</button>
+  <div class="container position-relative" style="z-index: 1;">
+    
+    <!-- ── Hero Glassmorphic Card ── -->
+    <div class="glass-hero-panel p-4 p-md-5 my-4">
+      <div class="row align-items-center g-4 g-lg-5">
+        
+        <!-- Left Hero Content -->
+        <div class="col-lg-7">
+          
+          <!-- Eyebrow Badge -->
+          <div class="glass-pill mb-3">
+            <span class="pulse-dot"></span>
+            <span class="text-uppercase fw-bold text-dark" style="font-size: 0.72rem; letter-spacing: 0.08em;">
+              South Africa's Township Commerce Gateway
+            </span>
           </div>
-          <div class="">
-            <img class="" src="../../assets/app-store.png" alt="" height="120" width="160">
+
+          <!-- Headline -->
+          <h1 class="display-4 fw-extrabold lh-sm mb-3">
+            The Digital Marketplace for <br />
+            <span class="gradient-text">Authentic Local Goods</span>
+          </h1>
+
+          <!-- Subtitle -->
+          <p class="lead text-muted mb-4" style="font-size: 1.05rem; line-height: 1.6; max-width: 580px;">
+            Discover handmade furniture, traditional crafts, artisan fashion, and local services directly from verified township makers across South Africa — with zero middleman fees and 100% direct WhatsApp negotiation.
+          </p>
+
+          <!-- Dual CTA Buttons -->
+          <div class="d-flex flex-wrap align-items-center gap-3 mb-4">
+            <a routerLink="/products" class="btn btn-emerald px-4 py-2-5 shadow-sm">
+              <i class="bi bi-bag-check-fill"></i> Explore Products
+            </a>
+            <a routerLink="/traders" class="btn btn-glass px-4 py-2-5">
+              <i class="bi bi-people-fill"></i> Browse Traders
+            </a>
+          </div>
+
+          <!-- Trust Proof Metrics -->
+          <div class="row g-2 pt-3 border-top border-secondary border-opacity-10">
+            <div class="col-4">
+              <div class="hero-mini-stat">
+                <div class="stat-val gradient-text">150+</div>
+                <div class="stat-desc">Verified Makers</div>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="hero-mini-stat">
+                <div class="stat-val gradient-text">100%</div>
+                <div class="stat-desc">Direct WhatsApp</div>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="hero-mini-stat">
+                <div class="stat-val gradient-text-gold">0%</div>
+                <div class="stat-desc">Platform Fees</div>
+              </div>
+            </div>
+          </div>
+
         </div>
+
+        <!-- Right Hero Visual with Floating Glass Badges -->
+        <div class="col-lg-5 position-relative text-center">
+          
+          <div class="hero-image-stage">
+            <img class="img-fluid hero-promo-img" src="assets/Kasieco-promo-removebg-preview.png" alt="Kasi-eCo Marketplace Preview" onerror="this.onerror=null; this.src='assets/kasi-e.png'">
+            
+            <!-- Floating Glass Badge 1: Top Rated Maker -->
+            <div class="floating-badge badge-top-left glass-pill py-2 px-3 shadow-lg">
+              <div class="badge-icon-box bg-success text-white">
+                <i class="bi bi-patch-check-fill"></i>
+              </div>
+              <div class="text-start">
+                <div class="fw-bold text-dark" style="font-size: 0.75rem;">Verified Craftsman</div>
+                <div class="text-muted" style="font-size: 0.68rem;">Soweto Custom Patio</div>
+              </div>
+            </div>
+
+            <!-- Floating Glass Badge 2: WhatsApp Direct -->
+            <div class="floating-badge badge-bottom-right glass-pill py-2 px-3 shadow-lg">
+              <div class="badge-icon-box bg-success text-white" style="background-color: #25D366 !important;">
+                <i class="bi bi-whatsapp"></i>
+              </div>
+              <div class="text-start">
+                <div class="fw-bold text-dark" style="font-size: 0.75rem;">Instant WhatsApp Quote</div>
+                <div class="text-success" style="font-size: 0.68rem;">Fast 15-min response</div>
+              </div>
+            </div>
+          </div>
+
         </div>
-        <div class="col-lg-4 offset-lg-1 p-0 overflow-hidden shadow-lg">
-            <img class="rounded-lg-3" src="../../assets/Kasieco-promo-removebg-preview.png" alt="" width="400">
-        </div>
+
       </div>
     </div>
 
+    <!-- ── Bento Grid: Why Choose Kasi-eCo ── -->
+    <div class="my-5 pt-3">
+      <div class="text-center mb-4">
+        <span class="glass-pill mb-2">
+          <i class="bi bi-stars text-warning"></i> Empowering Kasinomics
+        </span>
+        <h2 class="fw-bold mb-2">Why Shop & Source on Kasi-eCo</h2>
+        <p class="text-muted small mx-auto" style="max-width: 520px;">
+          Built from the ground up to solve the discovery and trust barriers between local township producers and commercial buyers.
+        </p>
+      </div>
 
-  <main role="main">
-    <!-- Marketing messaging and featurettes -->
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
-      <div class="carousel-inner">
-        <div class="carousel-item active p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border bg-none herobox shadow-lg">
-          <div class="container marketing ">
-            <div class="d-flex justify-content-between font1 row ">
-              <hr class="text-success">    <h6 class="display-6 fw-bold text-center font text-success main-headings">Some of our traders/service providers</h6>
-              <hr>
-              <div class="col-lg-4 ">
-               <div class="text-center">
-                <img class="rounded-circle " src="https://i.postimg.cc/QMLDQ8y3/bujahman.jpg" alt="Generic placeholder image" width="140" height="140">
+      <div class="row g-4">
+        <!-- Bento 1: WhatsApp First -->
+        <div class="col-md-4">
+          <div class="glass-card p-4 h-100 d-flex flex-column justify-content-between">
+            <div>
+              <div class="feature-icon-wrapper mb-3" style="background: rgba(37, 211, 102, 0.12); color: #16a34a;">
+                <i class="bi bi-whatsapp fs-4"></i>
               </div>
-                <h5 class="font text-center">Web Developer</h5>
-                <p >Unlock the full potential of your online presence with our expert web development services! Our team of skilled developers is dedicated to creating visually stunning and highly functional websites tailored to your unique needs.
-                   Whether you're a small business looking to establish your digital footprint or a thriving enterprise in need of a cutting-edge platform, we deliver innovative solutions that captivate audiences and drive results.
-                   </p>
-                <!-- <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p> -->
-              </div>
-              <div class="col-lg-4 ">
-               <div class="text-center">
-                <img class="rounded-circle" src="https://i.postimg.cc/s1FzwT0X/yaya.jpg" alt="Generic placeholder image" width="140" height="140">
-               </div>
-                <h5 class="font text-center">Craft Store Owner</h5>                
-                <p>We create masterpieces, from stunning paintings and sculptures to intricately designed handmade jewelry and accessories. Discover a vibrant community of creators who pour their passion into every creation, making each piece a true work of art. Whether you're an avid collector or searching for the perfect gift, immerse yourself in the beauty of art and crafts with our diverse collection</p>
+              <h5 class="fw-bold mb-2">Direct WhatsApp Commerce</h5>
+              <p class="text-muted small lh-base mb-0">
+                Skip rigid e-commerce checkouts. Tap once to initiate an end-to-end encrypted WhatsApp conversation with the actual artisan to negotiate specs, custom sizes, and delivery.
+              </p>
+            </div>
+            <div class="pt-3 mt-3 border-top border-secondary border-opacity-10 d-flex align-items-center gap-1 text-success fw-semibold small">
+              <span>Zero App Download Needed</span>
+              <i class="bi bi-arrow-right"></i>
+            </div>
+          </div>
+        </div>
 
-                
-                <!-- <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p> -->
+        <!-- Bento 2: Verified Local Craft -->
+        <div class="col-md-4">
+          <div class="glass-card p-4 h-100 d-flex flex-column justify-content-between">
+            <div>
+              <div class="feature-icon-wrapper mb-3" style="background: rgba(245, 158, 11, 0.12); color: #d97706;">
+                <i class="bi bi-shield-check fs-4"></i>
               </div>
-              <div class="col-lg-4 ">
-              <div class="text-center">
-                 <img class="rounded-circle" src="https://i.postimg.cc/1RYRTHNJ/liya.jpg" alt="Generic placeholder image" width="140" height="140">
+              <h5 class="fw-bold mb-2">Inspected Local Craftsmanship</h5>
+              <p class="text-muted small lh-base mb-0">
+                Every trader in our ecosystem is verified with genuine trade references, live product photos, and verified location details across Gauteng, Western Cape, and beyond.
+              </p>
+            </div>
+            <div class="pt-3 mt-3 border-top border-secondary border-opacity-10 d-flex align-items-center gap-1 text-warning fw-semibold small">
+              <span>Authentic Handmade Quality</span>
+              <i class="bi bi-arrow-right"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bento 3: 100% Impact -->
+        <div class="col-md-4">
+          <div class="glass-card p-4 h-100 d-flex flex-column justify-content-between">
+            <div>
+              <div class="feature-icon-wrapper mb-3" style="background: rgba(5, 150, 105, 0.12); color: #059669;">
+                <i class="bi bi-graph-up-arrow fs-4"></i>
               </div>
-                <h5 class="font text-center">Patio  Manufacturer</h5>
-                <p>Experience the perfect blend of style and comfort with our exquisite patio furniture collection! As a leading manufacturer, we specialize in crafting high-quality, durable pieces that transform any outdoor space into a cozy oasis
-                  . From luxurious loungers to elegant dining sets, our furniture is meticulously designed to withstand the elements while adding a touch of sophistication to your patio.
-                   </p>
-                <!-- <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p> -->
-              </div>
+              <h5 class="fw-bold mb-2">Township Economic Development</h5>
+              <p class="text-muted small lh-base mb-0">
+                Your purchases channel capital straight into South Africa's R900 billion informal economy, helping small black-owned businesses create real youth employment.
+              </p>
+            </div>
+            <div class="pt-3 mt-3 border-top border-secondary border-opacity-10 d-flex align-items-center gap-1 text-emerald fw-semibold small">
+              <span>B-BBEE ESD Ready</span>
+              <i class="bi bi-arrow-right"></i>
             </div>
           </div>
         </div>
       </div>
     </div>
-    
-  
-      
+
+    <!-- ── Featured Makers Section ── -->
+    <div class="my-5 pt-3">
+      <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end mb-4 gap-2">
+        <div>
+          <span class="glass-pill mb-2">
+            <i class="bi bi-award text-success"></i> Community Creators
+          </span>
+          <h2 class="fw-bold mb-1">Meet Featured Service Providers & Makers</h2>
+          <p class="text-muted small mb-0">Direct access to local expertise, craft fabrication, and digital talent.</p>
+        </div>
+        <div>
+          <a routerLink="/traders" class="btn btn-sm btn-glass">
+            View All Traders <i class="bi bi-arrow-right ms-1"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="row g-4">
+        
+        <!-- Creator 1: Web Developer -->
+        <div class="col-lg-4 col-md-6">
+          <div class="glass-card p-4 h-100 text-center d-flex flex-column justify-content-between">
+            <div>
+              <div class="avatar-ring mx-auto mb-3">
+                <img src="https://i.postimg.cc/QMLDQ8y3/bujahman.jpg" alt="Web Developer" class="creator-avatar" onerror="this.onerror=null; this.src='assets/bujahman.jpg'">
+              </div>
+              <span class="badge bg-success-subtle text-success rounded-pill px-3 py-1 mb-2 small">
+                Tech & Digital
+              </span>
+              <h5 class="fw-bold mb-1 text-dark">Web Developer</h5>
+              <p class="text-muted small lh-base mt-2 mb-3">
+                Creating high-performance modern websites, web applications, and digital storefronts tailored for South African small businesses and growing startups.
+              </p>
+            </div>
+            <div class="pt-3 border-top border-secondary border-opacity-10">
+              <a routerLink="/traders" class="btn btn-sm btn-glass w-100">
+                <i class="bi bi-person-lines-fill me-1"></i> View Profile & Contact
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Creator 2: Craft Store Owner -->
+        <div class="col-lg-4 col-md-6">
+          <div class="glass-card p-4 h-100 text-center d-flex flex-column justify-content-between">
+            <div>
+              <div class="avatar-ring mx-auto mb-3">
+                <img src="https://i.postimg.cc/s1FzwT0X/yaya.jpg" alt="Craft Store Owner" class="creator-avatar" onerror="this.onerror=null; this.src='assets/yaya.jpg'">
+              </div>
+              <span class="badge bg-warning-subtle text-warning-emphasis rounded-pill px-3 py-1 mb-2 small">
+                Art & Handmade Crafts
+              </span>
+              <h5 class="fw-bold mb-1 text-dark">Craft Store Owner</h5>
+              <p class="text-muted small lh-base mt-2 mb-3">
+                Handcrafted African jewelry, sculptures, paintings, and traditional accessories pouring authentic passion and heritage into every bespoke piece.
+              </p>
+            </div>
+            <div class="pt-3 border-top border-secondary border-opacity-10">
+              <a routerLink="/traders" class="btn btn-sm btn-glass w-100">
+                <i class="bi bi-person-lines-fill me-1"></i> View Profile & Contact
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Creator 3: Patio Manufacturer -->
+        <div class="col-lg-4 col-md-6">
+          <div class="glass-card p-4 h-100 text-center d-flex flex-column justify-content-between">
+            <div>
+              <div class="avatar-ring mx-auto mb-3">
+                <img src="https://i.postimg.cc/1RYRTHNJ/liya.jpg" alt="Patio Manufacturer" class="creator-avatar" onerror="this.onerror=null; this.src='assets/liya.jpg'">
+              </div>
+              <span class="badge bg-primary-subtle text-primary rounded-pill px-3 py-1 mb-2 small">
+                Furniture & Timber
+              </span>
+              <h5 class="fw-bold mb-1 text-dark">Patio Manufacturer</h5>
+              <p class="text-muted small lh-base mt-2 mb-3">
+                Custom exterior timber furniture, weatherproof patio loungers, and durable dining suites meticulously crafted for residential and commercial spaces.
+              </p>
+            </div>
+            <div class="pt-3 border-top border-secondary border-opacity-10">
+              <a routerLink="/traders" class="btn btn-sm btn-glass w-100">
+                <i class="bi bi-person-lines-fill me-1"></i> View Profile & Contact
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── Call to Action Glass Banner ── -->
+    <div class="my-5 p-4 p-md-5 glass-card-dark text-center position-relative overflow-hidden">
+      <div class="position-relative" style="z-index: 1;">
+        <span class="badge bg-success text-white rounded-pill px-3 py-1-5 mb-3 small">
+          🚀 Free Trader Onboarding
+        </span>
+        <h2 class="text-white fw-bold mb-3 display-6">
+          Are You a Township Artisan, Maker, or Supplier?
+        </h2>
+        <p class="text-white-50 mx-auto mb-4" style="max-width: 580px;">
+          Put your catalog in front of conscious customers and corporate buyers looking for verified B-BBEE level 1 suppliers. Setup takes less than 3 minutes.
+        </p>
+        <div class="d-flex flex-wrap justify-content-center gap-3">
+          <a routerLink="/register" class="btn btn-emerald px-4 py-2-5">
+            <i class="bi bi-plus-circle me-1"></i> Register Your Business Free
+          </a>
+          <a routerLink="/products" class="btn btn-glass px-4 py-2-5 text-white border-white border-opacity-25" style="background: rgba(255,255,255,0.1) !important; color:#fff !important;">
+            Explore Catalog First
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

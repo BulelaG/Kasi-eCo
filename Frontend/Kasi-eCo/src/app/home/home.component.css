@@ -1,96 +1,141 @@
-.herobox{
-  
-  background-color: #17e70461 !important;
+/* ── Home Page Glassmorphic Styling ── */
 
-
+.glass-hero-panel {
+  background: rgba(255, 255, 255, 0.76);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 25px 60px -15px rgba(15, 23, 42, 0.08), 0 0 0 1px rgba(226, 232, 240, 0.5);
+  border-radius: var(--radius-xl);
+  position: relative;
 }
 
-
-.main-headings{
-  font-family: fantasy;
-}
-/* .lead{
-  font-family:  Calibri, sans-serif;
-  font-weight: 400;
-} */
-hr{
-  font-weight: bolder;
-}
-.container-fluid {
-    background-color: #f8f9fa;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .landing {
-    width: 200px;
-    margin-bottom: 2rem;
-  }
-  
-  .display-4 {
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
-  }
-/*   
-  .lead {
-    font-size: 1.25rem;
-  }
-   */
-  .btn-primary {
-    background-color: #6116d8;
-    border-color: #4017d6;
-  }
-  
-  .btn-primary:hover {
-    background-color: #2e4bca;
-    border-color: #324de6;
-  }
-  
-  .btn-outline-secondary {
-    color: #6c757d;
-    border-color: #6c757d;
-  }
-  
-  .btn-outline-secondary:hover {
-    color: #333;
-    border-color: #333;
-  }
-  
-  @media (min-width: 576px) {
-    .container-fluid {
-      padding: 3rem;
-    }
-  
-    .display-4 {
-      font-size: 3rem;
-    }
-  
-    .lead {
-      font-size: 1.5rem;
-    }
-  
-    .btn-primary,
-    .btn-outline-secondary {
-      font-size: 1.25rem;
-      padding: 0.75rem 2.5rem;
-    }
-  }
-  
-
-  /* new landing */
-
-  .logo{
-    height: 80px;
-    width: 80px;
-    object-fit: cover;
-}
-.lead{
-    font-family: 'Tilt Neon', sans-serif;;
+.fw-extrabold {
+  font-weight: 800 !important;
 }
 
-.app-name{
-    color: #154161;
+.py-2-5 {
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+}
+
+/* ── Hero Stats ── */
+.hero-mini-stat {
+  padding: 4px 0;
+}
+
+.stat-val {
+  font-size: 1.45rem;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.stat-desc {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--kasi-muted);
+  margin-top: 2px;
+}
+
+/* ── Hero Visual & Floating Glass Badges ── */
+.hero-image-stage {
+  position: relative;
+  display: inline-block;
+  padding: 1rem 0;
+}
+
+.hero-promo-img {
+  max-height: 380px;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 15px 30px rgba(15, 23, 42, 0.12));
+  transition: transform 0.4s ease;
+}
+
+.hero-promo-img:hover {
+  transform: translateY(-4px) scale(1.02);
+}
+
+.floating-badge {
+  position: absolute;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.88) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.95) !important;
+  box-shadow: 0 15px 35px -5px rgba(15, 23, 42, 0.12) !important;
+  animation: float-slow 4s ease-in-out infinite alternate;
+}
+
+.badge-top-left {
+  top: 12%;
+  left: -8%;
+}
+
+.badge-bottom-right {
+  bottom: 8%;
+  right: -5%;
+  animation-delay: -2s;
+}
+
+.badge-icon-box {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+@keyframes float-slow {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-8px);
+  }
+}
+
+/* ── Feature Icon Wrapper ── */
+.feature-icon-wrapper {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Creator Avatar Ring ── */
+.avatar-ring {
+  width: 86px;
+  height: 86px;
+  border-radius: 50%;
+  padding: 3px;
+  background: linear-gradient(135deg, var(--kasi-emerald-light) 0%, var(--kasi-primary) 60%, var(--kasi-accent) 100%);
+  box-shadow: 0 6px 16px rgba(5, 150, 105, 0.2);
+  display: inline-block;
+}
+
+.creator-avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #ffffff;
+  border: 2px solid #ffffff;
+}
+
+/* Responsive adjustments */
+@media (max-width: 991.98px) {
+  .floating-badge {
+    position: static;
+    margin: 8px auto;
+    display: inline-flex;
+  }
+  .hero-promo-img {
+    max-height: 280px;
+  }
 }

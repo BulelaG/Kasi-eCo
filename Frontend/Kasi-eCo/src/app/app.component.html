@@ -1,106 +1,144 @@
-<div class="scrollbar">
-  <nav class="navbar font navbar-expand-lg navbar-light bg-none">
-    <a href="" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
-      <img class="logo" src="../assets/Kasieco-Light-Logo-removebg-preview.png" alt="">
-    </a>    
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-     
-      <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
-        <li>
-          <a routerLink="/home" class="nav-link text-dark">
-            <!-- <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#home"/></svg> -->
-            Home
-          </a>
-        </li>
-        <li> 
-          <a routerLink="/products" class="nav-link text-dark">
-            <!-- <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#speedometer2"/></svg> -->
-            Products
-          </a>
-        </li>
-       
-        <li>
-          <a routerLink="/traders" class="nav-link text-dark">
-            <!-- <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#table"/></svg> -->
-            Traders
-          </a>
-        </li>
+<!-- ── Sticky Glassmorphic Navbar ── -->
+<header class="sticky-top glass-navbar-wrapper">
+  <nav class="navbar navbar-expand-lg navbar-glass py-2 px-3 px-lg-4">
+    <div class="container-fluid px-0 d-flex align-items-center justify-content-between">
+      
+      <!-- Brand Logo -->
+      <a routerLink="/home" class="navbar-brand d-flex align-items-center gap-2 m-0">
+        <img class="brand-logo" src="assets/Kasieco-Dark-Logo.png" alt="Kasi-eCo Logo" onerror="this.onerror=null; this.src='assets/Kasieco-Light-Logo-removebg-preview.png'">
+      </a>
 
-        <li>
-          <a routerLink="/traders" class="nav-link text-dark">
-            <!-- <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#table"/></svg> -->
-            Contact Us
-          </a>
-        </li>
+      <!-- Mobile Toggler -->
+      <button class="navbar-toggler border-0 shadow-none px-2 py-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="bi bi-list fs-2 text-dark"></i>
+      </button>
 
-        <!-- <li>
-          <a href="#" class="nav-link text-dark">
-            <svg class="bi d-block mx-auto mb-1" width="24" height="24" routerLink="/"><use xlink:href="#grid"/></svg> 
-             Enquiries
-          </a>
-        </li> -->
+      <!-- Nav Links -->
+      <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+        <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-1 gap-lg-2 py-2 py-lg-0">
+          <li class="nav-item">
+            <a routerLink="/home" routerLinkActive="active-glass-link" [routerLinkActiveOptions]="{exact: true}" class="nav-link glass-nav-link">
+              <i class="bi bi-house-door me-1"></i> Home
+            </a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/products" routerLinkActive="active-glass-link" class="nav-link glass-nav-link">
+              <i class="bi bi-grid me-1"></i> Products
+            </a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/traders" routerLinkActive="active-glass-link" class="nav-link glass-nav-link">
+              <i class="bi bi-people me-1"></i> Traders
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="token">
+            <a routerLink="/product-inventory" routerLinkActive="active-glass-link" class="nav-link glass-nav-link">
+              <i class="bi bi-box-seam me-1"></i> Inventory
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="token">
+            <a routerLink="/profile" routerLinkActive="active-glass-link" class="nav-link glass-nav-link text-emerald">
+              <i class="bi bi-person-circle me-1"></i> My Account
+            </a>
+          </li>
+        </ul>
 
-        
-          <li class="" *ngIf="token">
-          <a href="#" class="nav-link text-dark" routerLink="/product-inventory">
-             <!-- <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#grid"/></svg>  -->
-            Inventory
-          </a>
-        </li>
-  
-        <li class="" *ngIf="token">
-          <a href="#" class="nav-link  text-success" routerLink="/profile">
-            MyAccount
-          </a>
-        </li>
-        
-        <div class=" d-flex" *ngIf="!token">
-        <li>
-            <!-- <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#people-circle"/></svg> -->
-            <button type="button" class="btn btn-primary text-dark me-2"  routerLink="/register" >Sign up</button>
-        </li>
-        <li>
-            <!-- <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#people-circle"/></svg> -->
-            <button type="button" class="btn btn-warning text-dark me-2"  routerLink="/login" >Sign in</button>
-        </li>
+        <!-- Action / Auth Buttons -->
+        <div class="d-flex align-items-center gap-2 pt-2 pt-lg-0">
+          <div *ngIf="!token" class="d-flex align-items-center gap-2 w-100 justify-content-end">
+            <a routerLink="/login" class="btn btn-sm btn-glass px-3 py-1-5">
+              Sign in
+            </a>
+            <a routerLink="/register" class="btn btn-sm btn-emerald px-3 py-1-5">
+              <i class="bi bi-shop me-1"></i> Join as Trader
+            </a>
+          </div>
+
+          <div *ngIf="token" class="d-flex align-items-center gap-2">
+            <button type="button" class="btn btn-sm btn-glass text-danger border-danger-subtle px-3 py-1-5" (click)="signout()">
+              <i class="bi bi-box-arrow-right me-1"></i> Sign out
+            </button>
+          </div>
+        </div>
       </div>
-      <li *ngIf="token">
-        <!-- <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#people-circle"/></svg> -->
-        <button type="button" class="btn btn-warning text-dark me-2" (click)="signout()" >Signout</button>
-    </li>
 
-     <!-- <form class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto" role="search">
-    <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
-  </form>  --> 
-      </ul>
     </div>
   </nav>
-  <div class="text-end">
+</header>
+
+<!-- ── Main Router Outlet ── -->
+<main class="main-content-wrapper">
+  <router-outlet></router-outlet>
+</main>
+
+<!-- ── Modern Glassmorphic Footer ── -->
+<footer class="footer-glass-wrapper mt-5 pt-5 pb-4">
+  <div class="container">
+    <div class="row g-4 justify-content-between pb-4 border-bottom border-secondary border-opacity-10">
       
-    
-  </div>    
-</div>
+      <!-- Column 1: Brand Info -->
+      <div class="col-lg-4 col-md-6">
+        <div class="d-flex align-items-center gap-2 mb-3">
+          <img src="assets/Kasieco-Dark-Logo.png" alt="Kasi-eCo Logo" height="38" onerror="this.onerror=null; this.src='assets/Kasieco-Light-Logo-removebg-preview.png'">
+        </div>
+        <p class="text-muted small lh-base mb-3" style="max-width: 320px;">
+          South Africa's premier digital marketplace connecting authentic township artisans, makers, and micro-enterprises directly with buyers and corporate procurement.
+        </p>
+        <div class="glass-pill text-dark small">
+          <span class="pulse-dot"></span>
+          <span>A Product of <strong>Swift House</strong></span>
+        </div>
+      </div>
 
+      <!-- Column 2: Marketplace Links -->
+      <div class="col-lg-2 col-md-3 col-6">
+        <h6 class="fw-bold mb-3 text-dark small text-uppercase" style="letter-spacing: 0.05em;">Marketplace</h6>
+        <ul class="list-unstyled small d-flex flex-column gap-2 text-muted">
+          <li><a routerLink="/products" class="hover-emerald">Browse Products</a></li>
+          <li><a routerLink="/traders" class="hover-emerald">Verified Traders</a></li>
+          <li><a routerLink="/register" class="hover-emerald">List Your Business</a></li>
+          <li><a routerLink="/login" class="hover-emerald">Trader Dashboard</a></li>
+        </ul>
+      </div>
 
-      
-      <!-- Search form, Sign up button, Login button, etc. -->
+      <!-- Column 3: Corporate & ESD -->
+      <div class="col-lg-3 col-md-3 col-6">
+        <h6 class="fw-bold mb-3 text-dark small text-uppercase" style="letter-spacing: 0.05em;">For Corporates</h6>
+        <ul class="list-unstyled small d-flex flex-column gap-2 text-muted">
+          <li><span class="text-muted">B-BBEE Code 400 & 500 Sourcing</span></li>
+          <li><span class="text-muted">Verified Township Suppliers</span></li>
+          <li><span class="text-muted">SwiftMatch AI Platform</span></li>
+          <li><span class="text-muted">YES 4 Youth Alignment</span></li>
+        </ul>
+      </div>
 
-<!-- <ul>
-  <li *ngFor="let trader of traders" (click)="navigateToTraderDetails(trader.id)">
-    {{ trader.fname }} - {{ trader.businessName }} - {{ trader.email }} - {{ trader.cell }}
-  </li>
-</ul> -->
+      <!-- Column 4: Contact & Social -->
+      <div class="col-lg-3 col-md-12">
+        <h6 class="fw-bold mb-3 text-dark small text-uppercase" style="letter-spacing: 0.05em;">Direct Support</h6>
+        <p class="small text-muted mb-3">Need help with an order or onboarding as a maker?</p>
+        <a href="https://wa.me/27700000000?text=Hello%20Kasi-eCo%2C%20I%20have%20an%20enquiry" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-whatsapp mb-2 w-100 justify-content-center">
+          <i class="bi bi-whatsapp"></i> Chat on WhatsApp
+        </a>
+        <div class="d-flex align-items-center gap-2 text-muted small mt-2">
+          <i class="bi bi-geo-alt text-emerald"></i>
+          <span>Cape Town / Gauteng, South Africa</span>
+        </div>
+      </div>
 
-<router-outlet></router-outlet>
+    </div>
 
-
-<!-- <nav class="text-center">
-  <a routerLink="/dashboard">Dashboard</a>
-  <a routerLink="/heroes">Heroes</a>
-</nav> -->
-<!-- <router-outlet></router-outlet><br> -->
-<!-- <app-messages class="text-success"></app-messages> -->
+    <!-- Bottom Copyright Strip -->
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-center pt-3 gap-2 small text-muted">
+      <div>
+        © 2026 <strong>Kasi-eCo</strong>. Developed by <strong>Swift House</strong>. All rights reserved.
+      </div>
+      <div class="d-flex align-items-center gap-3">
+        <span class="badge bg-success-subtle text-success border border-success-subtle rounded-pill px-2 py-1">
+          <i class="bi bi-shield-check me-1"></i> POPIA Compliant & Secure
+        </span>
+        <span class="text-muted">v2.0</span>
+      </div>
+    </div>
+  </div>
+</footer>

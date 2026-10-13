@@ -1,14 +1,23 @@
-/* ── Trader Detail Glassmorphic Storefront ── */
+/* ── Trader Storefront Polished Glassmorphic Styles ── */
+
+.storefront-page-container {
+  max-width: 1140px;
+}
+
+.store-header-card {
+  border-radius: var(--radius-xl);
+}
 
 .store-avatar-ring {
-  width: 130px;
-  height: 130px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
-  padding: 4px;
+  padding: 3px;
   background: linear-gradient(135deg, var(--kasi-emerald-light) 0%, var(--kasi-primary) 60%, var(--kasi-accent) 100%);
   position: relative;
   display: inline-block;
-  box-shadow: 0 10px 25px -5px rgba(5, 150, 105, 0.3);
+  box-shadow: 0 10px 25px -5px rgba(5, 150, 105, 0.25);
+  flex-shrink: 0;
 }
 
 .store-avatar-img {
@@ -22,32 +31,75 @@
 
 .store-verified-badge {
   position: absolute;
-  bottom: 4px;
-  right: 4px;
-  width: 32px;
-  height: 32px;
+  bottom: 2px;
+  right: 2px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   background: #059669;
   color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.1rem;
+  font-size: 1rem;
   border: 2px solid #ffffff;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
 .contact-icon-box {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
 }
 
-.step-badge {
+/* Contact Info Rows */
+.contact-info-row {
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(226, 232, 240, 0.85);
+  border-radius: 12px;
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.contact-info-row:hover {
+  background: #ffffff;
+  border-color: rgba(5, 150, 105, 0.35);
+  transform: translateX(3px);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
+}
+
+.contact-mini-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  flex-shrink: 0;
+}
+
+/* 3-Step Sourcing Process */
+.sourcing-step-box {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  transition: all 0.2s ease;
+}
+
+.sourcing-step-box:hover {
+  background: #ffffff;
+  border-color: rgba(5, 150, 105, 0.25);
+  transform: translateY(-2px);
+}
+
+.step-num-badge {
   width: 28px;
   height: 28px;
   border-radius: 50%;
@@ -55,7 +107,39 @@
   color: #ffffff;
   font-weight: 700;
   font-size: 0.8rem;
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.esd-callout-box {
+  background: rgba(5, 150, 105, 0.08);
+  border: 1px solid rgba(5, 150, 105, 0.25);
+}
+
+/* Product Catalog Showcase */
+.product-thumb-stage {
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f1f5f9;
+}
+
+.product-thumb-img {
+  max-height: 100%;
+  width: auto;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.product-thumb-img:hover {
+  transform: scale(1.04);
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }

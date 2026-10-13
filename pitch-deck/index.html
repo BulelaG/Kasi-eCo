@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SwiftMatch AI — Swift House | YES AI Hackathon 2026</title>
+
+  <!-- Reveal.js -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/black.min.css" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── Brand tokens ────────────────────────── */
+    :root {
+      --green:  #15803d;
+      --green-light: #22c55e;
+      --gold:   #f59e0b;
+      --gold-light: #fcd34d;
+      --dark:   #0a0f0d;
+      --card:   rgba(255,255,255,0.05);
+      --border: rgba(255,255,255,0.10);
+    }
+
+    .reveal, .reveal h1, .reveal h2, .reveal h3, .reveal p, .reveal li {
+      font-family: 'Inter', sans-serif;
+    }
+
+    .reveal .slides section {
+      text-align: left;
+      padding: 0 2rem;
+    }
+
+    /* ── Slide backgrounds ───────────────────── */
+    .reveal .slides .cover       { background: linear-gradient(135deg, #0a1a0e 0%, #0f2d18 60%, #1a4024 100%); }
+    .reveal .slides .problem     { background: linear-gradient(160deg, #0a0f0d 0%, #12150f 100%); }
+    .reveal .slides .market      { background: linear-gradient(160deg, #0d1008 0%, #111a0d 100%); }
+    .reveal .slides .solution    { background: linear-gradient(160deg, #060e0b 0%, #0e1f15 100%); }
+    .reveal .slides .howitworks  { background: #080d0a; }
+    .reveal .slides .delivers    { background: linear-gradient(160deg, #0a0e08 0%, #131b0e 100%); }
+    .reveal .slides .tech        { background: #07100d; }
+    .reveal .slides .bizmodel    { background: linear-gradient(160deg, #08100b 0%, #111908 100%); }
+    .reveal .slides .traction    { background: linear-gradient(160deg, #090e07 0%, #0f1a0e 100%); }
+    .reveal .slides .team        { background: #07100c; }
+    .reveal .slides .theask      { background: linear-gradient(135deg, #0a1a0e 0%, #0f2d18 60%, #1a4024 100%); }
+
+    /* ── Typography ─────────────────────────── */
+    .slide-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.4rem;
+    }
+
+    .reveal h1 {
+      font-size: 3.2rem;
+      font-weight: 800;
+      line-height: 1.05;
+      color: #ffffff;
+      margin: 0 0 0.5rem;
+    }
+
+    .reveal h2 {
+      font-size: 2.1rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin: 0 0 1.2rem;
+      border: none;
+    }
+
+    .reveal h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--green-light);
+      margin: 0 0 0.3rem;
+    }
+
+    .reveal p, .reveal li {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.82);
+    }
+
+    /* ── Accent bar ─────────────────────────── */
+    .accent-bar {
+      width: 56px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--green-light), var(--gold));
+      border-radius: 2px;
+      margin-bottom: 1.2rem;
+    }
+
+    /* ── Stat pills ─────────────────────────── */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 1.2rem;
+    }
+
+    .stat-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.1rem 1rem;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.6);
+      margin-top: 0.3rem;
+      line-height: 1.4;
+    }
+
+    /* ── Problem friction cards ─────────────── */
+    .friction-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 1.2rem;
+    }
+
+    .friction-card {
+      background: rgba(245,158,11,0.07);
+      border: 1px solid rgba(245,158,11,0.2);
+      border-radius: 12px;
+      padding: 1.1rem;
+    }
+
+    .friction-num {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--gold);
+    }
+
+    .friction-title {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin: 0.2rem 0 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* ── Feature rows ───────────────────────── */
+    .feature-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.9rem;
+      margin-bottom: 0.8rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.75rem 1rem;
+    }
+
+    .feature-icon {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+
+    .feature-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--green-light);
+    }
+
+    .feature-desc {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.7);
+      margin: 0.1rem 0 0;
+      line-height: 1.5;
+    }
+
+    /* ── Steps flow ─────────────────────────── */
+    .steps-flow {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .step-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.8rem 0.6rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .step-num {
+      width: 28px;
+      height: 28px;
+      background: var(--green);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: white;
+      margin: 0 auto 0.5rem;
+    }
+
+    .step-title {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.3;
+    }
+
+    .step-sub {
+      font-size: 0.62rem;
+      color: rgba(255,255,255,0.55);
+      margin-top: 0.3rem;
+      line-height: 1.4;
+    }
+
+    /* ── Deliverables ───────────────────────── */
+    .deliverable {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.8rem;
+      margin-bottom: 0.6rem;
+      padding: 0.6rem 0.8rem;
+      background: rgba(21,128,61,0.08);
+      border-left: 3px solid var(--green-light);
+      border-radius: 0 8px 8px 0;
+    }
+
+    .deliv-num {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--green-light);
+      flex-shrink: 0;
+      width: 24px;
+    }
+
+    /* ── Tech badges ────────────────────────── */
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .badge {
+      background: rgba(21,128,61,0.15);
+      border: 1px solid rgba(34,197,94,0.25);
+      border-radius: 20px;
+      padding: 0.25rem 0.75rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--green-light);
+    }
+
+    /* ── Revenue tiers ──────────────────────── */
+    .tier-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.9rem;
+      margin-top: 1rem;
+    }
+
+    .tier-card {
+      border-radius: 12px;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .tier-1 { background: rgba(21,128,61,0.15); border: 1px solid rgba(34,197,94,0.3); }
+    .tier-2 { background: rgba(245,158,11,0.12); border: 1px solid rgba(245,158,11,0.3); }
+    .tier-3 { background: rgba(96,165,250,0.10); border: 1px solid rgba(96,165,250,0.3); }
+
+    .tier-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.5); }
+    .tier-name  { font-size: 0.9rem; font-weight: 700; color: #fff; margin: 0.3rem 0 0.2rem; }
+    .tier-price { font-size: 1.1rem; font-weight: 800; color: var(--gold); }
+    .tier-desc  { font-size: 0.68rem; color: rgba(255,255,255,0.6); margin-top: 0.3rem; line-height: 1.4; }
+
+    /* ── Traction milestones ────────────────── */
+    .milestone-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.8rem;
+      margin-top: 1rem;
+    }
+
+    .milestone {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.9rem 1rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.7rem;
+    }
+
+    .m-icon { font-size: 1.4rem; flex-shrink: 0; }
+    .m-title { font-size: 0.82rem; font-weight: 700; color: #fff; }
+    .m-desc  { font-size: 0.72rem; color: rgba(255,255,255,0.6); margin-top: 0.15rem; line-height: 1.4; }
+
+    /* ── Team cards ─────────────────────────── */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 1.2rem;
+    }
+
+    .team-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.1rem;
+      text-align: center;
+    }
+
+    .team-avatar {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--green), var(--green-light));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin: 0 auto 0.7rem;
+    }
+
+    .team-name  { font-size: 0.85rem; font-weight: 700; color: #fff; }
+    .team-role  { font-size: 0.7rem; color: var(--gold); font-weight: 600; margin-top: 0.15rem; }
+    .team-desc  { font-size: 0.68rem; color: rgba(255,255,255,0.6); margin-top: 0.4rem; line-height: 1.4; }
+
+    /* ── Cover specific ─────────────────────── */
+    .cover-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 30px;
+      padding: 0.35rem 1rem 0.35rem 0.5rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .logo-dot {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--green), var(--green-light));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+    }
+
+    .logo-text { font-size: 0.85rem; font-weight: 700; color: #fff; }
+
+    .cover-tagline {
+      font-size: 1.05rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.65);
+      margin: 0.8rem 0 2rem;
+      max-width: 560px;
+      line-height: 1.6;
+    }
+
+    .cover-pill {
+      display: inline-block;
+      background: rgba(245,158,11,0.15);
+      border: 1px solid rgba(245,158,11,0.35);
+      border-radius: 20px;
+      padding: 0.3rem 0.9rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--gold);
+      margin-right: 0.5rem;
+    }
+
+    /* ── The Ask ────────────────────────────── */
+    .ask-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-top: 1.2rem;
+    }
+
+    .ask-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 12px;
+      padding: 1.1rem;
+    }
+
+    .ask-amount {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--gold);
+    }
+
+    .ask-desc {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.65);
+      margin-top: 0.3rem;
+      line-height: 1.5;
+    }
+
+    /* ── Source footnote ────────────────────── */
+    .source-note {
+      font-size: 0.58rem;
+      color: rgba(255,255,255,0.28);
+      margin-top: 1rem;
+      line-height: 1.6;
+    }
+
+    /* ── Reveal overrides ───────────────────── */
+    .reveal .progress { background: rgba(255,255,255,0.1); }
+    .reveal .progress span { background: var(--gold); }
+    .reveal .controls button { color: var(--green-light); }
+
+    /* TAM / SAM / SOM bar */
+    .market-bar-wrap { margin-top: 1.2rem; }
+    .market-bar-row  { margin-bottom: 0.7rem; }
+    .market-bar-label { display: flex; justify-content: space-between; margin-bottom: 0.2rem; }
+    .market-bar-name  { font-size: 0.78rem; font-weight: 700; color: #fff; }
+    .market-bar-value { font-size: 0.78rem; font-weight: 700; color: var(--gold); }
+    .market-bar-track { height: 10px; background: rgba(255,255,255,0.08); border-radius: 5px; overflow: hidden; }
+    .market-bar-fill  { height: 100%; border-radius: 5px; }
+    .tam-fill { background: linear-gradient(90deg, var(--green), var(--green-light)); width: 100%; }
+    .sam-fill { background: linear-gradient(90deg, var(--gold), var(--gold-light));   width: 15%; }
+    .som-fill { background: linear-gradient(90deg, #60a5fa, #93c5fd);                  width: 0.4%; }
+
+    /* Slide number */
+    .reveal .slide-number { color: rgba(255,255,255,0.3); font-size: 0.65rem; }
+  </style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+  <!-- ══════════════════════════════════════
+       SLIDE 1 — COVER
+  ══════════════════════════════════════ -->
+  <section class="cover" style="text-align:left; padding: 2rem 2.5rem;">
+    <div class="cover-logo">
+      <div class="logo-dot">⚡</div>
+      <span class="logo-text">Swift House</span>
+    </div>
+
+    <h1 style="font-size:3.4rem; line-height:1.05;">
+      SwiftMatch<span style="color:var(--green-light)"> AI</span>
+    </h1>
+
+    <p class="cover-tagline">
+      Connecting South Africa's R900B township economy<br />
+      to corporate procurement — powered by AI.
+    </p>
+
+    <div>
+      <span class="cover-pill">YES AI Hackathon 2026</span>
+      <span class="cover-pill">Challenge 4</span>
+      <span class="cover-pill">Application ID: Y4Y-2026-0035</span>
+    </div>
+
+    <p style="font-size:0.7rem; color:rgba(255,255,255,0.3); margin-top:2rem;">
+      kasi-e-co.vercel.app &nbsp;·&nbsp; github.com/BulelaG/Kasi-eCo
+    </p>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       SLIDE 2 — THE PROBLEM
+  ══════════════════════════════════════ -->
+  <section class="problem">
+    <div class="slide-label">The Problem</div>
+    <h2>R26 Billion. <span style="color:var(--gold)">Most of it never lands.</span></h2>
+    <div class="accent-bar"></div>
+
+    <p style="max-width:680px;">
+      South Africa's B-BBEE framework unlocks an estimated <strong style="color:var(--gold)">R26B</strong> in annual ESD &amp; Preferential Procurement spend. Yet the money consistently misses the entrepreneurs it is designed to reach.
+    </p>
+
+    <div class="friction-grid">
+      <div class="friction-card">
+        <div class="friction-num">01</div>
+        <div class="friction-title">Opaque Discovery</div>
+        <p style="font-size:0.75rem; color:rgba(255,255,255,0.65); margin:0; line-height:1.5;">
+          Procurement officers rely on static, fragmented vendor lists with no visibility into real capacity or B-BBEE status.
+        </p>
+      </div>
+      <div class="friction-card">
+        <div class="friction-num">02</div>
+        <div class="friction-title">The Bid Barrier</div>
+        <p style="font-size:0.75rem; color:rgba(255,255,255,0.65); margin:0; line-height:1.5;">
+          Township makers and artisans lack the corporate literacy to interpret dense RFPs and produce compliant quotations.
+        </p>
+      </div>
+      <div class="friction-card">
+        <div class="friction-num">03</div>
+        <div class="friction-title">Onboarding Friction</div>
+        <p style="font-size:0.75rem; color:rgba(255,255,255,0.65); margin:0; line-height:1.5;">
+          CIPC, SARS, B-BBEE affidavit verification takes weeks. Buyers default to incumbent suppliers.
+        </p>
+      </div>
+    </div>
+
+    <div class="stat-grid" style="margin-top:1rem;">
+      <div class="stat-card">
+        <div class="stat-number">80%</div>
+        <div class="stat-label">of township micro-enterprises operate informally &amp; are invisible to corporate databases</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">&lt;30%</div>
+        <div class="stat-label">of township suppliers successfully enter formal corporate supply chains</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">70–80%</div>
+        <div class="stat-label">of SA SMEs fail within their first five years</div>
+      </div>
+    </div>
+
+    <p class="source-note">Sources: World Bank / SME South Africa · Competition Commission / BizCommunity 2023 · SEDA / SAJESBM</p>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       SLIDE 3 — MARKET OPPORTUNITY
+  ══════════════════════════════════════ -->
+  <section class="market">
+    <div class="slide-label">Market Opportunity</div>
+    <h2>A <span style="color:var(--green-light)">R28 Billion</span> addressable market.</h2>
+    <div class="accent-bar"></div>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:2rem; align-items:center;">
+      <div>
+        <div class="market-bar-wrap">
+          <div class="market-bar-row">
+            <div class="market-bar-label">
+              <span class="market-bar-name">TAM — Total ESD &amp; Pref. Procurement Spend</span>
+              <span class="market-bar-value">R28B</span>
+            </div>
+            <div class="market-bar-track"><div class="market-bar-fill tam-fill"></div></div>
+          </div>
+          <div class="market-bar-row">
+            <div class="market-bar-label">
+              <span class="market-bar-name">SAM — Top 500 YES-network corporates</span>
+              <span class="market-bar-value">R4.2B</span>
+            </div>
+            <div class="market-bar-track"><div class="market-bar-fill sam-fill"></div></div>
+          </div>
+          <div class="market-bar-row">
+            <div class="market-bar-label">
+              <span class="market-bar-name">SOM — Year 1–3 reachable</span>
+              <span class="market-bar-value">R85M</span>
+            </div>
+            <div class="market-bar-track"><div class="market-bar-fill som-fill"></div></div>
+          </div>
+        </div>
+
+        <p style="font-size:0.72rem; color:rgba(255,255,255,0.5); margin-top:1rem; line-height:1.5;">
+          SAM: ~500 corporates with active ESD budgets avg R8.4M each.<br/>
+          SOM: 15 clients Year 1 → 80 clients Year 3 via SaaS + ESD fees.
+        </p>
+      </div>
+
+      <div>
+        <div class="stat-card" style="margin-bottom:0.8rem;">
+          <div class="stat-number">R900B</div>
+          <div class="stat-label">South Africa's annual township economy value<br/><span style="color:rgba(255,255,255,0.35);">Forbes Africa / Standard Bank</span></div>
+        </div>
+        <div class="stat-card" style="margin-bottom:0.8rem;">
+          <div class="stat-number">3.2M+</div>
+          <div class="stat-label">Jobs supported by the informal economy<br/><span style="color:rgba(255,255,255,0.35);">Stats SA</span></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">1,800+</div>
+          <div class="stat-label">YES corporate partners — our target customers<br/><span style="color:rgba(255,255,255,0.35);">YES Annual Report FY2024</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       SLIDE 4 — THE SOLUTION
+  ══════════════════════════════════════ -->
+  <section class="solution">
+    <div class="slide-label">The Solution</div>
+    <h2>Introducing <span style="color:var(--green-light)">SwiftMatch AI</span></h2>
+    <div class="accent-bar"></div>
+
+    <p style="max-width:640px; margin-bottom:1.2rem;">
+      A two-sided AI platform that connects <strong>verified township SMEs</strong> to <strong>corporate procurement opportunities</strong> — at scale, over WhatsApp.
+    </p>
+
+    <div class="feature-row">
+      <div class="feature-icon">🔍</div>
+      <div>
+        <div class="feature-title">AI Document Extraction &amp; Verified Profiles</div>
+        <p class="feature-desc">Vision-LLMs extract CIPC, SARS Tax PIN, B-BBEE affidavits and trade references from smartphone photos into tamper-proof capability profiles.</p>
+      </div>
+    </div>
+
+    <div class="feature-row">
+      <div class="feature-icon">🎯</div>
+      <div>
+        <div class="feature-title">Semantic Matching Engine</div>
+        <p class="feature-desc">1536-dimensional vector embeddings match corporate RFPs to ranked SME shortlists with transparent, auditable score breakdowns.</p>
+      </div>
+    </div>
+
+    <div class="feature-row">
+      <div class="feature-icon">💬</div>
+      <div>
+        <div class="feature-title">WhatsApp-Native Bidding Copilot</div>
+        <p class="feature-desc">94–96% of SA internet users are on WhatsApp. Matched SMEs receive an AI-generated bid alert and guided quotation assistant — zero portal login required.</p>
+      </div>
+    </div>
+
+    <div class="feature-row">
+      <div class="feature-icon">💰</div>
+      <div>
+        <div class="feature-title">ESD Capital Routing</div>
+        <p class="feature-desc">Instantly matches shortlisted SMEs against NEF, SEFA, and corporate ESD grant eligibility — addressing South Africa's R350B SME funding gap.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       SLIDE 5 — HOW IT WORKS
+  ══════════════════════════════════════ -->
+  <section class="howitworks">
+    <div class="slide-label">How It Works</div>
+    <h2>End-to-end in <span style="color:var(--green-light)">5 steps.</span></h2>
+    <div class="accent-bar"></div>
+
+    <div class="steps-flow">
+      <div class="step-box">
+        <div class="step-num">1</div>
+        <div class="step-title">SME Onboards via WhatsApp</div>
+        <p class="step-sub">Photos compliance docs. Vision-LLM builds verified profile.</p>
+      </div>
+      <div class="step-box">
+        <div class="step-num">2</div>
+        <div class="step-title">Corporate Submits RFP</div>
+        <p class="step-sub">PDF upload or plain-language brief. AI extracts all criteria.</p>
+      </div>
+      <div class="step-box">
+        <div class="step-num">3</div>
+        <div class="step-title">Hybrid Matching Engine Runs</div>
+        <p class="step-sub">Hard filters + semantic vector similarity + capacity scoring.</p>
+      </div>
+      <div class="step-box">
+        <div class="step-num">4</div>
+        <div class="step-title">Ranked Shortlist + Alerts</div>
+        <p class="step-sub">Corporate sees match cards. SME gets WhatsApp bid alert &amp; quote wizard.</p>
+      </div>
+      <div class="step-box">
+        <div class="step-num">5</div>
+        <div class="step-title">Funding &amp; Dashboard</div>
+        <p class="step-sub">ESD grant matching. Real-time B-BBEE impact reporting for corporates.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:1.4rem; background:rgba(21,128,61,0.08); border:1px solid rgba(34,197,94,0.2); border-radius:10px; padding:0.9rem 1.1rem;">
+      <p style="margin:0; font-size:0.82rem; color:rgba(255,255,255,0.75);">
+        🛡️ <strong style="color:#fff;">Human-in-the-loop always.</strong>
+        AI generates transparent shortlists. Corporate procurement officers make the final call. SMEs retain full right of response.
+      </p>
+    </div>
+
+    <p class="source-note">WhatsApp penetration: Statista / DataReportal 2024 · SME funding gap: SourceFin / BizCommunity</p>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       SLIDE 6 — 5 DELIVERABLES
+  ══════════════════════════════════════ -->
+  <section class="delivers">
+    <div class="slide-label">Challenge 4 Alignment</div>
+    <h2>We deliver <span style="color:var(--green-light)">all 5</span> required outputs.</h2>
+    <div class="accent-bar"></div>
+
+    <div class="deliverable">
+      <div class="deliv-num">01</div>
+      <div>
+        <div class="feature-title">Verified SME Capability Profiles with AI Document Extraction</div>
+        <p class="feature-desc">Multimodal OCR + LLM builds structured profiles from messy photos of CIPC, SARS, and B-BBEE documents.</p>
+      </div>
+    </div>
+    <div class="deliverable">
+      <div class="deliv-num">02</div>
+      <div>
+        <div class="feature-title">Matching to Procurement Opportunities — Ranked, Explained Shortlists</div>
+        <p class="feature-desc">Hybrid semantic engine with auditable score cards. "92% Match: Level 1 B-BBEE, 8km from venue, 5 verified corporate deliveries."</p>
+      </div>
+    </div>
+    <div class="deliverable">
+      <div class="deliv-num">03</div>
+      <div>
+        <div class="feature-title">Matching to Funding, Grants &amp; Investors with Eligibility Checks</div>
+        <p class="feature-desc">One-click funding applications against NEF, SEFA, and corporate ESD loan mandates.</p>
+      </div>
+    </div>
+    <div class="deliverable">
+      <div class="deliv-num">04</div>
+      <div>
+        <div class="feature-title">Structured Feedback with SME Right of Response</div>
+        <p class="feature-desc">Actionable rejection feedback. SMEs can update compliance, clarify capacity, and re-enter the shortlist.</p>
+      </div>
+    </div>
+    <div class="deliverable">
+      <div class="deliv-num">05</div>
+      <div>
+        <div class="feature-title">Dashboards and Ecosystem Insights</div>
+        <p class="feature-desc">Real-time B-BBEE scorecard tracking + YES ecosystem telemetry (supplier density, youth impact per contract).</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       SLIDE 7 — TECH STACK
+  ══════════════════════════════════════ -->
+  <section class="tech">
+    <div class="slide-label">Technology</div>
+    <h2>Enterprise-grade. <span style="color:var(--green-light)">Mobile-first.</span></h2>
+    <div class="accent-bar"></div>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.2rem;">
+      <div>
+        <div class="feature-row" style="margin-bottom:0.7rem;">
+          <div class="feature-icon">🌐</div>
+          <div>
+            <div class="feature-title">Frontend</div>
+            <p class="feature-desc">Angular 16 SPA + Bootstrap 5 + Progressive Web App for mobile SMEs</p>
+          </div>
+        </div>
+        <div class="feature-row" style="margin-bottom:0.7rem;">
+          <div class="feature-icon">⚙️</div>
+          <div>
+            <div class="feature-title">Backend</div>
+            <p class="feature-desc">Node.js 18 + Express microservices · JWT auth · POPIA-compliant ABAC</p>
+          </div>
+        </div>
+        <div class="feature-row">
+          <div class="feature-icon">🗄️</div>
+          <div>
+            <div class="feature-title">Data</div>
+            <p class="feature-desc">MongoDB + PostgreSQL · Qdrant vector store (HNSW, 1536-dim)</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="feature-row" style="margin-bottom:0.7rem;">
+          <div class="feature-icon">🤖</div>
+          <div>
+            <div class="feature-title">AI Pipeline</div>
+            <p class="feature-desc">Multimodal vision-LLM document parsing · RAG-guardrailed bidding copilot · Semantic embeddings</p>
+          </div>
+        </div>
+        <div class="feature-row" style="margin-bottom:0.7rem;">
+          <div class="feature-icon">💬</div>
+          <div>
+            <div class="feature-title">WhatsApp Cloud API</div>
+            <p class="feature-desc">Bidirectional RFP alerts, quote wizard, status notifications</p>
+          </div>
+        </div>
+        <div class="feature-row">
+          <div class="feature-icon">🔗</div>
+          <div>
+            <div class="feature-title">Compliance Integrations</div>
+            <p class="feature-desc">SARS Tax PIN · CIPC company status · B-BBEE affidavit validation</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="badge-row" style="margin-top:1rem;">
+      <span class="badge">Angular 16</span>
+      <span class="badge">Node.js 18</span>
+      <span class="badge">MongoDB</span>
+      <span class="badge">Qdrant</span>
+      <span class="badge">WhatsApp API</span>
+      <span class="badge">Docker</span>
+      <span class="badge">Azure ZA North</span>
+      <span class="badge">TLS 1.3 + AES-256</span>
+      <span class="badge">POPIA Compliant</span>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       SLIDE 8 — BUSINESS MODEL
+  ══════════════════════════════════════ -->
+  <section class="bizmodel">
+    <div class="slide-label">Business Model</div>
+    <h2>Corporates pay. <span style="color:var(--green-light)">SMEs are always free.</span></h2>
+    <div class="accent-bar"></div>
+
+    <div class="tier-grid">
+      <div class="tier-card tier-1">
+        <div class="tier-label">Tier 1 · Annual</div>
+        <div class="tier-name">SaaS Subscription</div>
+        <div class="tier-price">R60K–R180K<span style="font-size:0.7rem; font-weight:400; color:rgba(255,255,255,0.5);">/yr</span></div>
+        <p class="tier-desc">Verified vendor search, compliance auditing, real-time ESD scorecard reporting</p>
+      </div>
+      <div class="tier-card tier-2">
+        <div class="tier-label">Tier 2 · ESD Budget</div>
+        <div class="tier-name">ESD Sponsorship Package</div>
+        <div class="tier-price">R100K–R350K</div>
+        <p class="tier-desc">Corporate ESD funds sponsor physical verification &amp; onboarding of 50–200 township suppliers</p>
+      </div>
+      <div class="tier-card tier-3">
+        <div class="tier-label">Tier 3 · Transactional</div>
+        <div class="tier-name">Success Fee</div>
+        <div class="tier-price">1.5%</div>
+        <p class="tier-desc">Payable by corporate buyer on successful PO settlement via platform</p>
+      </div>
+    </div>
+
+    <div class="stat-grid" style="margin-top:1rem;">
+      <div class="stat-card">
+        <div class="stat-number">R950K</div>
+        <div class="stat-label">Year 1 Revenue projection</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">12 mo</div>
+        <div class="stat-label">Projected break-even</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">R6.8M</div>
+        <div class="stat-label">Year 3 Revenue projection</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       SLIDE 9 — TRACTION
+  ══════════════════════════════════════ -->
+  <section class="traction">
+    <div class="slide-label">Traction &amp; Proof</div>
+    <h2>We already <span style="color:var(--green-light)">ship.</span></h2>
+    <div class="accent-bar"></div>
+
+    <p style="margin-bottom:0.5rem;">
+      Swift House is not pitching a concept. <strong style="color:var(--gold)">Kasi-eCo is live, deployed, and open-source</strong> — a township e-commerce and merchant management platform serving informal traders today.
+    </p>
+
+    <div class="milestone-grid">
+      <div class="milestone">
+        <div class="m-icon">🚀</div>
+        <div>
+          <div class="m-title">Live Cloud Platform</div>
+          <p class="m-desc">Angular 16 + Node.js/Express + MongoDB + Vercel. Zero-defect production build. kasi-e-co.vercel.app</p>
+        </div>
+      </div>
+      <div class="milestone">
+        <div class="m-icon">🛒</div>
+        <div>
+          <div class="m-title">Merchant Inventory Engine</div>
+          <p class="m-desc">Live product listing, real-time card preview, mobile catalog management for informal traders.</p>
+        </div>
+      </div>
+      <div class="milestone">
+        <div class="m-icon">💬</div>
+        <div>
+          <div class="m-title">WhatsApp Commerce Flow</div>
+          <p class="m-desc">Deep-link integration + phone normalization (07x → +277x) — serving 25M+ SA WhatsApp users.</p>
+        </div>
+      </div>
+      <div class="milestone">
+        <div class="m-icon">📂</div>
+        <div>
+          <div class="m-title">Open Source &amp; Documented</div>
+          <p class="m-desc">github.com/BulelaG/Kasi-eCo · Full REST API docs, deployment guide, architecture wiki.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:rgba(245,158,11,0.08); border:1px solid rgba(245,158,11,0.2); border-radius:10px; padding:0.8rem 1rem; margin-top:0.9rem;">
+      <p style="margin:0; font-size:0.78rem; color:rgba(255,255,255,0.75);">
+        📊 <strong style="color:var(--gold);">Market Timing:</strong>
+        YES FY2024 — 37,092 new youth placements · 71% corporate renewal rate · 1,800+ corporate partners.
+        The network we are building for is active, funded, and growing.
+        <span style="color:rgba(255,255,255,0.35);"> YES Annual Report FY2024</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       SLIDE 10 — TEAM
+  ══════════════════════════════════════ -->
+  <section class="team">
+    <div class="slide-label">Team</div>
+    <h2>Builders. <span style="color:var(--green-light)">Researchers. Community.</span></h2>
+    <div class="accent-bar"></div>
+
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-avatar">🏗️</div>
+        <div class="team-name">Lead Architect</div>
+        <div class="team-role">Technical Founder</div>
+        <p class="team-desc">System architecture, AI pipelines, backend REST APIs, database schemas, cloud infrastructure.</p>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">🎨</div>
+        <div class="team-name">Product &amp; Frontend</div>
+        <div class="team-role">Engineering Lead</div>
+        <p class="team-desc">UI/UX, WhatsApp integration flows, mobile-first onboarding, client-side performance.</p>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">🔬</div>
+        <div class="team-name">Research &amp; Market Intel</div>
+        <div class="team-role">Market Analyst</div>
+        <p class="team-desc">User discovery, B-BBEE regulatory tracking, market data sourcing, competitive landscape analysis.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:1rem; display:grid; grid-template-columns:1fr 1fr; gap:0.8rem;">
+      <div style="background:rgba(21,128,61,0.1); border:1px solid rgba(34,197,94,0.2); border-radius:10px; padding:0.9rem 1rem;">
+        <div style="font-size:0.7rem; font-weight:700; color:var(--green-light); text-transform:uppercase; letter-spacing:0.1em;">YES-Sponsored Member 1</div>
+        <div style="font-size:0.85rem; font-weight:700; color:#fff; margin:0.3rem 0 0.2rem;">Cloud Infrastructure &amp; DevOps Engineer</div>
+        <p style="font-size:0.72rem; color:rgba(255,255,255,0.6); margin:0; line-height:1.4;">CI/CD pipelines, Docker, Azure ZA North, vector DB uptime monitoring.</p>
+      </div>
+      <div style="background:rgba(21,128,61,0.1); border:1px solid rgba(34,197,94,0.2); border-radius:10px; padding:0.9rem 1rem;">
+        <div style="font-size:0.7rem; font-weight:700; color:var(--green-light); text-transform:uppercase; letter-spacing:0.1em;">YES-Sponsored Member 2</div>
+        <div style="font-size:0.85rem; font-weight:700; color:#fff; margin:0.3rem 0 0.2rem;">Data &amp; Integration Engineer</div>
+        <p style="font-size:0.72rem; color:rgba(255,255,255,0.6); margin:0; line-height:1.4;">Document extraction pipeline, SARS/CIPC API connectors, SME field verification.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       SLIDE 11 — THE ASK
+  ══════════════════════════════════════ -->
+  <section class="theask" style="text-align:left; padding:2rem 2.5rem;">
+    <div class="slide-label">The Ask</div>
+    <h2>We need <span style="color:var(--gold)">R500,000</span> and a YES seat.</h2>
+    <div class="accent-bar"></div>
+
+    <div class="ask-grid">
+      <div class="ask-card">
+        <div class="ask-amount">R225K</div>
+        <div class="ask-desc">Software Development &amp; AI Engineering (45%) — core matching engine, document extraction pipeline, WhatsApp bidding copilot.</div>
+      </div>
+      <div class="ask-card">
+        <div class="ask-amount">R90K</div>
+        <div class="ask-desc">Township SME Onboarding &amp; Field Verification (18%) — YES-sponsored youth team verifying supplier profiles on the ground.</div>
+      </div>
+      <div class="ask-card">
+        <div class="ask-amount">R75K</div>
+        <div class="ask-desc">Cloud Hosting, Vector Databases &amp; Model Inference (15%) — Azure ZA North, Qdrant, LLM API costs at pilot scale.</div>
+      </div>
+      <div class="ask-card">
+        <div class="ask-amount">R110K</div>
+        <div class="ask-desc">Legal / POPIA audit, compliance integrations (8%), and operations &amp; administration (14%).</div>
+      </div>
+    </div>
+
+    <div style="margin-top:1.2rem; background:rgba(34,197,94,0.08); border:1px solid rgba(34,197,94,0.2); border-radius:10px; padding:1rem 1.2rem; display:flex; align-items:center; gap:1rem;">
+      <div style="font-size:2rem;">🎯</div>
+      <div>
+        <p style="margin:0; font-size:0.9rem; font-weight:700; color:#fff;">What we unlock together</p>
+        <p style="margin:0.2rem 0 0; font-size:0.78rem; color:rgba(255,255,255,0.65);">
+          Access to YES's 1,800+ corporate partners as first customers · R26B ESD market · Live platform headstart no competitor has · Youth employment for 2 YES-sponsored engineers in Year 1.
+        </p>
+      </div>
+    </div>
+
+    <p style="font-size:0.78rem; color:rgba(255,255,255,0.4); margin-top:1.2rem; text-align:center;">
+      kasi-e-co.vercel.app &nbsp;·&nbsp; github.com/BulelaG/Kasi-eCo &nbsp;·&nbsp; Application ID: Y4Y-2026-0035
+    </p>
+  </section>
+
+</div>
+</div>
+
+<!-- Reveal.js core + script -->
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.min.js"></script>
+<script>
+  Reveal.initialize({
+    hash: true,
+    slideNumber: 'c/t',
+    transition: 'slide',
+    transitionSpeed: 'fast',
+    backgroundTransition: 'fade',
+    controls: true,
+    progress: true,
+    center: false,
+    width: 1200,
+    height: 700,
+    margin: 0.04,
+    minScale: 0.2,
+    maxScale: 2.0,
+    keyboard: {
+      // Arrow keys + space
+    }
+  });
+</script>
+</body>
+</html>

@@ -1,18 +1,22 @@
 /* ── Trader Storefront Polished Glassmorphic Styles ── */
 
 .storefront-page-container {
-  max-width: 1140px;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
 }
 
 .store-header-card {
   border-radius: var(--radius-xl);
+  box-shadow: 0 20px 45px -10px rgba(15, 23, 42, 0.08);
 }
 
 .store-avatar-ring {
-  width: 120px;
-  height: 120px;
+  width: 130px;
+  height: 130px;
   border-radius: 50%;
-  padding: 3px;
+  padding: 4px;
   background: linear-gradient(135deg, var(--kasi-emerald-light) 0%, var(--kasi-primary) 60%, var(--kasi-accent) 100%);
   position: relative;
   display: inline-block;
@@ -33,23 +37,23 @@
   position: absolute;
   bottom: 2px;
   right: 2px;
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   background: #059669;
   color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1rem;
+  font-size: 1.05rem;
   border: 2px solid #ffffff;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
 .contact-icon-box {
-  width: 36px;
-  height: 36px;
-  border-radius: 10px;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -58,13 +62,13 @@
 
 /* Contact Info Rows */
 .contact-info-row {
-  background: rgba(255, 255, 255, 0.75);
-  border: 1px solid rgba(226, 232, 240, 0.85);
-  border-radius: 12px;
-  padding: 12px 14px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  border-radius: 14px;
+  padding: 14px 18px;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -72,24 +76,25 @@
   background: #ffffff;
   border-color: rgba(5, 150, 105, 0.35);
   transform: translateX(3px);
-  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05);
 }
 
 .contact-mini-icon {
-  width: 38px;
-  height: 38px;
-  border-radius: 10px;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.15rem;
+  font-size: 1.25rem;
   flex-shrink: 0;
 }
 
 /* 3-Step Sourcing Process */
 .sourcing-step-box {
-  background: rgba(255, 255, 255, 0.7);
-  border: 1px solid rgba(226, 232, 240, 0.8);
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(226, 232, 240, 0.85);
+  border-radius: 14px;
   transition: all 0.2s ease;
 }
 
@@ -97,16 +102,17 @@
   background: #ffffff;
   border-color: rgba(5, 150, 105, 0.25);
   transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
 }
 
 .step-num-badge {
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   background: var(--kasi-forest);
   color: #ffffff;
   font-weight: 700;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -115,11 +121,12 @@
 .esd-callout-box {
   background: rgba(5, 150, 105, 0.08);
   border: 1px solid rgba(5, 150, 105, 0.25);
+  border-radius: 14px;
 }
 
 /* Product Catalog Showcase */
 .product-thumb-stage {
-  height: 180px;
+  height: 200px;
   display: flex;
   align-items: center;
   justify-content: center;

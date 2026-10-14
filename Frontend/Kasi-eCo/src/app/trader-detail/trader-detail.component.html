@@ -1,4 +1,4 @@
-<div class="storefront-page-container container my-4 my-md-5">
+<div class="storefront-page-container container-fluid px-3 px-md-5 my-4 my-md-5">
   
   <!-- Breadcrumbs & Share Header -->
   <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-4">
@@ -65,18 +65,20 @@
           </h1>
 
           <!-- Founder / Craftsman -->
-          <p class="text-muted mb-3 d-flex align-items-center justify-content-center justify-content-md-start gap-1">
+          <p class="text-muted mb-0 d-flex align-items-center justify-content-center justify-content-md-start gap-1">
             <i class="bi bi-person-badge text-emerald me-1"></i>
             <span>Owner / Craftsman: <strong class="text-dark">{{ trader.fname || 'Local Artisan' }}</strong></span>
           </p>
+        </div>
 
-          <!-- Primary Action Buttons -->
-          <div class="d-flex flex-wrap justify-content-center justify-content-md-start align-items-center gap-2">
-            <a *ngIf="trader.cell" [href]="getWhatsAppUrl()" target="_blank" class="btn btn-whatsapp px-4 py-2">
+        <!-- Action Buttons Column (Right Aligned on Desktop) -->
+        <div class="col-md-auto text-center text-md-end ms-md-auto">
+          <div class="d-flex flex-wrap justify-content-center justify-content-md-end align-items-center gap-2">
+            <a *ngIf="trader.cell" [href]="getWhatsAppUrl()" target="_blank" class="btn btn-whatsapp px-4 py-2-5 shadow-sm">
               <i class="bi bi-whatsapp fs-5"></i> Chat on WhatsApp
             </a>
-            <a *ngIf="trader.cell" [href]="'tel:' + trader.cell" class="btn btn-glass px-4 py-2">
-              <i class="bi bi-telephone me-1"></i> Call Merchant
+            <a *ngIf="trader.cell" [href]="'tel:' + trader.cell" class="btn btn-glass px-4 py-2-5">
+              <i class="bi bi-telephone me-1"></i> Call Store
             </a>
           </div>
         </div>
@@ -84,11 +86,11 @@
       </div>
     </div>
 
-    <!-- ── 2-Column Equal Height Cards ── -->
+    <!-- ── 2-Column Equal Height Cards (Spacious Layout) ── -->
     <div class="row g-4 align-items-stretch mb-5">
       
-      <!-- Left Column: Contact Cards -->
-      <div class="col-lg-5">
+      <!-- Left Column: Contact & Operations (4 Columns) -->
+      <div class="col-lg-4">
         <div class="glass-card p-4 p-md-4 h-100 d-flex flex-column justify-content-between">
           <div>
             <div class="d-flex align-items-center gap-2 mb-3">
@@ -107,7 +109,7 @@
                 </div>
                 <div class="flex-grow-1 min-w-0">
                   <small class="text-muted d-block lh-1 mb-1">WhatsApp & Phone</small>
-                  <a [href]="getWhatsAppUrl()" target="_blank" class="fw-bold text-dark hover-emerald text-break d-block">
+                  <a [href]="getWhatsAppUrl()" target="_blank" class="fw-bold text-dark hover-emerald text-break d-block fs-6">
                     {{ trader.cell }}
                   </a>
                 </div>
@@ -120,7 +122,7 @@
                 </div>
                 <div class="flex-grow-1 min-w-0">
                   <small class="text-muted d-block lh-1 mb-1">Official Email</small>
-                  <a [href]="'mailto:' + trader.email" class="fw-bold text-dark hover-emerald text-break d-block">
+                  <a [href]="'mailto:' + trader.email" class="fw-bold text-dark hover-emerald text-break d-block fs-6">
                     {{ trader.email }}
                   </a>
                 </div>
@@ -133,7 +135,7 @@
                 </div>
                 <div class="flex-grow-1 min-w-0">
                   <small class="text-muted d-block lh-1 mb-1">Workshop / Operation Area</small>
-                  <span class="fw-bold text-dark text-break d-block">
+                  <span class="fw-bold text-dark text-break d-block fs-6">
                     {{ trader.address || 'Gauteng / Western Cape, South Africa' }}
                   </span>
                 </div>
@@ -150,8 +152,8 @@
         </div>
       </div>
 
-      <!-- Right Column: How to Buy & Trust Framework -->
-      <div class="col-lg-7">
+      <!-- Right Column: How to Buy & Trust Framework (8 Columns) -->
+      <div class="col-lg-8">
         <div class="glass-card p-4 p-md-4 h-100 d-flex flex-column justify-content-between">
           <div>
             <div class="d-flex align-items-center gap-2 mb-2">
@@ -162,51 +164,57 @@
             </div>
 
             <p class="text-muted small lh-base mb-4">
-              Kasi-eCo eliminates middleman markups. When you order from <strong>{{ trader.businessName }}</strong>, 100% of your spend reaches the artisan directly.
+              Kasi-eCo eliminates middleman markups. When you order from <strong>{{ trader.businessName }}</strong>, 100% of your spend reaches the artisan directly to foster grassroots economic development.
             </p>
 
-            <!-- 3-Step Sourcing Process -->
-            <div class="row g-2 mb-4">
+            <!-- 3-Step Sourcing Process (Wide and spacious) -->
+            <div class="row g-3 mb-4">
               <div class="col-md-4">
-                <div class="sourcing-step-box p-3 rounded-3 text-center h-100">
-                  <div class="step-num-badge mx-auto mb-2">1</div>
-                  <h6 class="fw-bold mb-1 small text-dark">Tap WhatsApp</h6>
-                  <p class="text-muted small mb-0" style="font-size: 0.75rem;">Open a direct chat with {{ trader.fname || 'the artisan' }}.</p>
+                <div class="sourcing-step-box p-3 p-xl-4 text-center h-100 d-flex flex-column justify-content-between">
+                  <div>
+                    <div class="step-num-badge mx-auto mb-2">1</div>
+                    <h6 class="fw-bold mb-1 text-dark">Tap WhatsApp</h6>
+                    <p class="text-muted small mb-0">Open an encrypted direct chat with {{ trader.fname || 'the artisan' }}.</p>
+                  </div>
                 </div>
               </div>
               <div class="col-md-4">
-                <div class="sourcing-step-box p-3 rounded-3 text-center h-100">
-                  <div class="step-num-badge mx-auto mb-2">2</div>
-                  <h6 class="fw-bold mb-1 small text-dark">Discuss Specs</h6>
-                  <p class="text-muted small mb-0" style="font-size: 0.75rem;">Confirm dimensions, materials, or delivery.</p>
+                <div class="sourcing-step-box p-3 p-xl-4 text-center h-100 d-flex flex-column justify-content-between">
+                  <div>
+                    <div class="step-num-badge mx-auto mb-2">2</div>
+                    <h6 class="fw-bold mb-1 text-dark">Discuss Specs</h6>
+                    <p class="text-muted small mb-0">Confirm custom sizing, materials, timelines, or delivery.</p>
+                  </div>
                 </div>
               </div>
               <div class="col-md-4">
-                <div class="sourcing-step-box p-3 rounded-3 text-center h-100">
-                  <div class="step-num-badge mx-auto mb-2">3</div>
-                  <h6 class="fw-bold mb-1 small text-dark">Direct Settlement</h6>
-                  <p class="text-muted small mb-0" style="font-size: 0.75rem;">Pay via EFT, cash, or card directly with maker.</p>
+                <div class="sourcing-step-box p-3 p-xl-4 text-center h-100 d-flex flex-column justify-content-between">
+                  <div>
+                    <div class="step-num-badge mx-auto mb-2">3</div>
+                    <h6 class="fw-bold mb-1 text-dark">Direct Settlement</h6>
+                    <p class="text-muted small mb-0">Pay via EFT, cash, or card directly with maker.</p>
+                  </div>
                 </div>
               </div>
             </div>
 
             <!-- Enterprise Callout -->
-            <div class="p-3 rounded-3 esd-callout-box d-flex align-items-center gap-3">
+            <div class="p-3 p-md-4 rounded-3 esd-callout-box d-flex align-items-center gap-3">
               <i class="bi bi-building-check fs-2 text-success flex-shrink-0"></i>
               <div>
-                <strong class="text-success-emphasis d-block small">Corporate & ESD Procurement Ready</strong>
-                <p class="text-muted small mb-0" style="font-size: 0.78rem;">
+                <strong class="text-success-emphasis d-block">Corporate & ESD Procurement Ready</strong>
+                <p class="text-muted small mb-0">
                   This merchant is eligible for corporate enterprise and supplier development (ESD) procurement spend under B-BBEE Codes 400 and 500.
                 </p>
               </div>
             </div>
           </div>
 
-          <div class="mt-4 pt-3 border-top border-secondary border-opacity-10 d-flex flex-wrap align-items-center justify-content-between gap-2">
+          <div class="mt-4 pt-3 border-top border-secondary border-opacity-10 d-flex flex-wrap align-items-center justify-content-between gap-3">
             <span class="text-muted small">
               <i class="bi bi-check2-circle text-emerald"></i> Verified by Swift House Kasi-eCo
             </span>
-            <a *ngIf="trader.cell" [href]="getWhatsAppUrl()" target="_blank" class="btn btn-sm btn-whatsapp">
+            <a *ngIf="trader.cell" [href]="getWhatsAppUrl()" target="_blank" class="btn btn-whatsapp px-4 py-2">
               <i class="bi bi-whatsapp"></i> Start Order on WhatsApp
             </a>
           </div>
@@ -215,7 +223,7 @@
 
     </div>
 
-    <!-- ── Products by this Trader (Catalog) ── -->
+    <!-- ── Products by this Trader (Expansive 4-Column Catalog Grid) ── -->
     <div class="store-catalog-section mt-5 pt-3">
       <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-2">
         <div>
@@ -225,13 +233,13 @@
           <h3 class="fw-bold text-dark m-0">Products from {{ trader.businessName }}</h3>
         </div>
         <a routerLink="/products" class="btn btn-sm btn-glass text-muted">
-          Browse All Products <i class="bi bi-arrow-right ms-1"></i>
+          Browse All Marketplace Products <i class="bi bi-arrow-right ms-1"></i>
         </a>
       </div>
 
       <!-- Products Grid -->
       <div *ngIf="!isLoadingProducts && products.length > 0" class="row g-4">
-        <div class="col-md-4 col-sm-6" *ngFor="let product of products">
+        <div class="col-xl-3 col-lg-4 col-sm-6" *ngFor="let product of products">
           <div class="glass-card p-3 h-100 d-flex flex-column justify-content-between">
             <div>
               <div class="product-thumb-stage mb-3 rounded-3 overflow-hidden bg-light text-center">
@@ -243,7 +251,7 @@
                 {{ product.category }}
               </span>
               <h6 class="fw-bold text-dark mb-1 text-truncate" title="{{ product.p_name }}">{{ product.p_name }}</h6>
-              <div class="fw-extrabold text-emerald mb-2">R{{ product.price }}</div>
+              <div class="fw-extrabold text-emerald mb-2 fs-5">R{{ product.price }}</div>
               <p class="text-muted small line-clamp-2 mb-3">{{ product.description || 'Custom crafted product' }}</p>
             </div>
             <div class="pt-2 border-top">
@@ -261,10 +269,10 @@
           <i class="bi bi-bag-plus text-emerald display-5"></i>
         </div>
         <h5 class="fw-bold text-dark mb-2">Custom Fabrication & Sourcing</h5>
-        <p class="text-muted small mx-auto mb-4" style="max-width: 520px;">
+        <p class="text-muted small mx-auto mb-4" style="max-width: 580px;">
           {{ trader.businessName }} creates bespoke and custom orders on request. Contact {{ trader.fname || 'the merchant' }} directly on WhatsApp with your exact specifications, sizing, or inquiries.
         </p>
-        <a *ngIf="trader.cell" [href]="getWhatsAppUrl()" target="_blank" class="btn btn-whatsapp px-4 py-2">
+        <a *ngIf="trader.cell" [href]="getWhatsAppUrl()" target="_blank" class="btn btn-whatsapp px-4 py-2-5">
           <i class="bi bi-whatsapp"></i> Inquire for Custom Quote
         </a>
       </div>
